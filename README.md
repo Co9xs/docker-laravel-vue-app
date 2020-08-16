@@ -13,3 +13,5 @@
 2. cd my-vue-app
 3. docker-compose up -d
 4. http://localhost:8000 にアクセス
+
+<p align="center"><img src="./public/img/ER.png" width="400"></p>
