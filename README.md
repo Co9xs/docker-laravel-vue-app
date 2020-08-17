@@ -16,3 +16,9 @@
 ## ER図
 
 <p align="center"><img src="./public/img/ER.png" width="700"></p>
+
+## npm install後にビルドエラーが出る場合の対処法
+
+1. npm uninstall --save-dev sass-loader
+2. npm install --save-dev sass-loader@7.1.0
+
