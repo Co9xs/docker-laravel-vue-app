@@ -15,9 +15,11 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->enum('work_style', ['短期インターン', '長期インターン', 'アルバイト', 'その他'])->default('長期インターン');
+            $table->enum('type_of_occupation', ['フロントエンドエンジニア', 'デザイナー', 'バックエンドエンジニア', 'インフラエンジニア', '機械学習エンジニア', 'データサイエンティスト', 'iOS&Androidエンジニア', 'ゲームクリエイター', 'その他'])->default('フロントエンドエンジニア');
+            $table->tinyInteger('evaluation')->unsigned();
             $table->text('body');
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

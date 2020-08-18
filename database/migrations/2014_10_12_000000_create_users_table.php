@@ -19,6 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('sex', ['男性', '女性'])->default('男性');
+            $table->enum('graduation_year', ['19卒', '20卒', '21卒', '22卒', '23卒', '24卒'])->default('22卒');
+            $table->string('school_name')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
