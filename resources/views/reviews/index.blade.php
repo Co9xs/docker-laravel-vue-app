@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', '記事一覧')
+@section('title', 'ITインターン - 投稿一覧')
 
 @section('content')
 @include('nav')
@@ -11,7 +11,7 @@
         <i class="fas fa-user-circle fa-3x mr-1"></i>
         <div>
           <div class="font-weight-bold">
-            {{ $review->user->school_name }} / {{ $review->user->graduation_year }} / {{ $review->user->sex }}
+            {{ $review->user->school_name }}/{{ $review->user->graduation_year }}/{{ $review->user->sex }}
           </div>
           <div class="font-weight-lighter">
             {{ $review->created_at->format('Y/m/d H:i') }}
