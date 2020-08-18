@@ -30,4 +30,27 @@ class ReviewController extends Controller
         return redirect('/reviews');
     }
 
+    public function show(Article $article)
+    {
+        return view('reviews.show', ['review' => $review]);
+    }   
+
+    public function edit(Review $review)
+    {
+        return view('reviews.edit', ['review' => $review]);
+    }
+
+    public function update(ReviewRequest $request, Review $review)
+    {
+        $review->body=$request->body;
+        $review->save();
+        return redirect('/reviews');
+    }
+
+    public function destroy(Review $review)
+    {
+        $review->delete();
+        return redirect('/reviews');
+    }
+
 }

@@ -19,10 +19,12 @@
 
   <main>
   @yield('content')
+  <div id="app"></div>
   </main>
   
   <footer>
   </footer>
+<!-- <script src="{{ asset('/js/app.js') }}"></script> -->
 <!-- JQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
@@ -31,7 +33,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
-<script src="{{ asset('/js/app.js') }}"></script>
 </body>
 
 </html>
