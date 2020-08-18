@@ -4,14 +4,13 @@
       <div class="star-rating-front" :style="{ width: calcRating + '%' }">★★★★★</div>
       <div class="star-rating-back">★★★★★</div>
   </div>
-  <span>{{ average }}</span>
 </div>
 </template>
 
 <script>
 export default {
   props: {
-    averagePoint: Number
+    averagePoint: String
   },
   data() {
     return {
