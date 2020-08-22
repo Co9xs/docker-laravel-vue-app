@@ -13,7 +13,7 @@ class ReviewController extends Controller
     {
         $service = new \App\Services\ReviewService();
         $reviews = $service->fetchReviews();
-        return view('reviews.index', ['reviews' => $reviews]);        
+        return $reviews; 
     }
 
     public function create(Company $company)

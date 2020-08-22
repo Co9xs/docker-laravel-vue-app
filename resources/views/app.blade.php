@@ -15,16 +15,57 @@
 
 <body>
   <header>
+    <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
+  <a class="navbar-brand" href="/"><i class="fas fa-laptop-code mr-2 fa-lg"></i>ITインターン.com</a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="/reviews" style="text-align: center;">
+        <i class="far fa-comment-dots fa-lg"></i>
+        <span style="display: block; font-size: 12px;">口コミを見る</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/companies" style="text-align: center;">
+        <i class="fas fa-pen mr-1 fa-lg"></i>
+        <span style="display: block; font-size: 12px;">口コミを書く</span>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav ml-auto">
+  @guest
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('register') }}">新規登録</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('login') }}">ログイン</a>
+    </li>
+  @else
+    <li class="nav-item">
+      <button class="nav-link" type="button" onclick="location.href='/home'">マイページ</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" form="logout-form" type="submit">ログアウト</button>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+      </form>
+    </li>
+  @endguest
+
+  </ul>
+
+</nav>
   </header>
 
   <main>
-  @yield('content')
+  <!-- @yield('content') -->
   <div id="app"></div>
-  </main>
+</main>
   
   <footer>
   </footer>
-<!-- <script src="{{ asset('/js/app.js') }}"></script> -->
+<script src="{{ asset('/js/app.js') }}"></script>
 <!-- JQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->

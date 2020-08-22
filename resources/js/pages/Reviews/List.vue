@@ -1,26 +1,29 @@
-@extends('app')
-@section('title', 'ITインターン - 投稿一覧')
-@section('content')
-@include('nav')
-  <div class="container">
-  @foreach($reviews as $review)
-    <div class="card mt-3">
+<template>
+    <div class="container">
+    <div class="top-search-bar mt-3">
+      <search-bar></search-bar>
+    </div>
+    <div class="card mt-3" v-for="review in reviews" v-bind:key="review.id">
       <div class="card-body">
         <h5 class="h5 card-title">
-          {{ $review->company->name }}
+          {{ review.company.name }}
         </h5>
+        <div class="font-weight-lighter d-flex">
+          <p class="mb-0">総合評価</p>
+          <star-rating :starNum="3"></star-rating>
+        </div>
         <div class="d-flex flex-row">
         <div style="width: 46px; height: 46px; border: 1px #efefef solid; border-radius: 50%; overflow: hidden; margin-right:5px;">
         </div>
         <div>
           <div class="font-weight-bold">
-            {{ $review->user->school_name }}/{{ $review->user->graduation_year }}/{{ $review->user->sex }}
+            {{ review.user.school_name }}/{{ review.user.graduation_year }}/{{ review.user.sex }}
           </div>
           <div class="font-weight-lighter">
-            {{ $review->work_style }}, {{ $review->type_of_occupation}}
+            {{ review.work_style }}, {{ review.type_of_occupation}}
           </div>
         </div>
-        @if( Auth::id() ===$review->user_id )
+          <template v-if="review.user_id === 1">
           <!-- dropdown -->
           <div class="ml-auto card-text">
             <div class="dropdown">
@@ -30,7 +33,7 @@
                 </button>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="/reviews/{{$review->id}}/edit">
+                <a class="dropdown-item" href="/reviews/${review.id}/edit">
                   <i class="fas fa-pen mr-1"></i>編集する
                 </a>
                 <div class="dropdown-divider"></div>
@@ -66,16 +69,45 @@
             </div>
           </div>
           <!-- modal -->
-        @endif
-        {{-- ここまで追加 --}}
+        </template>
+
         </div>
       </div>
       <div class="card-body pt-0 pb-2">
         <div class="card-text">
-          {!! nl2br(e( $review->body )) !!}
+          {{review.body}}
         </div>
       </div>
     </div>
-    @endforeach
-  </div>
-@endsection
+    </div>
+</template>
+
+<script>
+import StarRating from '../../components/StarRating.vue'
+import SearchBar from '../../components/SerchBar.vue'
+export default {
+  components: {
+    StarRating,
+    SearchBar
+  },
+  data() {
+    return {
+      reviews: []
+    }
+  },
+  methods: {
+    async getReviews() {
+      this.reviews = [];
+      const response = await axios.get('api/v1/reviews');
+      this.reviews = response.data;
+    }
+  },
+  mounted() {
+    this.getReviews()
+  }
+}
+</script>
+
+<style>
+
+</style>

@@ -11,6 +11,6 @@ class ReviewRepository
      */
     public function all(): ?\Illuminate\Database\Eloquent\Collection
     {
-        return \App\Review::all();
+        return \App\Review::with('user', 'company')->get();
     }
 }
