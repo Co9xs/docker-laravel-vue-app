@@ -6,9 +6,15 @@ class ReviewService
      *
      * @return \App\Review|null
      */
-    public function fetchReviews(): ?\Illuminate\Database\Eloquent\Collection
+    public function getReviews(): ?\Illuminate\Database\Eloquent\Collection
     {
         $repository = new \App\Repositories\ReviewRepository();
         return $repository->all();
+    }
+
+    public function fetchReview($id)
+    {
+        $repository = new \App\Repositories\ReviewRepository();
+        return $repository->find($id);
     }
 }

@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/v1/reviews', 'ReviewController@index');
+Route::get('/v1/reviews/{review}', 'ReviewController@show');

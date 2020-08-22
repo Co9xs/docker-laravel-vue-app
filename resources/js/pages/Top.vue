@@ -7,7 +7,7 @@
       <div class="search__inner">
         <p class="search__text">現在の口コミ投稿数:<span class="search__text--strong">79</span>件</p>
         <p class="search__text">現在の口コミ掲載企業数:<span class="search__text--strong">13</span>件</p>
-        <SearchBar :defaultText="'会社名で検索'" @error="notifyError()"></SearchBar>
+        <SearchBar :defaultText="'会社名で検索（例: 株式会社〇〇）'" @error="notifyError()"></SearchBar>
         <a class="search__link" href="/reviews">口コミ一覧を見てみる</a>
       </div>
     </div>

@@ -13,4 +13,13 @@ class ReviewRepository
     {
         return \App\Review::with('user', 'company')->get();
     }
+
+    /**
+     *
+     * @param  int          $id
+     * @return \App\Review|null
+     */
+    public function find($id) {
+        return \App\Review::with('company', 'user')->find($id);
+    }
 }

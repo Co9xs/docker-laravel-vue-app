@@ -12,7 +12,7 @@ class ReviewController extends Controller
     public function index () 
     {
         $service = new \App\Services\ReviewService();
-        $reviews = $service->fetchReviews();
+        $reviews = $service->getReviews();
         return $reviews; 
     }
 
@@ -30,9 +30,11 @@ class ReviewController extends Controller
         return redirect('/reviews');
     }
 
-    public function show(Article $article)
+    public function show(Review $review)
     {
-        return view('reviews.show', ['review' => $review]);
+        $service = new \App\Services\ReviewService();
+        $result = $service->fetchReview($review->id);
+        return $result;
     }   
 
     public function edit(Review $review)
