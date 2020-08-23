@@ -3,12 +3,28 @@ import VueRouter from "vue-router";
 import Top from "./pages/Top.vue";
 import ReviewList from "./pages/Reviews/List.vue"
 import ReviewDetail from "./pages/Reviews/Detail.vue"
+import User from "./pages/User.vue"
+import Login from "./pages/Auth/Login.vue"
+import Register from "./pages/Auth/Register.vue"
+
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
         component: Top
+    },
+    {
+        path: "/login",
+        component: Login
+    },
+    {
+        path: "/register",
+        component: Register
+    },
+    {
+        path: "/home",
+        component: User
     },
     {
         path: "/reviews",

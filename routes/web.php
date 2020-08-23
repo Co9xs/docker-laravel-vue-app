@@ -10,8 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Auth::routes();
 Route::get('/{any}', function () {
-    return view('app');
+    return view('index');
 })->where('any', '.*');
 // Route::view('/', 'app');
 // Reviewへのルート
@@ -24,4 +26,4 @@ Route::get('/{any}', function () {
 // Route::delete('/reviews/{review}', 'ReviewController@destroy');
 // Route::get('/companies', 'CompanyController@index');
 // Route::get('/home', 'HomeController@index')->name('home');
-Auth::routes();
+
