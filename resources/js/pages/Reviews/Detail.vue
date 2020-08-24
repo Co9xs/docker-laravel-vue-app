@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <div class="card mt-3">
+        <Loading v-show="loading"></Loading>
+        <div v-show="!loading" class="card mt-3">
             <div class="card-body">
                 <h5 class="h5 card-title">
                     {{ review.company.name }}
@@ -29,12 +30,9 @@
                 </div>
             </div>
             <div class="card-body pt-0 pb-2">
-                <!-- <div class="card-text">
-        {{ excerpt(review.body, 50) }}
-      </div> -->
                 <div class="card-text">
                     {{ review.body }}
-                </div>
+                </div>  
                 <p class="m-0" style="text-align: right;">
                     <a href="">
                         <i class="fas fa-thumbs-up"></i>参考になった
@@ -47,22 +45,27 @@
 
 <script>
 import StarRating from "../../components/StarRating.vue";
+import Loading from "../../components/Loading.vue"
 export default {
     components: {
-        StarRating
+        StarRating,
+        Loading
     },
     data() {
         return {
-            review: {}
+            review: {},
+            loading: true
         };
     },
     methods: {
         async fetchReview() {
+            this.loading = true
             const reviewId = parseInt(this.$route.params.id, 10);
             const response = await axios.get(
                 `http://localhost:8000/api/v1/reviews/${reviewId}`
             );
             this.review = response.data;
+            this.loading = false
         }
     },
     mounted() {

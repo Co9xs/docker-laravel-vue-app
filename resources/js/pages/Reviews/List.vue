@@ -10,54 +10,42 @@
             <p v-if="searched" class="search-bar__result">
                 検索結果：
                 <span class="search-bar__result--strong">
-                  {{ filteredReviews.length}}
+                    {{ filteredReviews.length}}
                 </span>
                 件の口コミがヒットしました
             </p>
         </div>
+        <Loading v-show="loading"></Loading>
         <div
             class="row justify-content-start"
             v-for="reviews in createDoubleArray(filteredReviews, 2)"
             :key="reviews.index"
+            v-show="!loading"
         >
             <div class="col-md-6" v-for="review in reviews" :key="review.id">
                 <div class="card mt-3">
-                    <div class="card-body">
-                        <h5 class="h5 card-title">
-                            {{ review.company.name }}
+                    <div class="card-header d-flex justify-content-between">
+                        <h5 class="h5 card-title m-0">
+                            <a class="company__name" href="">{{ review.company.name }}</a>
+                            <span class="company__area">本社所在地: {{ review.company.area }}</span>
                         </h5>
-                        <div class="font-weight-lighter d-flex">
-                            <p class="mb-0">総合評価</p>
+                    </div>
+                    <div class="card-body pb-2">
+                        <user-info :review="review"></user-info>
+                    </div>
+                    <div class="card-body pt-0 pb-2">
+                        <div class="font-weight-lighter d-flex align-items-baseline">
+                            <p class="mb-0 pr-1">総合評価</p>
                             <star-rating
                                 :starNum="review.evaluation"
                             ></star-rating>
                         </div>
-                        <div class="d-flex flex-row">
-                            <div
-                                style="width: 46px; height: 46px; border: 1px #efefef solid; border-radius: 50%; overfloe: hidden; margin-right:5px;"
-                            >
-                                <!-- <img :src="'../../../../public/storage/top.jpg'"> -->
-                            </div>
-                            <div>
-                                <div class="font-weight-bold">
-                                    {{ review.user.school_name }}/{{
-                                        review.user.graduation_year
-                                    }}/{{ review.user.sex }}
-                                </div>
-                                <div class="font-weight-lighter">
-                                    {{ review.work_style }},
-                                    {{ review.type_of_occupation }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0 pb-2">
                         <div class="card-text">
                             {{ excerpt(review.body, 50) }}
                         </div>
-                        <a :href="'/reviews/' + review.id"
-                            >この口コミの詳細を見る>></a
-                        >
+                        <div class="fon-weight-lighter">
+                            <a :href="'/reviews/' + review.id">この口コミの詳細を見る>></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,29 +54,40 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import StarRating from "../../components/StarRating.vue";
 import SearchBar from "../../components/SerchBar.vue";
+import UserInfo from "../../components/UserInfo.vue";
+import Loading from "../../components/Loading.vue";
 export default {
     components: {
         StarRating,
-        SearchBar
+        SearchBar,
+        UserInfo,
+        Loading
     },
     data() {
         return {
             keyword: "",
             reviews: [],
-            searched: false
+            searched: false,
+            loading: true
         };
     },
     computed: {
         filteredReviews() {
             return this.filterReviews();
-        }
+        },
+        ...mapGetters({
+            userId: 'auth/userId'
+        })
     },
     methods: {
         async getReviews() {
+            this.loading = true;
             const response = await axios.get("api/v1/reviews");
             this.reviews = response.data;
+            this.loading = false;
         },
         filterReviews() {
             let filtered = [];
@@ -123,7 +122,7 @@ export default {
             this.searched = false;
             this.keyword = keyword;
             this.searched = true;
-        }
+        },
     },
     mounted() {
         this.getReviews();
@@ -142,8 +141,17 @@ export default {
 }
 
 .search-bar__result--strong {
-  font-size: 20px;
-  font-weight: bold;
-  color: #EE6054;
+    font-size: 20px;
+    font-weight: bold;
+    color: #EE6054;
+}
+
+.company__name {
+    display: block;
+    color: #333;
+}
+
+.company__area {
+    font-size: 12px;
 }
 </style>

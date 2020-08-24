@@ -4,11 +4,12 @@ const state = {
 
 const getters = {
     checkAuth: state => !!state.user,
-    userName: state => (state.user ? state.user.name : "")
+    userId: state => (state.user ? state.user.id : null)
 };
 
 const mutations = {
     setUser(state, user) {
+        console.log(state.user +  '=>' + user)
         state.user = user;
     }
 };

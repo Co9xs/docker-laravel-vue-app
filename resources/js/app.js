@@ -9,9 +9,10 @@ const createApp = async () => {
         el: "#app",
         router,
         store,
-        components: { App },
+        components: {
+            App
+        },
         template: "<App />"
     });
 }
-
 createApp()

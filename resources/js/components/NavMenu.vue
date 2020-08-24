@@ -44,12 +44,8 @@ export default {
   computed: {
     ...mapGetters({
       isLogin: 'auth/checkAuth',
-      username: 'auth/userName'
     })
   },
-  mounted() {
-    console.log(this.isLogin)
-  }
 }
 </script>
 <style>

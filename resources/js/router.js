@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Top from "./pages/Top.vue";
 import ReviewList from "./pages/Reviews/List.vue"
 import ReviewDetail from "./pages/Reviews/Detail.vue"
+import CompanyList from "./pages/Companies/List.vue"
 import User from "./pages/User.vue"
 import Login from "./pages/Auth/Login.vue"
 import Register from "./pages/Auth/Register.vue"
@@ -34,6 +35,10 @@ const routes = [
         path: "/reviews/:id",
         component: ReviewDetail
     },
+    // {
+    //     path: "/companies",
+    //     component: CompanyList
+    // }
 ];
 
 const router = new VueRouter({
