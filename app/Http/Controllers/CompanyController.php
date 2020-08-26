@@ -14,7 +14,8 @@ class CompanyController extends Controller
     }
 
     public function getComp() {
-        $url = 'https://api.houjin-bangou.nta.go.jp/4/diff?id=KGpBHpB6erjnk&from=2018-05-09&to=2018-06-09&type=12';
+        $app_id = env('API_APP_ID');
+        $url = 'https://api.houjin-bangou.nta.go.jp/4/diff?id=' + $app_id + '&from=2018-05-09&to=2018-06-09&type=12';
         $method = "GET";
         $client = new Client();
         $response = $client->request($method, $url);
