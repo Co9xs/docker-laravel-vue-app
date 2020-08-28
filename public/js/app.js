@@ -2092,6 +2092,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
@@ -7515,7 +7517,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nav-link[data-v-ce029cf2] {\n    text-align: center;\n}\n.nav-link__text[data-v-ce029cf2] {\n    display: block;\n    font-size: 12px;\n}\n.nav-link__blue[data-v-ce029cf2] {\n    color: #0665d6!important;\n}\n", ""]);
+exports.push([module.i, "\n.nav[data-v-ce029cf2] {\n    max-width: 1110px;\n    height: 70px;\n    padding: 0 15px;\n    margin-right: auto;\n    margin-left: auto;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n.nav__right[data-v-ce029cf2] {\n    display: flex;\n    align-items: center;\n}\n.nav__logo[data-v-ce029cf2] {\n    vertical-align: middle;\n    font-size: 18px;\n    color: #333;\n}\n.nav__list[data-v-ce029cf2] {\n    display: flex;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.nav__item[data-v-ce029cf2] {\n    text-align: center;\n    padding-left: 15px;\n}\n.nav__link[data-v-ce029cf2] {\n    text-align: center;\n    color: #333;\n}\n.nav__link--sub-text[data-v-ce029cf2] {\n    display: block;\n    font-size: 12px;\n}\n\n", ""]);
 
 // exports
 
@@ -40516,91 +40518,75 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    { staticClass: "navbar navbar-expand navbar-light bg-white shadow-sm" },
-    [
-      _vm._m(0),
+  return _c("nav", { staticClass: "nav" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("ul", { staticClass: "nav__list" }, [
+      !_vm.isLogin
+        ? _c("li", { staticClass: "nav__item" }, [
+            _c(
+              "a",
+              { staticClass: "nav__link", attrs: { href: "/register" } },
+              [_vm._v("新規登録")]
+            )
+          ])
+        : _vm._e(),
       _vm._v(" "),
-      _vm._m(1),
+      !_vm.isLogin
+        ? _c("li", { staticClass: "nav__item" }, [
+            _c("a", { staticClass: "nav__link", attrs: { href: "/login" } }, [
+              _vm._v("ログイン")
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
-      _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-        !_vm.isLogin
-          ? _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-link__blue",
-                  attrs: { href: "/register" }
-                },
-                [_vm._v("新規登録")]
-              )
+      _vm.isLogin
+        ? _c("li", { staticClass: "nav__item" }, [
+            _c("a", { staticClass: "nav__link", attrs: { href: "/home" } }, [
+              _vm._v("マイページ")
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        !_vm.isLogin
-          ? _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-link__blue",
-                  attrs: { href: "/login" }
-                },
-                [_vm._v("ログイン")]
-              )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isLogin
+        ? _c("li", { staticClass: "nav__item" }, [
+            _c("a", { staticClass: "nav__link", on: { click: _vm.logout } }, [
+              _vm._v("ログアウト")
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isLogin
-          ? _c("li", { staticClass: "nav-item" }, [
-              _c("a", { staticClass: "nav-link", attrs: { href: "/home" } }, [
-                _vm._v("マイページ")
-              ])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isLogin
-          ? _c("li", { staticClass: "nav-item" }, [
-              _c("a", { staticClass: "nav-link", on: { click: _vm.logout } }, [
-                _vm._v("ログアウト")
-              ])
-            ])
-          : _vm._e()
-      ])
-    ]
-  )
+          ])
+        : _vm._e()
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
-      _c("i", { staticClass: "fas fa-laptop-code mr-2 fa-lg" }),
-      _vm._v("ITインターン.com")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "navbar-nav mr-auto" }, [
-      _c("li", { staticClass: "nav-item" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "/reviews" } }, [
-          _c("i", { staticClass: "far fa-comment-dots fa-lg" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "nav-link__text" }, [
-            _vm._v("口コミを見る")
-          ])
-        ])
+    return _c("div", { staticClass: "nav__right" }, [
+      _c("a", { staticClass: "nav__logo", attrs: { href: "" } }, [
+        _c("i", { staticClass: "fas fa-laptop-code mr-2 fa-lg" }),
+        _vm._v("ITインターン.com\n        ")
       ]),
       _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "/companies" } }, [
-          _c("i", { staticClass: "fas fa-pen mr-1 fa-lg" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "nav-link__text" }, [
-            _vm._v("口コミを書く")
+      _c("ul", { staticClass: "nav__list" }, [
+        _c("li", { staticClass: "nav__item" }, [
+          _c("a", { staticClass: "nav__link", attrs: { href: "" } }, [
+            _c("i", { staticClass: "far fa-comment-dots fa-lg" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "nav__link--sub-text" }, [
+              _vm._v("口コミを見る")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav__item" }, [
+          _c("a", { staticClass: "nav__link", attrs: { href: "" } }, [
+            _c("i", { staticClass: "fas fa-pen mr-1 fa-lg" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "nav__link--sub-text" }, [
+              _vm._v("口コミを書く")
+            ])
           ])
         ])
       ])
