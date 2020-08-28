@@ -12,7 +12,7 @@
 */
 
 // Auth::routes();
-Route::get('/companies', 'CompanyController@getComp');
+// Route::get('/companies', 'CompanyController@getComp');
 Route::get('/{any}', function () {
     return view('index');
 })->where('any', '.*');

@@ -18,6 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->tinyInteger('average_point')->unsigned()->default(0);
             $table->string('area')->nullable();
+            $table->string('corporate_number')->unique();
             $table->timestamps();
         });
     }

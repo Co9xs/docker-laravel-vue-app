@@ -21,4 +21,8 @@ Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/v1/reviews', 'ReviewController@index');
+Route::post('/v1/reviews', 'ReviewController@store');
 Route::get('/v1/reviews/{review}', 'ReviewController@show');
+Route::post('/v1/companies/search', 'CompanyController@search');
+Route::post('/v1/companies', 'CompanyController@show');
+Route::post('/v1/companies/add', 'CompanyController@store');

@@ -8,7 +8,7 @@
                 </h5>
                 <div class="font-weight-lighter d-flex">
                     <p class="mb-0">総合評価</p>
-                    <star-rating :starNum="review.evaluation"></star-rating>
+                    <StarRating :starNum="review.evaluation"></StarRating>
                 </div>
                 <div class="d-flex flex-row">
                     <div
@@ -32,7 +32,7 @@
             <div class="card-body pt-0 pb-2">
                 <div class="card-text">
                     {{ review.body }}
-                </div>  
+                </div>
                 <p class="m-0" style="text-align: right;">
                     <a href="">
                         <i class="fas fa-thumbs-up"></i>参考になった
@@ -45,7 +45,7 @@
 
 <script>
 import StarRating from "../../components/StarRating.vue";
-import Loading from "../../components/Loading.vue"
+import Loading from "../../components/Loading.vue";
 export default {
     components: {
         StarRating,
@@ -59,13 +59,13 @@ export default {
     },
     methods: {
         async fetchReview() {
-            this.loading = true
+            this.loading = true;
             const reviewId = parseInt(this.$route.params.id, 10);
             const response = await axios.get(
                 `http://localhost:8000/api/v1/reviews/${reviewId}`
             );
             this.review = response.data;
-            this.loading = false
+            this.loading = false;
         }
     },
     mounted() {

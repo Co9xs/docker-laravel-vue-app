@@ -21,13 +21,16 @@ class ReviewController extends Controller
         return view('reviews.create', ['company' => $company]);    
     }
 
-    public function store(ReviewRequest $request, Review $review,Company $company)
+    public function store(ReviewRequest $request, Review $review)
     {
+        $review->work_style = $request->work_style;
+        $review->type_of_occupation = $request->type_of_occupation;
+        $review->evaluation = $request->evaluation;
         $review->body = $request->body;
         $review->user_id = $request->user()->id;
-        $review->company_id = $company->id;
+        $review->company_id = $request->company_id;
         $review->save();
-        return redirect('/reviews');
+        return $review;
     }
 
     public function show(Review $review)

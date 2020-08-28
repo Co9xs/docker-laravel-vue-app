@@ -1,12 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Top from "./pages/Top.vue";
-import ReviewList from "./pages/Reviews/List.vue"
-import ReviewDetail from "./pages/Reviews/Detail.vue"
-import CompanyList from "./pages/Companies/List.vue"
-import User from "./pages/User.vue"
-import Login from "./pages/Auth/Login.vue"
-import Register from "./pages/Auth/Register.vue"
+import ReviewList from "./pages/Reviews/List.vue";
+import ReviewDetail from "./pages/Reviews/Detail.vue";
+import ReviewCreate from "./pages/Reviews/Create.vue";
+import CompanyList from "./pages/Companies/List.vue";
+import User from "./pages/User.vue";
+import Login from "./pages/Auth/Login.vue";
+import Register from "./pages/Auth/Register.vue";
 
 Vue.use(VueRouter);
 
@@ -35,14 +36,18 @@ const routes = [
         path: "/reviews/:id",
         component: ReviewDetail
     },
-    // {
-    //     path: "/companies",
-    //     component: CompanyList
-    // }
+    {
+        path: "/companies/:corporateNum/review/create",
+        component: ReviewCreate
+    },
+    {
+        path: "/companies",
+        component: CompanyList
+    }
 ];
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: "history",
     routes
 });
 

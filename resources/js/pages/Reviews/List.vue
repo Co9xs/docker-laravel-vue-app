@@ -5,14 +5,14 @@
             <SearchBar
                 :defaultText="'会社名で検索（例：株式会社〇〇）'"
                 @error="notifyError()"
-                @input="search"
+                @searchRequest="search"
             ></SearchBar>
             <p v-if="searched" class="search-bar__result">
                 検索結果：
                 <span class="search-bar__result--strong">
                     {{ filteredReviews.length }}
                 </span>
-                件の口コミがヒットしましたaa
+                件の口コミがヒットしました
             </p>
         </div>
         <Loading v-show="loading"></Loading>
@@ -33,7 +33,7 @@
 import { mapGetters } from "vuex";
 import SearchBar from "../../components/SerchBar.vue";
 import Loading from "../../components/Loading.vue";
-import ReviewCard from "./ReviewCard.vue";
+import ReviewCard from "../../components/Review/ReviewCard.vue";
 export default {
     components: {
         SearchBar,

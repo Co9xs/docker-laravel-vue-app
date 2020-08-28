@@ -1,16 +1,16 @@
 <template>
-<div class="search-bar">
-    <input
-        v-model="keyword"
-        :placeholder="this.defaultText"
-        class="search-bar__input"
-        type="text"
-        @keyup.enter="serch()"
-    />
-    <button @click="serch()" class="search-bar__btn" type="button">
-        検索
-    </button>
-</div>
+    <div class="search-bar">
+        <input
+            v-model="keyword"
+            :placeholder="this.defaultText"
+            class="search-bar__input"
+            type="text"
+            @keyup.enter="search()"
+        />
+        <button @click="search()" class="search-bar__btn" type="button">
+            検索
+        </button>
+    </div>
 </template>
 
 <script>
@@ -20,9 +20,7 @@ export default {
     },
     data() {
         return {
-            keyword: "",
-            errorMessage: [],
-            reviews: []
+            keyword: ""
         };
     },
     methods: {
@@ -31,8 +29,8 @@ export default {
                 throw new Error("キーワードは30文字以内で指定してください");
             }
         },
-        async serch() {
-          this.$emit('input', this.keyword)
+        search() {
+            this.$emit("searchRequest", this.keyword);
         }
     }
 };

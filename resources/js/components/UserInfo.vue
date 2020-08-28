@@ -23,7 +23,7 @@ export default {
     review: Object
   },
   mounted() {
-    console.log(this.review)
+    // console.log(this.review)
   }
 }
 </script>

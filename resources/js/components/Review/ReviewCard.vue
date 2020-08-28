@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import StarRating from "../../components/StarRating.vue";
-import UserInfo from "../../components/UserInfo.vue";
+import StarRating from "../StarRating.vue";
+import UserInfo from "../UserInfo.vue";
 export default {
     components: {
         StarRating,
