@@ -8,6 +8,7 @@ import CompanyList from "./pages/Companies/List.vue";
 import User from "./pages/User.vue";
 import Login from "./pages/Auth/Login.vue";
 import Register from "./pages/Auth/Register.vue";
+import Test from "./pages/Test.vue";
 
 Vue.use(VueRouter);
 
@@ -43,6 +44,10 @@ const routes = [
     {
         path: "/companies",
         component: CompanyList
+    },
+    {
+        path: "/test",
+        component: Test
     }
 ];
 

@@ -1,32 +1,28 @@
 <template>
     <div class="container">
-        <h3 class="h3 mt-3">口コミ一覧</h3>
-        <div class="search-bar__top mt-3">
-            <SearchBar
-                :defaultText="'会社名で検索（例：株式会社〇〇）'"
-                @error="notifyError()"
-                @searchRequest="search"
-            ></SearchBar>
-            <p v-if="searched" class="search-bar__result">
-                検索結果：
-                <span class="search-bar__result--strong">
-                    {{ filteredReviews.length }}
-                </span>
-                件の口コミがヒットしました
-            </p>
+        <div class="col-md-12">
+            <h3 class="h3 mt-3">口コミ一覧</h3>
+            <div class="search-bar__top mt-3">
+                <SearchBar
+                    :defaultText="'会社名で検索（例：株式会社〇〇）'"
+                    @error="notifyError()"
+                    @searchRequest="search"
+                ></SearchBar>
+                <p v-if="searched" class="search-bar__result">
+                    検索結果：
+                    <span class="search-bar__result--strong">
+                        {{ filteredReviews.length }}
+                    </span>
+                    件の口コミがヒットしました
+                </p>
+            </div>
+            <SearchParameter></SearchParameter>
         </div>
         <Loading v-show="loading"></Loading>
-        <div
-            class="row justify-content-start"
-            v-for="reviews in createDoubleArray(filteredReviews, 2)"
-            :key="reviews.index"
-            v-show="!loading"
-        >
-            <div class="col-md-6" v-for="review in reviews" :key="review.id">
-                <div class="review-card mt-3">
-                    <ReviewCard :review="review"></ReviewCard>
-                </div> 
-            </div>
+        <div class="col-md-12" v-show="!loading" v-for="review in filteredReviews" :key="review.id">
+            <div class="review-card mt-3">
+                <ReviewCard :review="review"></ReviewCard>
+            </div> 
         </div>
     </div>
 </template>
@@ -34,11 +30,13 @@
 <script>
 import { mapGetters } from "vuex";
 import SearchBar from "../../components/SerchBar.vue";
+import SearchParameter from "../../components/SearchParameter.vue";
 import Loading from "../../components/Loading.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
 export default {
     components: {
         SearchBar,
+        SearchParameter,
         Loading,
         ReviewCard
     },
@@ -114,5 +112,9 @@ export default {
     font-size: 20px;
     font-weight: bold;
     color: #ee6054;
+}
+
+.container {
+    max-width: 980px !important;
 }
 </style>

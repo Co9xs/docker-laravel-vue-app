@@ -5,6 +5,7 @@
     <div class="star-rating__front" :style="{ width: calcRating + '%' }">★★★★★</div>
     <div class="star-rating__back">★★★★★</div>
   </div>
+  <span class="star-rating__number">{{ starNum }}</span>
 </div>
 </template>
 
@@ -29,7 +30,7 @@ export default {
 <style scoped>
 .star-rating {
   display: flex;
-  align-items: center;
+  align-items:baseline;
 }
 
 .star-rating__label {
@@ -54,5 +55,11 @@ export default {
 
 .star-rating__back {
   color: #ccc;
+}
+
+.star-rating__number {
+  font-size: 1.3rem;
+  color: #EE6054;
+  margin-left: 5px;
 }
 </style>

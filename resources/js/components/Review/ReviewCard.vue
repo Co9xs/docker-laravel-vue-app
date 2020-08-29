@@ -1,10 +1,12 @@
 <template>
     <div class="review">
         <div class="company-info">
-            <a class="company-info__name">{{ review.company.name }}</a>
-            <span class="company-info__area"
-                >本社所在地: {{ review.company.area }}</span
-            >
+            <a class="company-info__name">
+                {{ review.company.name }}
+            </a>
+            <span class="company-info__area">
+                {{ review.company.area }}
+            </span>
         </div>
         <div class="review__user-info">
             <UserInfo :review="review"></UserInfo>
@@ -17,12 +19,12 @@
                 ></StarRating>
             </div>
             <div class="review__body">
-                {{ excerpt(review.body, 50) }}
+                {{ excerpt(review.body, 100) }}
             </div>
             <div class="review__bottom">
-                <a class="review__link" :href="'/reviews/' + review.id"
-                    >この口コミの詳細へ>></a
-                >
+                <a class="review__link" :href="'/reviews/' + review.id">
+                この口コミの詳細へ>>
+                </a>
                 <span class="review__time">{{ review.created_at }}</span>
             </div>
         </div>
@@ -58,11 +60,16 @@ export default {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    /* background-color: #fff; */
     background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-    padding: 10px;
+    /* border-top: 2px solid #808080; */
+    padding: 0 10px 10px 10px;
+}
+
+.company-info {
+    padding: 5px 0;
+    border-top: 2px solid #808080;
+    border-bottom: 1px solid #7F7F7F;
 }
 
 .review__user-info {
@@ -70,13 +77,12 @@ export default {
 }
 
 .company-info__name {
-    display: block;
-    color: #333;
-    font-size: 16px;
+    font-size: 18px;
+    margin-right: 10px;
 }
 
 .company-info__area {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .review__bottom {

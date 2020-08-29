@@ -22,6 +22,7 @@
         >
             <p>{{ company.name }}</p>
             <p>{{ company.prefectureName }}{{ company.cityName }}</p>
+            <p>{{ company.nameImageId }}</p>
             <a
                 :href="
                     '/companies/' + company.corporateNumber + '/review/create'
