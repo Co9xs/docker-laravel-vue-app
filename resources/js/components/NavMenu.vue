@@ -2,7 +2,7 @@
 <nav class="nav">
     <div class="nav__right">
         <a class="nav__logo" href="/">
-            <i class="fas fa-laptop-code mr-2 fa-lg"></i>ITインターン.com
+            ITインターン.com
         </a>
         <ul class="nav__list">
             <li class="nav__item">
@@ -64,6 +64,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    background-color: #fff;
 }
 
 .nav__right {

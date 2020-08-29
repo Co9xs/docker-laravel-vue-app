@@ -9,9 +9,9 @@ class ReviewRepository
      * @param  int          $id
      * @return \App\User|null
      */
-    public function all(): ?\Illuminate\Database\Eloquent\Collection
+    public function all()
     {
-        return \App\Review::with('user', 'company')->get();
+        return \App\Review::with('user', 'company')->paginate(5);
     }
 
     /**

@@ -1,7 +1,7 @@
 <template>
     <div class="user d-flex flex-row">
         <div class="user__avatar">
-            <!-- <img :src="'../../../../public/storage/top.jpg'"> -->
+            <img src="https://cdn.jobtalk.jp/top/img/3c2b37a.svg">
         </div>
         <div class="user__info">
             <div class="font-weight-bold">

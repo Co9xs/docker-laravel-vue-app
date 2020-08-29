@@ -58,8 +58,9 @@ export default {
 }
 
 .star-rating__number {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #EE6054;
   margin-left: 5px;
+  font-weight: bold;
 }
 </style>

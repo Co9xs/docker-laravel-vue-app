@@ -1,28 +1,81 @@
 <template>
     <div class="container">
-        <div class="col-md-12">
-            <h3 class="h3 mt-3">口コミ一覧</h3>
-            <div class="search-bar__top mt-3">
-                <SearchBar
-                    :defaultText="'会社名で検索（例：株式会社〇〇）'"
-                    @error="notifyError()"
-                    @searchRequest="search"
-                ></SearchBar>
-                <p v-if="searched" class="search-bar__result">
-                    検索結果：
-                    <span class="search-bar__result--strong">
-                        {{ filteredReviews.length }}
-                    </span>
-                    件の口コミがヒットしました
-                </p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="search-bar__top mt-3">
+                    <SearchBar
+                        :defaultText="'会社名で検索（例：株式会社〇〇）'"
+                        @searchRequest="search"
+                    ></SearchBar>
+                    <p v-if="searched" class="search-bar__result">
+                        検索結果：
+                        <span class="search-bar__result--strong">
+                            {{ filteredReviews.length }}
+                        </span>
+                        件の口コミがヒットしました
+                    </p>
+                </div>
+                <SearchParameter></SearchParameter>
+                <img
+                    class="mt-3"
+                    style="width: 100%;"
+                    src="https://tpc.googlesyndication.com/daca_images/simgad/10918606840295061071"
+                    alt=""
+                />
             </div>
-            <SearchParameter></SearchParameter>
-        </div>
-        <Loading v-show="loading"></Loading>
-        <div class="col-md-12" v-show="!loading" v-for="review in filteredReviews" :key="review.id">
-            <div class="review-card mt-3">
-                <ReviewCard :review="review"></ReviewCard>
-            </div> 
+            <Loading v-show="loading"></Loading>
+            <div class="col-md-8" v-show="!loading">
+                <h3 class="h4 mt-3" style="font-weight: bold;">口コミを見る</h3>
+                <ul class="pagination">
+                    <li
+                        class="inactive"
+                        :class="current_page == 1 ? 'disabled' : ''"
+                        @click="changePage(current_page - 1)"
+                    >
+                        «
+                    </li>
+                    <li
+                        v-for="page in frontPageRange"
+                        :key="page"
+                        @click="changePage(page)"
+                        :class="isCurrent(page) ? 'active' : 'inactive'"
+                    >
+                        {{ page }}
+                    </li>
+                    <li v-show="front_dot" class="inactive disabled">...</li>
+                    <li
+                        v-for="page in middlePageRange"
+                        :key="page"
+                        @click="changePage(page)"
+                        :class="isCurrent(page) ? 'active' : 'inactive'"
+                    >
+                        {{ page }}
+                    </li>
+                    <li v-show="end_dot" class="inactive disabled">...</li>
+                    <li
+                        v-for="page in endPageRange"
+                        :key="page"
+                        @click="changePage(page)"
+                        :class="isCurrent(page) ? 'active' : 'inactive'"
+                    >
+                        {{ page }}
+                    </li>
+                    <li
+                        class="inactive"
+                        :class="current_page >= last_page ? 'disabled' : ''"
+                        @click="changePage(current_page + 1)"
+                    >
+                        »
+                    </li>
+                </ul>
+                <div
+                    class="review-card mt-3"
+                    v-for="review in filteredReviews"
+                    :key="review.id"
+                >
+                    <ReviewCard :review="review"></ReviewCard>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -45,23 +98,26 @@ export default {
             keyword: "",
             reviews: [],
             searched: false,
-            loading: true
+            loading: true,
+            current_page: 1,
+            last_page: "",
+            range: 5,
+            front_dot: false,
+            end_dot: false,
+            size: 6
         };
-    },
-    computed: {
-        filteredReviews() {
-            return this.filterReviews();
-        },
-        ...mapGetters({
-            userId: "auth/userId"
-        })
     },
     methods: {
         async getReviews() {
             this.loading = true;
-            const response = await axios.get("api/v1/reviews");
-            this.reviews = response.data;
+            const response = await axios.get(
+                `api/v1/reviews?page=${this.current_page}`
+            );
+            this.reviews = response.data.data;
+            this.current_page = response.data.current_page;
+            this.last_page = response.data.last_page;
             this.loading = false;
+            console.log(response.data);
         },
         filterReviews() {
             let filtered = [];
@@ -73,23 +129,72 @@ export default {
             }
             return filtered;
         },
-        createDoubleArray(array, cutNum) {
-            const baseArrayLength = array.length;
-            const result = [];
-            for (let i = 0; i < Math.ceil(baseArrayLength / cutNum); i++) {
-                const j = i * cutNum;
-                const slicedArray = array.slice(j, j + cutNum);
-                result.push(slicedArray);
-            }
-            return result;
-        },
-        notifyError() {
-            console.log("エラーだよ");
-        },
         search(keyword) {
             this.searched = false;
             this.keyword = keyword;
             this.searched = true;
+        },
+        calRange(start, end) {
+            const range = [];
+            for (let i = start; i <= end; i++) {
+                range.push(i);
+            }
+            return range;
+        },
+        changePage(page) {
+            if (page > 0 && page <= this.last_page) {
+                this.current_page = page;
+                this.getReviews();
+            }
+        },
+        isCurrent(page) {
+            return page === this.current_page;
+        },
+        sizeCheck() {
+            if (this.last_page < this.size) {
+                return false;
+            }
+            return true;
+        }
+    },
+    computed: {
+        filteredReviews() {
+            return this.filterReviews();
+        },
+        ...mapGetters({
+            userId: "auth/userId"
+        }),
+        frontPageRange() {
+            if (!this.sizeCheck) {
+                return this.calRange(1, this.last_page);
+            }
+            return this.calRange(1, 2);
+        },
+        middlePageRange() {
+            let start = "";
+            let end = "";
+            if (!this.sizeCheck) return [];
+            if (this.current_page <= this.range) {
+                start = 3;
+                end = this.range + 2;
+                this.front_dot = false;
+                this.end_dot = true;
+            } else if (this.current_page > this.last_page - this.range) {
+                start = this.last_page - this.range - 1;
+                end = this.last_page - 2;
+                this.front_dot = true;
+                this.end_dot = false;
+            } else {
+                start = this.current_page - Math.floor(this.range / 2);
+                end = this.current_page + Math.floor(this.range / 2);
+                this.front_dot = true;
+                this.end_dot = true;
+            }
+            return this.calRange(start, end);
+        },
+        endPageRange() {
+            if (!this.sizeCheck) return [];
+            return this.calRange(this.last_page - 1, this.last_page);
         }
     },
     mounted() {
@@ -113,8 +218,32 @@ export default {
     font-weight: bold;
     color: #ee6054;
 }
-
+/* 
 .container {
     max-width: 980px !important;
+} */
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+}
+.pagination li {
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pagination li + li {
+    border-left: none;
+}
+
+.pagination li.active {
+    background-color: #0375ff;
+    color: #fff;
+}
+
+.disabled {
+    cursor: not-allowed;
 }
 </style>

@@ -6,7 +6,7 @@ class ReviewService
      *
      * @return \App\Review|null
      */
-    public function getReviews(): ?\Illuminate\Database\Eloquent\Collection
+    public function getReviews()
     {
         $repository = new \App\Repositories\ReviewRepository();
         return $repository->all();

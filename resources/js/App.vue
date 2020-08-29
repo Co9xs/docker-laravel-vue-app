@@ -42,3 +42,11 @@ export default {
     },
 };
 </script>
+
+<style>
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16),
+    0 2px 7px 0 rgba(0, 0, 0, 0.12);
+}
+</style>

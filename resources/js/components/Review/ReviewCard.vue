@@ -25,7 +25,7 @@
                 <a class="review__link" :href="'/reviews/' + review.id">
                 この口コミの詳細へ>>
                 </a>
-                <span class="review__time">{{ review.created_at }}</span>
+                <span class="review__time">投稿日時:{{ review.created_at }}</span>
             </div>
         </div>
     </div>
