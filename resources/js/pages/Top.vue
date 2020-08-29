@@ -18,7 +18,6 @@
     <h3 class="feature__heading">ITインターン.comの3つの特徴</h3>
     <div class="points">
       <div class="points__inner">
-
         <div class="point-panel">
           <div class="point-panel__inner">
             <p class="point-panel__num">1</p>
@@ -28,7 +27,6 @@
             <p class="point-panel__text">エンジニアやデザイナー等IT関連のインターンの情報だけを掲載しているので、必要な情報がすぐ見つかります。</p>
           </div>
         </div>
-
         <div class="point-panel">
           <div class="point-panel__inner">
             <p class="point-panel__num">2</p>
@@ -38,7 +36,6 @@
             <p class="point-panel__text">匿名性のため自分の名前は公開されません。そのため、「会社にバレたくない…」という人でも正直な口コミを投稿できます。</p>
           </div>
         </div>
-
         <div class="point-panel">
           <div class="point-panel__inner">
             <p class="point-panel__num">3</p>
@@ -48,14 +45,17 @@
             <p class="point-panel__text">職種(フロントエンドorバックエンド)や形態(長期or短期)など様々な検索条件で絞り込みが可能です。</p>
           </div>
         </div>
-
       </div>
     </div>
     <div class="cta">
       <button class="cta__login">ログインはこちら</button>
       <a class="cta__signup" href="">新規登録はこちら</a>
     </div>
-
+  </div>
+</section>
+<section class="new-arrival">
+  <div class="container">
+    <h3 class="new-arrival__heading">新着の口コミ</h3>
   </div>
 </section>
 </div>

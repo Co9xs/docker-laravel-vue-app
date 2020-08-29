@@ -1,26 +1,29 @@
 <template>
-    <div class="card mt-3">
-        <div class="card-header d-flex justify-content-between">
-            <h5 class="h5 card-title m-0">
-                <a class="company__name" href="">{{ review.company.name }}</a>
-                <span class="company__area"
-                    >本社所在地: {{ review.company.area }}</span
-                >
-            </h5>
+    <div class="review">
+        <div class="company-info">
+            <a class="company-info__name">{{ review.company.name }}</a>
+            <span class="company-info__area"
+                >本社所在地: {{ review.company.area }}</span
+            >
         </div>
-        <div class="card-body pb-2">
-            <user-info :review="review"></user-info>
+        <div class="review__user-info">
+            <UserInfo :review="review"></UserInfo>
         </div>
-        <div class="card-body pt-0 pb-2">
-            <div class="font-weight-lighter d-flex align-items-baseline">
-                <p class="mb-0 pr-1">総合評価</p>
-                <star-rating :starNum="review.evaluation"></star-rating>
+        <div class="review__content">
+            <div class="review__evaluation">
+                <StarRating
+                    :starNum="review.evaluation"
+                    :label="'総合評価'"
+                ></StarRating>
             </div>
-            <div class="card-text">
+            <div class="review__body">
                 {{ excerpt(review.body, 50) }}
             </div>
-            <div class="fon-weight-lighter">
-                <a :href="'/reviews/' + review.id">この口コミの詳細を見る>></a>
+            <div class="review__bottom">
+                <a class="review__link" :href="'/reviews/' + review.id"
+                    >この口コミの詳細へ>></a
+                >
+                <span class="review__time">{{ review.created_at }}</span>
             </div>
         </div>
     </div>
@@ -49,12 +52,41 @@ export default {
 </script>
 
 <style scoped>
-.company__name {
-    display: block;
-    color: #333;
+.review {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding: 10px;
 }
 
-.company__area {
+.review__user-info {
+    margin: 5px 0px;
+}
+
+.company-info__name {
+    display: block;
+    color: #333;
+    font-size: 16px;
+}
+
+.company-info__area {
     font-size: 12px;
+}
+
+.review__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.review__time {
+    font-size: 12px;
+    color: #333;
 }
 </style>

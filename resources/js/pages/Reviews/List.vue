@@ -23,7 +23,9 @@
             v-show="!loading"
         >
             <div class="col-md-6" v-for="review in reviews" :key="review.id">
-                <ReviewCard :review="review"></ReviewCard>
+                <div class="review-card mt-3">
+                    <ReviewCard :review="review"></ReviewCard>
+                </div> 
             </div>
         </div>
     </div>

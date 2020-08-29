@@ -2166,6 +2166,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2252,9 +2255,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    starNum: Number
+    starNum: Number,
+    label: String
   },
   computed: {
     reviewPoint: function reviewPoint() {
@@ -2857,6 +2864,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -7536,7 +7545,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.company__name[data-v-46f10138] {\n    display: block;\n    color: #333;\n}\n.company__area[data-v-46f10138] {\n    font-size: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.review[data-v-46f10138] {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 1px solid rgba(0, 0, 0, 0.125);\n    border-radius: 0.25rem;\n    padding: 10px;\n}\n.review__user-info[data-v-46f10138] {\n    margin: 5px 0px;\n}\n.company-info__name[data-v-46f10138] {\n    display: block;\n    color: #333;\n    font-size: 16px;\n}\n.company-info__area[data-v-46f10138] {\n    font-size: 12px;\n}\n.review__bottom[data-v-46f10138] {\n    display: flex;\n    justify-content: space-between;\n    align-items: baseline;\n}\n.review__time[data-v-46f10138] {\n    font-size: 12px;\n    color: #333;\n}\n", ""]);
 
 // exports
 
@@ -7574,7 +7583,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.star-rating[data-v-413cebba] {\n  position: relative;\n  width: 5em;\n  height: 28px;\n  font-size: 18px;\n  overflow: hidden;\n}\n.star-rating-front[data-v-413cebba] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  color: #ffcc33;\n}\n.star-rating-back[data-v-413cebba] {\n  color: #ccc;\n}\n", ""]);
+exports.push([module.i, "\n.star-rating[data-v-413cebba] {\n  display: flex;\n  align-items: center;\n}\n.star-rating__label[data-v-413cebba] {\n  margin: 0 5px 0 0;\n}\n.star-rating__star[data-v-413cebba] {\n  position: relative;\n  width: 5em;\n  height: 28px;\n  font-size: 18px;\n  overflow: hidden;\n}\n.star-rating__front[data-v-413cebba] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  color: #ffcc33;\n}\n.star-rating__back[data-v-413cebba] {\n  color: #ccc;\n}\n", ""]);
 
 // exports
 
@@ -7593,7 +7602,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.user__avatar {\n  width: 46px;\n  height: 46px;\n  border: 1px #efefef solid;\n  border-radius: 50%;\n  overflow: hidden;\n  margin-right: 5px;\n}\n\n", ""]);
+exports.push([module.i, "\n.user__avatar {\n    width: 46px;\n    height: 46px;\n    border: 1px #efefef solid;\n    border-radius: 50%;\n    overflow: hidden;\n    margin-right: 5px;\n}\n", ""]);
 
 // exports
 
@@ -40564,14 +40573,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "nav__right" }, [
-      _c("a", { staticClass: "nav__logo", attrs: { href: "" } }, [
+      _c("a", { staticClass: "nav__logo", attrs: { href: "/" } }, [
         _c("i", { staticClass: "fas fa-laptop-code mr-2 fa-lg" }),
         _vm._v("ITインターン.com\n        ")
       ]),
       _vm._v(" "),
       _c("ul", { staticClass: "nav__list" }, [
         _c("li", { staticClass: "nav__item" }, [
-          _c("a", { staticClass: "nav__link", attrs: { href: "" } }, [
+          _c("a", { staticClass: "nav__link", attrs: { href: "/reviews" } }, [
             _c("i", { staticClass: "far fa-comment-dots fa-lg" }),
             _vm._v(" "),
             _c("span", { staticClass: "nav__link--sub-text" }, [
@@ -40581,7 +40590,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "nav__item" }, [
-          _c("a", { staticClass: "nav__link", attrs: { href: "" } }, [
+          _c("a", { staticClass: "nav__link", attrs: { href: "/companies" } }, [
             _c("i", { staticClass: "fas fa-pen mr-1 fa-lg" }),
             _vm._v(" "),
             _c("span", { staticClass: "nav__link--sub-text" }, [
@@ -40614,39 +40623,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card mt-3" }, [
-    _c("div", { staticClass: "card-header d-flex justify-content-between" }, [
-      _c("h5", { staticClass: "h5 card-title m-0" }, [
-        _c("a", { staticClass: "company__name", attrs: { href: "" } }, [
-          _vm._v(_vm._s(_vm.review.company.name))
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "company__area" }, [
-          _vm._v("本社所在地: " + _vm._s(_vm.review.company.area))
-        ])
+  return _c("div", { staticClass: "review" }, [
+    _c("div", { staticClass: "company-info" }, [
+      _c("a", { staticClass: "company-info__name" }, [
+        _vm._v(_vm._s(_vm.review.company.name))
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "company-info__area" }, [
+        _vm._v("本社所在地: " + _vm._s(_vm.review.company.area))
       ])
     ]),
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "card-body pb-2" },
-      [_c("user-info", { attrs: { review: _vm.review } })],
+      { staticClass: "review__user-info" },
+      [_c("UserInfo", { attrs: { review: _vm.review } })],
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "card-body pt-0 pb-2" }, [
+    _c("div", { staticClass: "review__content" }, [
       _c(
         "div",
-        { staticClass: "font-weight-lighter d-flex align-items-baseline" },
+        { staticClass: "review__evaluation" },
         [
-          _c("p", { staticClass: "mb-0 pr-1" }, [_vm._v("総合評価")]),
-          _vm._v(" "),
-          _c("star-rating", { attrs: { starNum: _vm.review.evaluation } })
+          _c("StarRating", {
+            attrs: { starNum: _vm.review.evaluation, label: "総合評価" }
+          })
         ],
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "card-text" }, [
+      _c("div", { staticClass: "review__body" }, [
         _vm._v(
           "\n            " +
             _vm._s(_vm.excerpt(_vm.review.body, 50)) +
@@ -40654,9 +40661,18 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "fon-weight-lighter" }, [
-        _c("a", { attrs: { href: "/reviews/" + _vm.review.id } }, [
-          _vm._v("この口コミの詳細を見る>>")
+      _c("div", { staticClass: "review__bottom" }, [
+        _c(
+          "a",
+          {
+            staticClass: "review__link",
+            attrs: { href: "/reviews/" + _vm.review.id }
+          },
+          [_vm._v("この口コミの詳細へ>>")]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "review__time" }, [
+          _vm._v(_vm._s(_vm.review.created_at))
         ])
       ])
     ])
@@ -40754,16 +40770,20 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "star-rating" }, [
-    _c(
-      "div",
-      {
-        staticClass: "star-rating-front",
-        style: { width: _vm.calcRating + "%" }
-      },
-      [_vm._v("★★★★★")]
-    ),
+    _c("p", { staticClass: "star-rating__label" }, [_vm._v(_vm._s(_vm.label))]),
     _vm._v(" "),
-    _c("div", { staticClass: "star-rating-back" }, [_vm._v("★★★★★")])
+    _c("div", { staticClass: "star-rating__star" }, [
+      _c(
+        "div",
+        {
+          staticClass: "star-rating__front",
+          style: { width: _vm.calcRating + "%" }
+        },
+        [_vm._v("★★★★★")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "star-rating__back" }, [_vm._v("★★★★★")])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -41575,12 +41595,14 @@ var render = function() {
             staticClass: "row justify-content-start"
           },
           _vm._l(reviews, function(review) {
-            return _c(
-              "div",
-              { key: review.id, staticClass: "col-md-6" },
-              [_c("ReviewCard", { attrs: { review: review } })],
-              1
-            )
+            return _c("div", { key: review.id, staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                { staticClass: "review-card mt-3" },
+                [_c("ReviewCard", { attrs: { review: review } })],
+                1
+              )
+            ])
           }),
           0
         )
@@ -41646,7 +41668,9 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(3)
+    _vm._m(3),
+    _vm._v(" "),
+    _vm._m(4)
   ])
 }
 var staticRenderFns = [
@@ -41771,6 +41795,18 @@ var staticRenderFns = [
           _c("a", { staticClass: "cta__signup", attrs: { href: "" } }, [
             _vm._v("新規登録はこちら")
           ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "new-arrival" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h3", { staticClass: "new-arrival__heading" }, [
+          _vm._v("新着の口コミ")
         ])
       ])
     ])

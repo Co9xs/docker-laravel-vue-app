@@ -1,18 +1,18 @@
 <template>
 <nav class="nav">
     <div class="nav__right">
-        <a class="nav__logo" href="">
+        <a class="nav__logo" href="/">
             <i class="fas fa-laptop-code mr-2 fa-lg"></i>ITインターン.com
         </a>
         <ul class="nav__list">
             <li class="nav__item">
-                <a class="nav__link" href="">
+                <a class="nav__link" href="/reviews">
                     <i class="far fa-comment-dots fa-lg"></i>
                     <span class="nav__link--sub-text">口コミを見る</span>
                 </a>
             </li>
             <li class="nav__item">
-                <a class="nav__link" href="">
+                <a class="nav__link" href="/companies">
                     <i class="fas fa-pen mr-1 fa-lg"></i>
                     <span class="nav__link--sub-text">口コミを書く</span>
                 </a>

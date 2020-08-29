@@ -1,7 +1,10 @@
 <template>
 <div class="star-rating">
-    <div class="star-rating-front" :style="{ width: calcRating + '%' }">★★★★★</div>
-    <div class="star-rating-back">★★★★★</div>
+  <p class="star-rating__label">{{ label }}</p>
+  <div class="star-rating__star">
+    <div class="star-rating__front" :style="{ width: calcRating + '%' }">★★★★★</div>
+    <div class="star-rating__back">★★★★★</div>
+  </div>
 </div>
 </template>
 
@@ -9,6 +12,7 @@
 export default {
   props: {
     starNum: Number,
+    label: String,
   },
   computed: {
     reviewPoint() {
@@ -24,20 +28,31 @@ export default {
 
 <style scoped>
 .star-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star-rating__label {
+  margin: 0 5px 0 0;
+}
+
+.star-rating__star {
   position: relative;
   width: 5em;
   height: 28px;
   font-size: 18px;
   overflow: hidden;
 }
-.star-rating-front {
+
+.star-rating__front {
   position: absolute;
   top: 0;
   left: 0;
   overflow: hidden;
   color: #ffcc33;
 }
-.star-rating-back {
+
+.star-rating__back {
   color: #ccc;
 }
 </style>

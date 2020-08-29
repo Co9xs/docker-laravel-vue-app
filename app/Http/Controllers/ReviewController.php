@@ -27,7 +27,7 @@ class ReviewController extends Controller
         $review->type_of_occupation = $request->type_of_occupation;
         $review->evaluation = $request->evaluation;
         $review->body = $request->body;
-        $review->user_id = $request->user()->id;
+        $review->user_id = $request->user_id;
         $review->company_id = $request->company_id;
         $review->save();
         return $review;
