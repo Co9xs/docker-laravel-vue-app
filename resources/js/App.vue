@@ -8,6 +8,7 @@
         <RouterView></RouterView>
     </main>
     <footer v-show="!loading">
+        <!-- <Footer></Footer> -->
     </footer>
 </div>
 </template>
@@ -17,12 +18,14 @@ import StarRating from "./components/StarRating.vue";
 import SearchBar from "./components/SerchBar.vue";
 import NavMenu from "./components/NavMenu.vue";
 import Loading from "./components/Loading.vue";
+import Footer from "./components/Footer.vue";
 export default {
     components: {
         StarRating,
         SearchBar,
         NavMenu,
-        Loading
+        Loading,
+        Footer
     },
     data() {
         return {
@@ -48,5 +51,12 @@ header {
     background-color: #fff;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16),
     0 2px 7px 0 rgba(0, 0, 0, 0.12);
+}
+footer {
+    background-color: #464343;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 </style>

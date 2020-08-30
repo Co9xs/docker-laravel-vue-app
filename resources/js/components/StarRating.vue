@@ -5,7 +5,7 @@
     <div class="star-rating__front" :style="{ width: calcRating + '%' }">★★★★★</div>
     <div class="star-rating__back">★★★★★</div>
   </div>
-  <span class="star-rating__number">{{ starNum }}</span>
+  <span class="star-rating__number">{{ starNum.toFixed(1) }}</span>
 </div>
 </template>
 

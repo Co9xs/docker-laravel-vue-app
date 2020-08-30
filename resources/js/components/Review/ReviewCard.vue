@@ -60,10 +60,8 @@ export default {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    /* background-color: #fff; */
     background-clip: border-box;
-    /* border-top: 2px solid #808080; */
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 10px 0;
 }
 
 .company-info {

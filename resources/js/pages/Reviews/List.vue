@@ -1,76 +1,20 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="search-bar__top mt-3">
-                    <SearchBar
-                        :defaultText="'会社名で検索（例：株式会社〇〇）'"
-                        @searchRequest="search"
-                    ></SearchBar>
-                    <p v-if="searched" class="search-bar__result">
-                        検索結果：
-                        <span class="search-bar__result--strong">
-                            {{ filteredReviews.length }}
-                        </span>
-                        件の口コミがヒットしました
-                    </p>
-                </div>
-                <SearchParameter></SearchParameter>
-                <img
-                    class="mt-3"
-                    style="width: 100%;"
-                    src="https://tpc.googlesyndication.com/daca_images/simgad/10918606840295061071"
-                    alt=""
-                />
-            </div>
             <Loading v-show="loading"></Loading>
+            <div class="col-md-4" v-show="!loading">
+                <SearchParameter @searchRequest="search"></SearchParameter>
+            </div>
             <div class="col-md-8" v-show="!loading">
-                <h3 class="h4 mt-3" style="font-weight: bold;">口コミを見る</h3>
-                <ul class="pagination">
-                    <li
-                        class="inactive"
-                        :class="current_page == 1 ? 'disabled' : ''"
-                        @click="changePage(current_page - 1)"
-                    >
-                        «
-                    </li>
-                    <li
-                        v-for="page in frontPageRange"
-                        :key="page"
-                        @click="changePage(page)"
-                        :class="isCurrent(page) ? 'active' : 'inactive'"
-                    >
-                        {{ page }}
-                    </li>
-                    <li v-show="front_dot" class="inactive disabled">...</li>
-                    <li
-                        v-for="page in middlePageRange"
-                        :key="page"
-                        @click="changePage(page)"
-                        :class="isCurrent(page) ? 'active' : 'inactive'"
-                    >
-                        {{ page }}
-                    </li>
-                    <li v-show="end_dot" class="inactive disabled">...</li>
-                    <li
-                        v-for="page in endPageRange"
-                        :key="page"
-                        @click="changePage(page)"
-                        :class="isCurrent(page) ? 'active' : 'inactive'"
-                    >
-                        {{ page }}
-                    </li>
-                    <li
-                        class="inactive"
-                        :class="current_page >= last_page ? 'disabled' : ''"
-                        @click="changePage(current_page + 1)"
-                    >
-                        »
-                    </li>
-                </ul>
+                <h3 class="h4 mt-3">口コミを見る</h3>
+                <SearchResult
+                    :number="reviews.length"
+                    :target="'口コミ'"
+                    v-if="searched"
+                ></SearchResult>
                 <div
                     class="review-card mt-3"
-                    v-for="review in filteredReviews"
+                    v-for="review in reviews"
                     :key="review.id"
                 >
                     <ReviewCard :review="review"></ReviewCard>
@@ -86,12 +30,14 @@ import SearchBar from "../../components/SerchBar.vue";
 import SearchParameter from "../../components/SearchParameter.vue";
 import Loading from "../../components/Loading.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
+import SearchResult from "../../components/SearchResult.vue";
 export default {
     components: {
         SearchBar,
         SearchParameter,
         Loading,
-        ReviewCard
+        ReviewCard,
+        SearchResult
     },
     data() {
         return {
@@ -110,29 +56,22 @@ export default {
     methods: {
         async getReviews() {
             this.loading = true;
-            const response = await axios.get(
-                `api/v1/reviews?page=${this.current_page}`
-            );
-            this.reviews = response.data.data;
-            this.current_page = response.data.current_page;
-            this.last_page = response.data.last_page;
+            const response = await axios.get(`api/v1/reviews`);
+            this.reviews = response.data;
+            // this.reviews = response.data.data;
+            // this.current_page = response.data.current_page;
+            // this.last_page = response.data.last_page;
             this.loading = false;
-            console.log(response.data);
         },
-        filterReviews() {
-            let filtered = [];
-            for (let i in this.reviews) {
-                let review = this.reviews[i];
-                if (review.company.name.indexOf(this.keyword) !== -1) {
-                    filtered.push(review);
-                }
-            }
-            return filtered;
-        },
-        search(keyword) {
+        async search(params) {
+            this.loading = true;
             this.searched = false;
-            this.keyword = keyword;
+            const response = await axios.get(
+                `api/v1/reviews?keyword=${params.keyword}&IsFront=${params.IsFront}&IsBack=${params.IsBack}&IsInfra=${params.IsInfra}&IsDesigner=${params.IsDesigner}&IsMobile=${params.IsMobile}&IsMachineLearning=${params.IsMachineLearning}&IsOthers=${params.IsOthers}`
+            );
+            this.reviews = response.data;
             this.searched = true;
+            this.loading = false;
         },
         calRange(start, end) {
             const range = [];
@@ -158,9 +97,6 @@ export default {
         }
     },
     computed: {
-        filteredReviews() {
-            return this.filterReviews();
-        },
         ...mapGetters({
             userId: "auth/userId"
         }),
@@ -218,10 +154,6 @@ export default {
     font-weight: bold;
     color: #ee6054;
 }
-/* 
-.container {
-    max-width: 980px !important;
-} */
 
 .pagination {
     display: flex;

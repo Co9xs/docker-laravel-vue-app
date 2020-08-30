@@ -1,65 +1,49 @@
 <template>
-<div class="search-params">
-    <div class="search-params__header">
-        <p class="search-params__title"><i class="search-params__icon fas fa-lg fa-search"></i>検索条件を指定する</p>
-        <!-- <div class="search-params__input-group">
-            <input class="search-params__input" type="checkbox" id="checkbox1">
-            <label class="search-params__label" for="checkbox1" @change="off()">すべてOFFにする</label>
-        </div> -->
+    <div class="container">
+        <h1>レビュー作成画面</h1>
+        <p>株式会社オロ</p>
+        <p>東京都目黒区</p>
+        <form action="">
+            <select name="" id="" >
+                <option value="1">短期インターン</option>
+                <option value="2">長期インターン</option>
+                <option value="3">アルバイト</option>
+                <option value="4">その他</option>
+            </select>
+            <select name="" id="" >
+                <option value="1">フロントエンドエンジニア</option>
+                <option value="2">デザイナー</option>
+                <option value="3">バックエンドエンジニア</option>
+                <option value="4">インフラエンジニア</option>
+                <option value="5">機械学習エンジニア</option>
+                <option value="6">データサイエンティスト</option>
+                <option value="7">iOS&Androidエンジニア</option>
+                <option value="8">ゲームクリエイター</option>
+                <option value="9">その他</option>
+            </select>
+            <input
+                type="range"
+                id="volume"
+                name="volume"
+                min="0"
+                max="5"
+                v-model="formData.evaluation"
+            />
+            <label for="volume">評価</label>
+            <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                v-model="formData.body"
+            ></textarea>
+        </form>
+        <button type="button">投稿</button>
     </div>
-    <div class="search-params__body">
-        <p class="search-params__heading">職種</p>
-        <div class="search-params__row">
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsFront" class="search-params__input" type="checkbox" id="checkbox2"  >
-                    <label class="search-params__label" for="checkbox2">フロントエンドエンジニア</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsBack" class="search-params__input" type="checkbox" id="checkbox3"  >
-                    <label class="search-params__label" for="checkbox3">バックエンドエンジニア</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsInfra" class="search-params__input" type="checkbox" id="checkbox4"  >
-                    <label class="search-params__label" for="checkbox4">インフラエンジニア</label>
-                </div>
-            </div>
+</template>
 
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsMachineLearning" class="search-params__input" type="checkbox" id="checkbox5"  >
-                    <label class="search-params__label" for="checkbox5">機械学習エンジニア</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsDataScience" class="search-params__input" type="checkbox" id="checkbox6"  >
-                    <label class="search-params__label" for="checkbox6">データサイエンティスト</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsMobile" class="search-params__input" type="checkbox" id="checkbox7"  >
-                    <label class="search-params__label" for="checkbox7">iOS&Androidエンジニア</label>
-                </div>
-            </div>
-
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsDesigner" class="search-params__input" type="checkbox" id="checkbox8"  >
-                    <label class="search-params__label" for="checkbox8">デザイナー</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsGameCreater" class="search-params__input" type="checkbox" id="checkbox9"  >
-                    <label class="search-params__label" for="checkbox9">ゲームクリエイター</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsOthers" class="search-params__input" type="checkbox" id="checkbox10"  >
-                    <label class="search-params__label" for="checkbox10">その他</label>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="search-params__body">
-        <p class="search-params__heading">期間</p>
-        <div class="search-params__row">
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.term.Short" class="search-params__input" type="checkbox" id="checkbox11"  >
+<style scoped>
+.container {
+  max-width: 980px!important;
+}
+</style>

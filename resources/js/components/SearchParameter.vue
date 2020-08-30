@@ -14,94 +14,61 @@
         <div class="search-params__row">
             <div class="search-params__column">
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsFront" class="search-params__input" type="checkbox" id="checkbox2"  >
+                    <input v-model="SearchParams.IsFront" class="search-params__input" type="checkbox" id="checkbox2"  >
                     <label class="search-params__label" for="checkbox2">フロントエンド</label>
                 </div>
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsBack" class="search-params__input" type="checkbox" id="checkbox3"  >
+                    <input v-model="SearchParams.IsBack" class="search-params__input" type="checkbox" id="checkbox3"  >
                     <label class="search-params__label" for="checkbox3">バックエンド</label>
                 </div>
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsInfra" class="search-params__input" type="checkbox" id="checkbox4"  >
+                    <input v-model="SearchParams.IsInfra" class="search-params__input" type="checkbox" id="checkbox4"  >
                     <label class="search-params__label" for="checkbox4">インフラ</label>
                 </div>
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsDesigner" class="search-params__input" type="checkbox" id="checkbox8">
+                    <input v-model="SearchParams.IsDesigner" class="search-params__input" type="checkbox" id="checkbox8">
                     <label class="search-params__label" for="checkbox8">デザイナー</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsOthers" class="search-params__input" type="checkbox" id="checkbox10"  >
-                    <label class="search-params__label" for="checkbox10">その他</label>
                 </div>
             </div>
             <div class="search-params__column">
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsMachineLearning" class="search-params__input" type="checkbox" id="checkbox5"  >
-                    <label class="search-params__label" for="checkbox5">機械学習</label>
+                    <input v-model="SearchParams.IsMachineLearning" class="search-params__input" type="checkbox" id="checkbox5"  >
+                    <label class="search-params__label" for="checkbox5">機械学習系</label>
                 </div>
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsDataScience" class="search-params__input" type="checkbox" id="checkbox6"  >
-                    <label class="search-params__label" for="checkbox6">データサイエンス</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsMobile" class="search-params__input" type="checkbox" id="checkbox7"  >
+                    <input v-model="SearchParams.IsMobile" class="search-params__input" type="checkbox" id="checkbox7"  >
                     <label class="search-params__label" for="checkbox7">iOS&Android</label>
                 </div>
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.type.IsGameCreater" class="search-params__input" type="checkbox" id="checkbox9"  >
-                    <label class="search-params__label" for="checkbox9">ゲームクリエイター</label>
+                    <input v-model="SearchParams.IsOthers" class="search-params__input" type="checkbox" id="checkbox10"  >
+                    <label class="search-params__label" for="checkbox10">その他</label>
                 </div>
             </div>
         </div>
     </div>
-    <div class="search-params__body">
+    <!-- <div class="search-params__body">
         <p class="search-params__heading">勤務形態</p>
         <div class="search-params__row">
             <div class="search-params__column">
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.term.Short" class="search-params__input" type="checkbox" id="checkbox11"  >
+                    <input v-model="SearchParams.Short" class="search-params__input" type="checkbox" id="checkbox11"  >
                     <label class="search-params__label" for="checkbox11">短期インターン</label>
                 </div>
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.term.PartTime" class="search-params__input" type="checkbox" id="checkbox13"  >
+                    <input v-model="SearchParams.PartTime" class="search-params__input" type="checkbox" id="checkbox13"  >
                     <label class="search-params__label" for="checkbox13">アルバイト</label>
                 </div>
             </div>
             <div class="search-params__column">
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.term.Long" class="search-params__input" type="checkbox" id="checkbox12"  >
+                    <input v-model="SearchParams.Long" class="search-params__input" type="checkbox" id="checkbox12"  >
                     <label class="search-params__label" for="checkbox12">長期インターン</label>
                 </div>
             </div>
-            <div class="search-params__column">
-            </div>
         </div>
-    </div>
-    <div class="search-params__body">
-        <p class="search-params__heading">評価</p>
-        <div class="search-params__row">
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.evaluation.OverThree" class="search-params__input" type="checkbox" id="checkbox14"  >
-                    <label class="search-params__label" for="checkbox14">星2以上</label>
-                </div>
-            </div>
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.evaluation.OverFour" class="search-params__input" type="checkbox" id="checkbox15"  >
-                    <label class="search-params__label" for="checkbox15">星3以上</label>
-                </div>
-            </div>
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.evaluation.OverFive" class="search-params__input" type="checkbox" id="checkbox16"  >
-                    <label class="search-params__label" for="checkbox16">星4以上</label>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div> -->
     <div class="search-params__footer">
-        <button class="search-params__button" type="button">この条件で検索</button>
+        <button class="search-params__button" type="button" @click="emitSearchRequest">この条件で検索</button>
     </div>
 </div>
 </template>
@@ -112,33 +79,19 @@ export default {
         return {
             SearchParams: {
                 keyword: '',
-                type: {
-                    IsFront: true,
-                    IsBack: true,
-                    IsInfra: true,
-                    IsDataScience: true,
-                    IsMachineLearning: true,
-                    IsMobile: true,
-                    IsDesigner: true,
-                    IsGameCreater: true,
-                    IsOthers: true,
-                },
-                term: {
-                    Short: true,
-                    Long: true,
-                    PartTime: true
-                },
-                evaluation: {
-                    OverThree: true,
-                    OverFour: true,
-                    OverFive: true
-                }
+                IsFront: true,
+                IsBack: true,
+                IsInfra: true,
+                IsMachineLearning: true,
+                IsMobile: true,
+                IsDesigner: true,
+                IsOthers: true,
             }
         }
     },
     methods: {
-        off() {
-            this.SearchParams = false;
+        emitSearchRequest() {
+            this.$emit('searchRequest', this.SearchParams)
         }
     }
 }
