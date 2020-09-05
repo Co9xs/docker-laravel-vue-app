@@ -10,25 +10,38 @@
             </div>
             <div class="tab-menu">
                 <ul class="tab-menu__list">
-                    <li class="tab-menu__item">
-                        <a class="tab-menu__link" href="">企業情報</a>
-                    </li>
-                    <li class="tab-menu__item">
-                        <a class="tab-menu__link" href=""
-                            >口コミ一覧(<span class="tab-menu__item--str0ng"
-                                >32</span
-                            >)</a
+                    <li
+                        class="tab-menu__item"
+                        :class="{ selected: isActive === '1' }"
+                    >
+                        <a class="tab-menu__link" @click="change('1')"
+                            >企業情報</a
                         >
                     </li>
-                    <li class="tab-menu__item">
-                        <a class="tab-menu__link" href="">口コミ投稿</a>
+                    <li
+                        class="tab-menu__item"
+                        :class="{ selected: isActive === '2' }"
+                    >
+                        <a class="tab-menu__link" @click="change('2')"
+                            >口コミ一覧(32)</a
+                        >
+                    </li>
+                    <li
+                        class="tab-menu__item"
+                        :class="{ selected: isActive === '3' }"
+                    >
+                        <a class="tab-menu__link" @click="change('3')"
+                            >口コミ投稿</a
+                        >
                     </li>
                 </ul>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="review-create">
+                        <div v-if="isActive === '1'">コンテンツ１</div>
+                        <div v-if="isActive === '2'">コンテンツ2</div>
+                        <div class="review-create" v-if="isActive === '3'">
                             <form class="review-create__form" action="">
                                 <p class="review-create__title">
                                     "{{ company.name }}"への新規口コミ投稿
@@ -48,7 +61,7 @@
                                         max="5"
                                         v-model="formData.evaluation"
                                     />
-                                    {{ formData.evaluation}}
+                                    {{ formData.evaluation }}
                                 </div>
                                 <div class="review-create__input-group">
                                     <label
@@ -116,18 +129,19 @@
                                     <textarea
                                         class="review-create__textarea"
                                         v-model="formData.body"
-                                        cols="30"
-                                        rows="17"
+                                        cols="40"
+                                        rows="10"
                                     ></textarea>
                                 </div>
-                                <button class="review-create__button" type="button" @click="addReview">
+                                <button
+                                    class="review-create__button"
+                                    type="button"
+                                    @click="addReview"
+                                >
                                     投稿する
                                 </button>
                             </form>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-
                     </div>
                 </div>
             </div>
@@ -151,11 +165,12 @@ export default {
                 body: "",
                 user_id: 1,
                 company_id: null
-            }
+            },
+            isActive: "1"
         };
     },
     methods: {
-        async fetchAndAddCompany() {
+        async upsertCompany() {
             const data = {
                 number: this.$route.params.corporateNum
             };
@@ -188,10 +203,13 @@ export default {
         async addReview() {
             const response = await axios.post("/api/v1/reviews", this.formData);
             this.$router.push("/reviews");
+        },
+        change: function(num) {
+            this.isActive = num;
         }
     },
     created() {
-        this.fetchAndAddCompany();
+        this.upsertCompany();
     }
 };
 </script>
@@ -233,7 +251,11 @@ export default {
 
 .tab-menu__item {
     padding: 3px 0;
-    margin-right: 32px;
+    padding: 3px 12px;
+    margin-right: 10px;
+}
+
+.selected {
     border-bottom: 2px solid #ffb808;
     color: #ffb808;
 }
@@ -252,14 +274,16 @@ export default {
 
 .review-create__input-group {
     display: flex;
-    flex-direction: column;
     margin-bottom: 16px;
-    width: 30%;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
 }
 
 .review-create__textarea-group {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    align-items: top;
     margin-bottom: 16px;
 }
 
@@ -274,7 +298,7 @@ export default {
 
 .review-create__button {
     color: #fff;
-    background-color: #4FC251;
+    background-color: #4fc251;
     border: none;
     border-radius: 2px;
     padding: 5px 16px;

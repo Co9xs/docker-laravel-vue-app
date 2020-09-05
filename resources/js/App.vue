@@ -1,16 +1,16 @@
 <template>
-<div>
-    <Loading v-show="loading"></Loading>
-    <header v-show="!loading">
-        <NavMenu></NavMenu>
-    </header>
-    <main v-show="!loading">
-        <RouterView></RouterView>
-    </main>
-    <footer v-show="!loading">
-        <!-- <Footer></Footer> -->
-    </footer>
-</div>
+    <div>
+        <Loading v-show="loading"></Loading>
+        <header v-show="!loading">
+            <NavMenu></NavMenu>
+        </header>
+        <main v-show="!loading">
+            <RouterView></RouterView>
+        </main>
+        <footer v-show="!loading">
+            <!-- <Footer></Footer> -->
+        </footer>
+    </div>
 </template>
 
 <script>
@@ -30,27 +30,25 @@ export default {
     data() {
         return {
             loading: true
-        }
+        };
     },
     methods: {
-    async logout () {
-        await this.$store.dispatch('auth/logout')
-        this.$router.push('/login')
-    }
+        async logout() {
+            await this.$store.dispatch("auth/logout");
+            this.$router.push("/login");
+        }
     },
     mounted() {
-    setTimeout(() => {
-        this.loading = false;
-    }, 1000);
-    },
+        setTimeout(() => {
+            this.loading = false;
+        }, 1000);
+    }
 };
 </script>
 
 <style>
 header {
-    background-color: #fff;
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16),
-    0 2px 7px 0 rgba(0, 0, 0, 0.12);
+    background-color: #F7FAFC;
 }
 footer {
     background-color: #464343;

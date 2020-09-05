@@ -1976,10 +1976,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$store.dispatch('auth/logout');
+                return _this.$store.dispatch("auth/logout");
 
               case 2:
-                _this.$router.push('/login');
+                _this.$router.push("/login");
 
               case 3:
               case "end":
@@ -2113,9 +2113,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch("auth/logout");
 
               case 2:
-                _this.$router.push("/login");
-
-              case 3:
               case "end":
                 return _context.stop();
             }
@@ -2401,6 +2398,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     starNum: Number,
@@ -2510,7 +2512,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('auth/login', _this.loginForm);
 
               case 2:
-                _this.$router.push('/');
+                _this.$router.push('/home');
 
               case 3:
               case "end":
@@ -2620,6 +2622,57 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2872,6 +2925,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2887,11 +2954,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         body: "",
         user_id: 1,
         company_id: null
-      }
+      },
+      isActive: "1"
     };
   },
   methods: {
-    fetchAndAddCompany: function fetchAndAddCompany() {
+    upsertCompany: function upsertCompany() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -2964,10 +3032,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    change: function change(num) {
+      this.isActive = num;
     }
   },
   created: function created() {
-    this.fetchAndAddCompany();
+    this.upsertCompany();
   }
 });
 
@@ -7816,7 +7887,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\nheader {\n    background-color: #fff;\n    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16),\n    0 2px 7px 0 rgba(0, 0, 0, 0.12);\n}\nfooter {\n    background-color: #464343;\n    position: fixed;\n    bottom: 0;\n    right: 0;\n    left: 0;\n}\n", ""]);
+exports.push([module.i, "\nheader {\n    background-color: #F7FAFC;\n}\nfooter {\n    background-color: #464343;\n    position: fixed;\n    bottom: 0;\n    right: 0;\n    left: 0;\n}\n", ""]);
 
 // exports
 
@@ -7873,7 +7944,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nav[data-v-ce029cf2] {\n    max-width: 1110px;\n    height: 70px;\n    padding: 0 15px;\n    margin-right: auto;\n    margin-left: auto;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    box-sizing: border-box;\n    background-color: #fff;\n}\n.nav__right[data-v-ce029cf2] {\n    display: flex;\n    align-items: center;\n}\n.nav__logo[data-v-ce029cf2] {\n    vertical-align: middle;\n    font-size: 18px;\n    color: #333;\n}\n.nav__list[data-v-ce029cf2] {\n    display: flex;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.nav__item[data-v-ce029cf2] {\n    text-align: center;\n    padding-left: 15px;\n}\n.nav__link[data-v-ce029cf2] {\n    text-align: center;\n    color: #333;\n}\n.nav__link--sub-text[data-v-ce029cf2] {\n    display: block;\n    font-size: 12px;\n}\n\n", ""]);
+exports.push([module.i, "\n.nav[data-v-ce029cf2] {\n    max-width: 1110px;\n    height: 70px;\n    padding: 0 15px;\n    margin-right: auto;\n    margin-left: auto;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    box-sizing: border-box;\n}\n.nav__right[data-v-ce029cf2] {\n    display: flex;\n    align-items: center;\n}\n.nav__logo[data-v-ce029cf2] {\n    vertical-align: middle;\n    font-size: 18px;\n    color: #333;\n}\n.nav__list[data-v-ce029cf2] {\n    display: flex;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.nav__item[data-v-ce029cf2] {\n    text-align: center;\n    padding-left: 15px;\n}\n.nav__link[data-v-ce029cf2] {\n    text-align: center;\n    color: #333;\n}\n.nav__link--sub-text[data-v-ce029cf2] {\n    display: block;\n    font-size: 12px;\n}\n", ""]);
 
 // exports
 
@@ -7968,7 +8039,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.star-rating[data-v-413cebba] {\n  display: flex;\n  align-items:baseline;\n}\n.star-rating__label[data-v-413cebba] {\n  margin: 0 5px 0 0;\n}\n.star-rating__star[data-v-413cebba] {\n  position: relative;\n  width: 5em;\n  height: 28px;\n  font-size: 18px;\n  overflow: hidden;\n}\n.star-rating__front[data-v-413cebba] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  color: #ffcc33;\n}\n.star-rating__back[data-v-413cebba] {\n  color: #ccc;\n}\n.star-rating__number[data-v-413cebba] {\n  font-size: 1.2rem;\n  color: #EE6054;\n  margin-left: 5px;\n  font-weight: bold;\n}\n", ""]);
+exports.push([module.i, "\n.star-rating[data-v-413cebba] {\n    display: flex;\n    align-items: baseline;\n}\n.star-rating__label[data-v-413cebba] {\n    margin: 0 5px 0 0;\n}\n.star-rating__star[data-v-413cebba] {\n    position: relative;\n    width: 5em;\n    height: 28px;\n    font-size: 18px;\n    overflow: hidden;\n}\n.star-rating__front[data-v-413cebba] {\n    position: absolute;\n    top: 0;\n    left: 0;\n    overflow: hidden;\n    color: #f98f07;\n}\n.star-rating__back[data-v-413cebba] {\n    color: #ccc;\n}\n.star-rating__number[data-v-413cebba] {\n    font-size: 1.2rem;\n    color: #ffb808;\n    margin-left: 5px;\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -8006,7 +8077,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.search-bar__top {\n    max-width: 508px;\n}\n.search-bar__result {\n    padding: 10px 0 10px 0;\n    margin: 0;\n    font-size: 16px;\n}\n.search-bar__result--strong {\n    font-size: 20px;\n    font-weight: bold;\n    color: #ee6054;\n}\n", ""]);
+exports.push([module.i, "\n.search-bar__top {\n    max-width: 508px;\n}\n.search-bar__result {\n    padding: 10px 0 10px 0;\n    margin: 0;\n    font-size: 16px;\n}\n.search-bar__result--strong {\n    font-size: 20px;\n    font-weight: bold;\n    color: #ee6054;\n}\n.review-step {\n    padding: 16px;\n    border-radius: 5px;\n}\n.review-step__title {\n    font-size: 24px;\n    font-weight: bold;\n    margin-bottom: 15px;\n    padding: 5px;\n}\n.review-step__content {\n    text-align: center;\n    padding: 0 10px 0 10px;\n    border: 3px solid #081239;\n    border-radius: 3px;\n    margin-bottom: 20px;\n    background-color: #fff;\n}\n.review-step__heading {\n    margin: 0;\n    font-weight: bold;\n    font-size: 18px;\n    margin-bottom: 10px;\n    transform: translateY(-17.5px);\n}\n.review-step__number {\n    color: #fff;\n    background-color: #ffb808;\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    line-height: 35px;\n    margin-right: auto;\n    margin-left: auto;\n    margin-bottom: 10px;\n    transform: translateY(-17.5px);\n}\n.review-step__icon {\n    color: #081239;\n    padding: 10px;\n    transform: translateY(-17.5px);\n}\n.review-step__text {\n    font-size: 14px;\n    transform: translateY(-17.5px);\n}\n", ""]);
 
 // exports
 
@@ -8025,7 +8096,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container[data-v-13e8014e] {\n    max-width: 980px !important;\n}\n.company-show[data-v-13e8014e] {\n    padding: 24px 0;\n}\n.company-show__name[data-v-13e8014e] {\n    margin: 0;\n    font-size: 24px;\n    font-weight: bold;\n}\n.company-show__area[data-v-13e8014e] {\n    margin: 0;\n    font-size: 14px;\n    margin-top: 5px;\n}\n.tab-menu[data-v-13e8014e] {\n    border-top: 1px solid #707070;\n    border-bottom: 1px solid #707070;\n    margin: 5px 0 0 0;\n    padding: 0;\n}\n.tab-menu__list[data-v-13e8014e] {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.tab-menu__item[data-v-13e8014e] {\n    padding: 3px 0;\n    margin-right: 32px;\n    border-bottom: 2px solid #ffb808;\n    color: #ffb808;\n}\n.tab-menu__link[data-v-13e8014e] {\n    color: #ffb808;\n}\n.review-create__form[data-v-13e8014e] {\n    padding: 16px 0;\n}\n.review-create__title[data-v-13e8014e] {\n    font-size: 18px;\n}\n.review-create__input-group[data-v-13e8014e] {\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 16px;\n    width: 30%;\n}\n.review-create__textarea-group[data-v-13e8014e] {\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 16px;\n}\n.review-create__label[data-v-13e8014e] {\n    margin: 0;\n    font-weight: bold;\n}\n.review-create__textarea[data-v-13e8014e] {\n    padding: 5px;\n}\n.review-create__button[data-v-13e8014e] {\n    color: #fff;\n    background-color: #4FC251;\n    border: none;\n    border-radius: 2px;\n    padding: 5px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-13e8014e] {\n    max-width: 980px !important;\n}\n.company-show[data-v-13e8014e] {\n    padding: 24px 0;\n}\n.company-show__name[data-v-13e8014e] {\n    margin: 0;\n    font-size: 24px;\n    font-weight: bold;\n}\n.company-show__area[data-v-13e8014e] {\n    margin: 0;\n    font-size: 14px;\n    margin-top: 5px;\n}\n.tab-menu[data-v-13e8014e] {\n    border-top: 1px solid #707070;\n    border-bottom: 1px solid #707070;\n    margin: 5px 0 0 0;\n    padding: 0;\n}\n.tab-menu__list[data-v-13e8014e] {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.tab-menu__item[data-v-13e8014e] {\n    padding: 3px 0;\n    padding: 3px 12px;\n    margin-right: 10px;\n}\n.selected[data-v-13e8014e] {\n    border-bottom: 2px solid #ffb808;\n    color: #ffb808;\n}\n.tab-menu__link[data-v-13e8014e] {\n    color: #ffb808;\n}\n.review-create__form[data-v-13e8014e] {\n    padding: 16px 0;\n}\n.review-create__title[data-v-13e8014e] {\n    font-size: 18px;\n}\n.review-create__input-group[data-v-13e8014e] {\n    display: flex;\n    margin-bottom: 16px;\n    justify-content: space-between;\n    align-items: center;\n    width: 300px;\n}\n.review-create__textarea-group[data-v-13e8014e] {\n    display: flex;\n    justify-content: flex-start;\n    align-items: top;\n    margin-bottom: 16px;\n}\n.review-create__label[data-v-13e8014e] {\n    margin: 0;\n    font-weight: bold;\n}\n.review-create__textarea[data-v-13e8014e] {\n    padding: 5px;\n}\n.review-create__button[data-v-13e8014e] {\n    color: #fff;\n    background-color: #4fc251;\n    border: none;\n    border-radius: 2px;\n    padding: 5px 16px;\n}\n", ""]);
 
 // exports
 
@@ -8045,25 +8116,6 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, "\n.search-bar__top[data-v-38561b3b] {\n    max-width: 508px;\n}\n.search-bar__result[data-v-38561b3b] {\n    padding: 10px 0 10px 0;\n    margin: 0;\n    font-size: 16px;\n}\n.search-bar__result--strong[data-v-38561b3b] {\n    font-size: 20px;\n    font-weight: bold;\n    color: #ee6054;\n}\n.pagination[data-v-38561b3b] {\n    display: flex;\n    list-style-type: none;\n}\n.pagination li[data-v-38561b3b] {\n    border: 1px solid #ddd;\n    padding: 6px 12px;\n    text-align: center;\n    cursor: pointer;\n}\n.pagination li + li[data-v-38561b3b] {\n    border-left: none;\n}\n.pagination li.active[data-v-38561b3b] {\n    background-color: #0375ff;\n    color: #fff;\n}\n.disabled[data-v-38561b3b] {\n    cursor: not-allowed;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.container[data-v-7ebd569b] {\n  max-width: 980px!important;\n}\n", ""]);
 
 // exports
 
@@ -40378,36 +40430,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -41950,7 +41972,7 @@ var render = function() {
           staticClass: "star-rating__front",
           style: { width: _vm.calcRating + "%" }
         },
-        [_vm._v("★★★★★")]
+        [_vm._v("\n            ★★★★★\n        ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "star-rating__back" }, [_vm._v("★★★★★")])
@@ -42302,7 +42324,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-4" }, [_c("SearchParameter")], 1),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "div",
@@ -42362,7 +42384,94 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "review-step" }, [
+        _c("div", { staticClass: "review-step__title" }, [
+          _vm._v("\n                    口コミ投稿の方法\n                ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "review-step__body" }, [
+          _c("div", { staticClass: "review-step__content" }, [
+            _c("p", { staticClass: "review-step__number" }, [
+              _vm._v(
+                "\n                            1\n                        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "review-step__icon" }, [
+              _c("i", { staticClass: "fas fa-3x fa-search" })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "review-step__heading" }, [
+              _vm._v(
+                "\n                            会社を検索\n                        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "review-step__text" }, [
+              _vm._v(
+                "\n                            まずは、検索バーから口コミを書きたい会社名を検索。この時正式名称で検索すると見つけやすくなります。\n                        "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "review-step__content" }, [
+            _c("p", { staticClass: "review-step__number" }, [
+              _vm._v(
+                "\n                            2\n                        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "review-step__icon" }, [
+              _c("i", { staticClass: "fas fa-3x fa-building" })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "review-step__heading" }, [
+              _vm._v(
+                "\n                            会社を選択\n                        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "review-step__text" }, [
+              _vm._v(
+                "\n                            検索結果から口コミを投稿したい会社をクリック。同名の会社がでた場合は、所在地を確認して正しい会社を選択しましょう。\n                        "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "review-step__content" }, [
+            _c("p", { staticClass: "review-step__number" }, [
+              _vm._v(
+                "\n                            3\n                        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "review-step__icon" }, [
+              _c("i", { staticClass: "far fa-3x fa-comment" })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "review-step__heading" }, [
+              _vm._v(
+                "\n                            口コミを投稿\n                        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "review-step__text" }, [
+              _vm._v(
+                "\n                            あとは画面の指示に従って口コミを投稿してみましょう。公序良俗に反する内容などは書かないようにして下さい。\n                        "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42403,302 +42512,358 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "tab-menu" }, [
+        _c("ul", { staticClass: "tab-menu__list" }, [
+          _c(
+            "li",
+            {
+              staticClass: "tab-menu__item",
+              class: { selected: _vm.isActive === "1" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "tab-menu__link",
+                  on: {
+                    click: function($event) {
+                      return _vm.change("1")
+                    }
+                  }
+                },
+                [_vm._v("企業情報")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "tab-menu__item",
+              class: { selected: _vm.isActive === "2" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "tab-menu__link",
+                  on: {
+                    click: function($event) {
+                      return _vm.change("2")
+                    }
+                  }
+                },
+                [_vm._v("口コミ一覧(32)")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "tab-menu__item",
+              class: { selected: _vm.isActive === "3" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "tab-menu__link",
+                  on: {
+                    click: function($event) {
+                      return _vm.change("3")
+                    }
+                  }
+                },
+                [_vm._v("口コミ投稿")]
+              )
+            ]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-8" }, [
-            _c("div", { staticClass: "review-create" }, [
-              _c(
-                "form",
-                { staticClass: "review-create__form", attrs: { action: "" } },
-                [
-                  _c("p", { staticClass: "review-create__title" }, [
-                    _vm._v(
-                      '\n                                "' +
-                        _vm._s(_vm.company.name) +
-                        '"への新規口コミ投稿\n                            '
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "review-create__input-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "review-create__label",
-                        attrs: { for: "volume" }
-                      },
-                      [_vm._v("総合評価（5段階）")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formData.evaluation,
-                          expression: "formData.evaluation"
-                        }
-                      ],
-                      staticClass: "review-create__input",
-                      attrs: {
-                        type: "range",
-                        id: "volume",
-                        name: "volume",
-                        min: "0",
-                        max: "5"
-                      },
-                      domProps: { value: _vm.formData.evaluation },
-                      on: {
-                        __r: function($event) {
-                          return _vm.$set(
-                            _vm.formData,
-                            "evaluation",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(
-                      "\n                                " +
-                        _vm._s(_vm.formData.evaluation) +
-                        "\n                            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "review-create__input-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "review-create__label",
-                        attrs: { for: "type_of_work" }
-                      },
-                      [_vm._v("職種")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.formData.type_of_occupation,
-                            expression: "formData.type_of_occupation"
-                          }
-                        ],
-                        attrs: { name: "", id: "type_of_work" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.formData,
-                              "type_of_occupation",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "1" } }, [
-                          _vm._v("フロントエンドエンジニア")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2" } }, [
-                          _vm._v("デザイナー")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "3" } }, [
-                          _vm._v("バックエンドエンジニア")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "4" } }, [
-                          _vm._v("インフラエンジニア")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "5" } }, [
-                          _vm._v("機械学習エンジニア")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "6" } }, [
-                          _vm._v("データサイエンティスト")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "7" } }, [
-                          _vm._v("iOS&Androidエンジニア")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "8" } }, [
-                          _vm._v("ゲームクリエイター")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "9" } }, [
-                          _vm._v("その他")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "review-create__input-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "review-create__label",
-                        attrs: { for: "term" }
-                      },
-                      [_vm._v("勤務形態")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.formData.work_style,
-                            expression: "formData.work_style"
-                          }
-                        ],
-                        attrs: { name: "", id: "term" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.formData,
-                              "work_style",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "1" } }, [
-                          _vm._v("短期インターン")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2" } }, [
-                          _vm._v("長期インターン")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "3" } }, [
-                          _vm._v("アルバイト")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "4" } }, [
-                          _vm._v("その他")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "review-create__textarea-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "review-create__label",
-                        attrs: { for: "volume" }
-                      },
-                      [_vm._v("口コミ本文")]
-                    ),
-                    _vm._v(" "),
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formData.body,
-                          expression: "formData.body"
-                        }
-                      ],
-                      staticClass: "review-create__textarea",
-                      attrs: { cols: "30", rows: "17" },
-                      domProps: { value: _vm.formData.body },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.formData, "body", $event.target.value)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
+            _vm.isActive === "1"
+              ? _c("div", [_vm._v("コンテンツ１")])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isActive === "2"
+              ? _c("div", [_vm._v("コンテンツ2")])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isActive === "3"
+              ? _c("div", { staticClass: "review-create" }, [
                   _c(
-                    "button",
+                    "form",
                     {
-                      staticClass: "review-create__button",
-                      attrs: { type: "button" },
-                      on: { click: _vm.addReview }
+                      staticClass: "review-create__form",
+                      attrs: { action: "" }
                     },
                     [
-                      _vm._v(
-                        "\n                                投稿する\n                            "
+                      _c("p", { staticClass: "review-create__title" }, [
+                        _vm._v(
+                          '\n                                "' +
+                            _vm._s(_vm.company.name) +
+                            '"への新規口コミ投稿\n                            '
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "review-create__input-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "review-create__label",
+                            attrs: { for: "volume" }
+                          },
+                          [_vm._v("総合評価（5段階）")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formData.evaluation,
+                              expression: "formData.evaluation"
+                            }
+                          ],
+                          staticClass: "review-create__input",
+                          attrs: {
+                            type: "range",
+                            id: "volume",
+                            name: "volume",
+                            min: "0",
+                            max: "5"
+                          },
+                          domProps: { value: _vm.formData.evaluation },
+                          on: {
+                            __r: function($event) {
+                              return _vm.$set(
+                                _vm.formData,
+                                "evaluation",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(_vm.formData.evaluation) +
+                            "\n                            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "review-create__input-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "review-create__label",
+                            attrs: { for: "type_of_work" }
+                          },
+                          [_vm._v("職種")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.formData.type_of_occupation,
+                                expression: "formData.type_of_occupation"
+                              }
+                            ],
+                            attrs: { name: "", id: "type_of_work" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.formData,
+                                  "type_of_occupation",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("フロントエンドエンジニア")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("デザイナー")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "3" } }, [
+                              _vm._v("バックエンドエンジニア")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "4" } }, [
+                              _vm._v("インフラエンジニア")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "5" } }, [
+                              _vm._v("機械学習エンジニア")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "6" } }, [
+                              _vm._v("データサイエンティスト")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "7" } }, [
+                              _vm._v("iOS&Androidエンジニア")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "8" } }, [
+                              _vm._v("ゲームクリエイター")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "9" } }, [
+                              _vm._v("その他")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "review-create__input-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "review-create__label",
+                            attrs: { for: "term" }
+                          },
+                          [_vm._v("勤務形態")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.formData.work_style,
+                                expression: "formData.work_style"
+                              }
+                            ],
+                            attrs: { name: "", id: "term" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.formData,
+                                  "work_style",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("短期インターン")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("長期インターン")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "3" } }, [
+                              _vm._v("アルバイト")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "4" } }, [
+                              _vm._v("その他")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "review-create__textarea-group" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "review-create__label",
+                              attrs: { for: "volume" }
+                            },
+                            [_vm._v("口コミ本文")]
+                          ),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.formData.body,
+                                expression: "formData.body"
+                              }
+                            ],
+                            staticClass: "review-create__textarea",
+                            attrs: { cols: "40", rows: "10" },
+                            domProps: { value: _vm.formData.body },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.formData,
+                                  "body",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "review-create__button",
+                          attrs: { type: "button" },
+                          on: { click: _vm.addReview }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                投稿する\n                            "
+                          )
+                        ]
                       )
                     ]
                   )
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" })
+                ])
+              : _vm._e()
+          ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tab-menu" }, [
-      _c("ul", { staticClass: "tab-menu__list" }, [
-        _c("li", { staticClass: "tab-menu__item" }, [
-          _c("a", { staticClass: "tab-menu__link", attrs: { href: "" } }, [
-            _vm._v("企業情報")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "tab-menu__item" }, [
-          _c("a", { staticClass: "tab-menu__link", attrs: { href: "" } }, [
-            _vm._v("口コミ一覧("),
-            _c("span", { staticClass: "tab-menu__item--str0ng" }, [
-              _vm._v("32")
-            ]),
-            _vm._v(")")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "tab-menu__item" }, [
-          _c("a", { staticClass: "tab-menu__link", attrs: { href: "" } }, [
-            _vm._v("口コミ投稿")
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -42940,10 +43105,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b& ***!
+  \**************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -42955,114 +43120,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("レビュー作成画面")]),
-    _vm._v(" "),
-    _c("p", [_vm._v("株式会社オロ")]),
-    _vm._v(" "),
-    _c("p", [_vm._v("東京都目黒区")]),
-    _vm._v(" "),
-    _c("form", { attrs: { action: "" } }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.formData.evaluation,
-            expression: "formData.evaluation"
-          }
-        ],
-        attrs: {
-          type: "range",
-          id: "volume",
-          name: "volume",
-          min: "0",
-          max: "5"
-        },
-        domProps: { value: _vm.formData.evaluation },
-        on: {
-          __r: function($event) {
-            return _vm.$set(_vm.formData, "evaluation", $event.target.value)
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "volume" } }, [_vm._v("評価")]),
-      _vm._v(" "),
-      _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.formData.body,
-            expression: "formData.body"
-          }
-        ],
-        attrs: { name: "", id: "", cols: "30", rows: "10" },
-        domProps: { value: _vm.formData.body },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.formData, "body", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("button", { attrs: { type: "button" } }, [_vm._v("投稿")])
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("select", { attrs: { name: "", id: "" } }, [
-      _c("option", { attrs: { value: "1" } }, [_vm._v("短期インターン")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "2" } }, [_vm._v("長期インターン")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "3" } }, [_vm._v("アルバイト")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "4" } }, [_vm._v("その他")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("select", { attrs: { name: "", id: "" } }, [
-      _c("option", { attrs: { value: "1" } }, [
-        _vm._v("フロントエンドエンジニア")
-      ]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "2" } }, [_vm._v("デザイナー")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "3" } }, [
-        _vm._v("バックエンドエンジニア")
-      ]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "4" } }, [_vm._v("インフラエンジニア")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "5" } }, [_vm._v("機械学習エンジニア")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "6" } }, [
-        _vm._v("データサイエンティスト")
-      ]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "7" } }, [
-        _vm._v("iOS&Androidエンジニア")
-      ]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "8" } }, [_vm._v("ゲームクリエイター")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "9" } }, [_vm._v("その他")])
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4" })
+      ])
     ])
   }
 ]
@@ -62834,6 +62902,10 @@ var createApp = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            _context.next = 2;
+            return _store__WEBPACK_IMPORTED_MODULE_5__["default"].dispatch("auth/currentUser");
+
+          case 2:
             new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
               el: "#app",
               router: _router__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -62844,7 +62916,7 @@ var createApp = /*#__PURE__*/function () {
               template: "<App />"
             });
 
-          case 1:
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -64164,23 +64236,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Test_vue_vue_type_template_id_7ebd569b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Test.vue?vue&type=template&id=7ebd569b&scoped=true& */ "./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&scoped=true&");
-/* harmony import */ var _Test_vue_vue_type_style_index_0_id_7ebd569b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css& */ "./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Test_vue_vue_type_template_id_7ebd569b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Test.vue?vue&type=template&id=7ebd569b& */ "./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 var script = {}
 
 
-
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
   script,
-  _Test_vue_vue_type_template_id_7ebd569b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Test_vue_vue_type_template_id_7ebd569b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Test_vue_vue_type_template_id_7ebd569b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Test_vue_vue_type_template_id_7ebd569b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "7ebd569b",
+  null,
   null
   
 )
@@ -64192,35 +64262,19 @@ component.options.__file = "resources/js/pages/Test.vue"
 
 /***/ }),
 
-/***/ "./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css& ***!
-  \**********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_style_index_0_id_7ebd569b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Test.vue?vue&type=style&index=0&id=7ebd569b&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_style_index_0_id_7ebd569b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_style_index_0_id_7ebd569b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_style_index_0_id_7ebd569b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_style_index_0_id_7ebd569b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_style_index_0_id_7ebd569b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&scoped=true&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&scoped=true& ***!
-  \********************************************************************************/
+/***/ "./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&":
+/*!********************************************************************!*\
+  !*** ./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b& ***!
+  \********************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_template_id_7ebd569b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Test.vue?vue&type=template&id=7ebd569b&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_template_id_7ebd569b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_template_id_7ebd569b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Test.vue?vue&type=template&id=7ebd569b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Test.vue?vue&type=template&id=7ebd569b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_template_id_7ebd569b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_template_id_7ebd569b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_template_id_7ebd569b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -64369,6 +64423,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Auth/Login.vue */ "./resources/js/pages/Auth/Login.vue");
 /* harmony import */ var _pages_Auth_Register_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/Auth/Register.vue */ "./resources/js/pages/Auth/Register.vue");
 /* harmony import */ var _pages_Test_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/Test.vue */ "./resources/js/pages/Test.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+
 
 
 
@@ -64386,7 +64442,16 @@ var routes = [{
   component: _pages_Top_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   path: "/login",
-  component: _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  component: _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    console.log('test');
+
+    if (_store__WEBPACK_IMPORTED_MODULE_11__["default"].getters["auth/check"]) {
+      next("/");
+    } else {
+      next();
+    }
+  }
 }, {
   path: "/register",
   component: _pages_Auth_Register_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
@@ -64447,7 +64512,6 @@ var getters = {
 };
 var mutations = {
   setUser: function setUser(state, user) {
-    console.log(state.user + '=>' + user);
     state.user = user;
   }
 };
@@ -64516,6 +64580,29 @@ var actions = {
           }
         }
       }, _callee3);
+    }))();
+  },
+  currentUser: function currentUser(context) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var response, user;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return axios.get("/api/user");
+
+            case 2:
+              response = _context4.sent;
+              user = response.data || null;
+              context.commit("setUser", user);
+
+            case 5:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
     }))();
   }
 };

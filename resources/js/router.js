@@ -9,6 +9,7 @@ import User from "./pages/User.vue";
 import Login from "./pages/Auth/Login.vue";
 import Register from "./pages/Auth/Register.vue";
 import Test from "./pages/Test.vue";
+import store from "./store";
 
 Vue.use(VueRouter);
 
@@ -19,7 +20,15 @@ const routes = [
     },
     {
         path: "/login",
-        component: Login
+        component: Login,
+        beforeEnter(to, from, next) {
+            console.log('test')
+            if (store.getters["auth/check"]) {
+                next("/");
+            } else {
+                next();
+            }
+        }
     },
     {
         path: "/register",

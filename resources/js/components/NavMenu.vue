@@ -1,39 +1,39 @@
 <template>
-<nav class="nav">
-    <div class="nav__right">
-        <a class="nav__logo" href="/">
-            ITインターン.com
-        </a>
+    <nav class="nav">
+        <div class="nav__right">
+            <a class="nav__logo" href="/">
+                ITインターン.com
+            </a>
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a class="nav__link" href="/reviews">
+                        <i class="far fa-comment-dots fa-lg"></i>
+                        <span class="nav__link--sub-text">口コミを見る</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="/companies">
+                        <i class="fas fa-pen mr-1 fa-lg"></i>
+                        <span class="nav__link--sub-text">口コミを書く</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <ul class="nav__list">
-            <li class="nav__item">
-                <a class="nav__link" href="/reviews">
-                    <i class="far fa-comment-dots fa-lg"></i>
-                    <span class="nav__link--sub-text">口コミを見る</span>
-                </a>
+            <li class="nav__item" v-if="!isLogin">
+                <a class="nav__link" href="/register">新規登録</a>
             </li>
-            <li class="nav__item">
-                <a class="nav__link" href="/companies">
-                    <i class="fas fa-pen mr-1 fa-lg"></i>
-                    <span class="nav__link--sub-text">口コミを書く</span>
-                </a>
+            <li class="nav__item" v-if="!isLogin">
+                <a class="nav__link" href="/login">ログイン</a>
+            </li>
+            <li class="nav__item" v-if="isLogin">
+                <a class="nav__link" href="/home">マイページ</a>
+            </li>
+            <li class="nav__item" v-if="isLogin">
+                <a class="nav__link" @click="logout">ログアウト</a>
             </li>
         </ul>
-    </div>
-    <ul class="nav__list">
-        <li class="nav__item" v-if="!isLogin">
-            <a class="nav__link" href="/register">新規登録</a>
-        </li>
-        <li class="nav__item" v-if="!isLogin">
-            <a class="nav__link" href="/login">ログイン</a>
-        </li>
-        <li class="nav__item" v-if="isLogin">
-            <a class="nav__link" href="/home">マイページ</a>
-        </li>
-        <li class="nav__item" v-if="isLogin">
-            <a class="nav__link" @click="logout">ログアウト</a>
-        </li>
-    </ul>
-</nav>
+    </nav>
 </template>
 
 <script>
@@ -42,7 +42,6 @@ export default {
     methods: {
         async logout() {
             await this.$store.dispatch("auth/logout");
-            this.$router.push("/login");
         }
     },
     computed: {
@@ -64,7 +63,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    background-color: #fff;
 }
 
 .nav__right {
@@ -99,5 +97,4 @@ export default {
     display: block;
     font-size: 12px;
 }
-
 </style>

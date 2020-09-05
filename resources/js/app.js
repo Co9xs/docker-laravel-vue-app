@@ -5,6 +5,7 @@ import router from "./router";
 import store from "./store";
 
 const createApp = async () => {
+    await store.dispatch("auth/currentUser");
     new Vue({
         el: "#app",
         router,
