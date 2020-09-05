@@ -18,7 +18,7 @@
                                 会社を検索
                             </p>
                             <div class="review-step__text">
-                                まずは、検索バーから口コミを書きたい会社名を検索。この時正式名称で検索すると見つけやすくなります。
+                                検索バーから口コミを書きたい会社名を検索。正式名称で検索すると見つけやすくなります。
                             </div>
                         </div>
                         <div class="review-step__content">
@@ -32,7 +32,7 @@
                                 会社を選択
                             </p>
                             <div class="review-step__text">
-                                検索結果から口コミを投稿したい会社をクリック。同名の会社がでた場合は、所在地を確認して正しい会社を選択しましょう。
+                                口コミを投稿したい会社をクリック。同名の会社がある時は、正しい所在地を確認しましょう。
                             </div>
                         </div>
                         <div class="review-step__content">
@@ -46,7 +46,7 @@
                                 口コミを投稿
                             </p>
                             <div class="review-step__text">
-                                あとは画面の指示に従って口コミを投稿してみましょう。公序良俗に反する内容などは書かないようにして下さい。
+                                画面の指示に従って口コミを投稿。公序良俗に反する内容などは書かないようにして下さい。
                             </div>
                         </div>
                     </div>
@@ -66,20 +66,11 @@
                 </div>
                 <Loading v-if="loading"></Loading>
                 <div
-                    class="card mt-3 col-md-12"
+                    class="mt-3"
                     v-for="company in companies"
                     :key="company.id"
                 >
-                    <p>{{ company.name }}</p>
-                    <p>{{ company.prefectureName }}{{ company.cityName }}</p>
-                    <a
-                        :href="
-                            '/companies/' +
-                                company.corporateNumber +
-                                '/review/create'
-                        "
-                        >この会社への口コミを書く</a
-                    >
+                <CompanyCard :company="company"></CompanyCard>
                 </div>
             </div>
         </div>
@@ -91,12 +82,14 @@ import SearchBar from "../../components/SerchBar.vue";
 import Loading from "../../components/Loading.vue";
 import SearchParameter from "../../components/SearchParameter.vue";
 import SearchResult from "../../components/SearchResult.vue";
+import CompanyCard from "../../components/Company/CompanyCard.vue";
 export default {
     components: {
         SearchBar,
         Loading,
         SearchParameter,
-        SearchResult
+        SearchResult,
+        CompanyCard
     },
     data() {
         return {
@@ -115,7 +108,6 @@ export default {
             this.companies = [];
             const response = await axios.post("api/v1/companies/search", param);
             if (response.status === 200) {
-                console.log(response.data);
                 this.companies = response.data.corporation;
                 this.loading = false;
                 this.searched = true;
@@ -166,29 +158,29 @@ export default {
     margin: 0;
     font-weight: bold;
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     transform: translateY(-17.5px);
 }
 
 .review-step__number {
     color: #fff;
-    background-color: #ffb808;
-    width: 35px;
-    height: 35px;
+    background-color: #4fc251;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
-    line-height: 35px;
+    line-height: 32px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     transform: translateY(-17.5px);
 }
 
 .review-step__icon {
     color: #081239;
-    padding: 10px;
+    padding: 10px 10px 10px 5px;
     transform: translateY(-17.5px);
 }
 

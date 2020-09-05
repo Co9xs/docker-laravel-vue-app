@@ -1,17 +1,29 @@
 <template>
     <div class="review">
-        <div class="company-info">
-            <a class="company-info__name">
-                {{ review.company.name }}
-            </a>
-            <span class="company-info__area">
-                {{ review.company.area }}
-            </span>
+        <div class="review__header">
+            <div class="company-info">
+                <a
+                    class="company-info__name"
+                    :href="
+                        '/companies/' +
+                            review.company.corporate_number +
+                            '/review/create'
+                    "
+                >
+                    {{ review.company.name }}
+                </a>
+                <span class="company-info__area">
+                    {{ review.company.area }}
+                </span>
+            </div>
+            <div class="ellipsis-icon">
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
         </div>
         <div class="review__user-info">
             <UserInfo :review="review"></UserInfo>
         </div>
-        <div class="review__content">
+        <div class="review__body">
             <div class="review__evaluation">
                 <StarRating
                     :starNum="review.evaluation"
@@ -23,9 +35,11 @@
             </div>
             <div class="review__bottom">
                 <a class="review__link" :href="'/reviews/' + review.id">
-                この口コミの詳細へ>>
+                    この口コミの続きを読む>>
                 </a>
-                <span class="review__time">投稿日時:{{ review.created_at }}</span>
+                <span class="review__time"
+                    >投稿日時:{{ review.created_at }}</span
+                >
             </div>
         </div>
     </div>
@@ -64,10 +78,21 @@ export default {
     padding: 0 10px 10px 0;
 }
 
+.review__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #808080;
+    border-bottom: 1px solid #7f7f7f;
+}
+
+.ellipsis-icon {
+    padding: 5px;
+    cursor: pointer;
+}
+
 .company-info {
     padding: 5px 0;
-    border-top: 2px solid #808080;
-    border-bottom: 1px solid #7F7F7F;
 }
 
 .review__user-info {
@@ -77,6 +102,7 @@ export default {
 .company-info__name {
     font-size: 18px;
     margin-right: 10px;
+    color: #333;
 }
 
 .company-info__area {

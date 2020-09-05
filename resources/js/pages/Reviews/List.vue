@@ -12,9 +12,23 @@
                     :target="'口コミ'"
                     v-if="searched"
                 ></SearchResult>
+                <div class="review-list-pagination" v-if="reviews.length !== 0">
+                    <Paginate
+                        :page-count="getPageCount"
+                        :page-range="3"
+                        :margin-pages="2"
+                        :click-handler="clickCallback"
+                        :prev-text="'<< '"
+                        :next-text="' >>'"
+                        :container-class="'pagination pg-blue'"
+                        :page-class="'page-item'"
+                        :page-link-class="'page-link'"
+                    >
+                    </Paginate>
+                </div>
                 <div
                     class="review-card mt-3"
-                    v-for="review in reviews"
+                    v-for="review in reviewsForPagination"
                     :key="review.id"
                 >
                     <ReviewCard :review="review"></ReviewCard>
@@ -31,13 +45,15 @@ import SearchParameter from "../../components/SearchParameter.vue";
 import Loading from "../../components/Loading.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
 import SearchResult from "../../components/SearchResult.vue";
+import Paginate from "vuejs-paginate";
 export default {
     components: {
         SearchBar,
         SearchParameter,
         Loading,
         ReviewCard,
-        SearchResult
+        SearchResult,
+        Paginate
     },
     data() {
         return {
@@ -45,92 +61,45 @@ export default {
             reviews: [],
             searched: false,
             loading: true,
-            current_page: 1,
-            last_page: "",
-            range: 5,
-            front_dot: false,
-            end_dot: false,
-            size: 6
+            parPage: 3,
+            currentPage: 1
         };
     },
+
     methods: {
         async getReviews() {
             this.loading = true;
             const response = await axios.get(`api/v1/reviews`);
             this.reviews = response.data;
-            // this.reviews = response.data.data;
-            // this.current_page = response.data.current_page;
-            // this.last_page = response.data.last_page;
             this.loading = false;
         },
         async search(params) {
             this.loading = true;
             this.searched = false;
             const response = await axios.get(
-                `api/v1/reviews?keyword=${params.keyword}&IsFront=${params.IsFront}&IsBack=${params.IsBack}&IsInfra=${params.IsInfra}&IsDesigner=${params.IsDesigner}&IsMobile=${params.IsMobile}&IsMachineLearning=${params.IsMachineLearning}&IsOthers=${params.IsOthers}`
+                `api/v1/reviews?keyword=${params.keyword}&IsFront=${params.IsFront}&IsBack=${params.IsBack}&IsInfra=${params.IsInfra}&IsDesigner=${params.IsDesigner}&IsMobile=${params.IsMobile}&IsMachineLearning=${params.IsMachineLearning}&IsGameCreator=${params.IsGameCreator}&IsOthers=${params.IsOthers}`
             );
             this.reviews = response.data;
             this.searched = true;
             this.loading = false;
         },
-        calRange(start, end) {
-            const range = [];
-            for (let i = start; i <= end; i++) {
-                range.push(i);
-            }
-            return range;
-        },
-        changePage(page) {
-            if (page > 0 && page <= this.last_page) {
-                this.current_page = page;
-                this.getReviews();
-            }
-        },
-        isCurrent(page) {
-            return page === this.current_page;
-        },
-        sizeCheck() {
-            if (this.last_page < this.size) {
-                return false;
-            }
-            return true;
+        clickCallback: function(pageNum) {
+            this.currentPage = Number(pageNum);
         }
     },
     computed: {
         ...mapGetters({
             userId: "auth/userId"
         }),
-        frontPageRange() {
-            if (!this.sizeCheck) {
-                return this.calRange(1, this.last_page);
+        reviewsForPagination() {
+            const current = this.currentPage * this.parPage;
+            const start = current - this.parPage;
+            if (this.reviews.length !== 0) {
+                return this.reviews.slice(start, current);
             }
-            return this.calRange(1, 2);
         },
-        middlePageRange() {
-            let start = "";
-            let end = "";
-            if (!this.sizeCheck) return [];
-            if (this.current_page <= this.range) {
-                start = 3;
-                end = this.range + 2;
-                this.front_dot = false;
-                this.end_dot = true;
-            } else if (this.current_page > this.last_page - this.range) {
-                start = this.last_page - this.range - 1;
-                end = this.last_page - 2;
-                this.front_dot = true;
-                this.end_dot = false;
-            } else {
-                start = this.current_page - Math.floor(this.range / 2);
-                end = this.current_page + Math.floor(this.range / 2);
-                this.front_dot = true;
-                this.end_dot = true;
-            }
-            return this.calRange(start, end);
-        },
-        endPageRange() {
-            if (!this.sizeCheck) return [];
-            return this.calRange(this.last_page - 1, this.last_page);
+        getPageCount() {
+            return Math.ceil(this.reviews.length / this.parPage);
         }
     },
     mounted() {

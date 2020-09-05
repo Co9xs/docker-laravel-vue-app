@@ -48,7 +48,9 @@ export default {
 
 <style>
 header {
-    background-color: #F7FAFC;
+    background-color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+        0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 footer {
     background-color: #464343;

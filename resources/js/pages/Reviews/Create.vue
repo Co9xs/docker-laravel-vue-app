@@ -164,7 +164,8 @@ export default {
                 evaluation: 0,
                 body: "",
                 user_id: 1,
-                company_id: null
+                company_id: null,
+                company_name: ""
             },
             isActive: "1"
         };
@@ -175,6 +176,7 @@ export default {
                 number: this.$route.params.corporateNum
             };
             const response = await axios.post("/api/v1/companies", data);
+            this.formData.company_name = response.data.corporation.name;
             const companyData = {
                 name: response.data.corporation.name,
                 average_point: 0,
@@ -190,23 +192,13 @@ export default {
             this.company = response2.data;
             this.formData.company_id = this.company.id;
         },
-        // async addCompany() {
-        //     const data = {
-        //         name: this.company.name,
-        //         average_point: 0,
-        //         area: this.company.prefectureName + this.company.cityName,
-        //         corporate_number: this.company.corporateNumber
-        //     };
-        //     const response = await axios.post("/api/v1/companies/add", data);
-        //     console.log("add Company works!!!");
-        // },
         async addReview() {
             const response = await axios.post("/api/v1/reviews", this.formData);
             this.$router.push("/reviews");
         },
         change: function(num) {
             this.isActive = num;
-        }
+        },
     },
     created() {
         this.upsertCompany();

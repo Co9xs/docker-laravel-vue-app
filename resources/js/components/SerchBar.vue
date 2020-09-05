@@ -64,5 +64,6 @@ export default {
     border: none;
     background-color: #ffb808;
     border-radius: 0 3px 3px 0;
+    color: #fff;
 }
 </style>

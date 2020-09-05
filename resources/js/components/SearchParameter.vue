@@ -40,33 +40,16 @@
                     <label class="search-params__label" for="checkbox7">iOS&Android</label>
                 </div>
                 <div class="search-params__input-group">
-                    <input v-model="SearchParams.IsOthers" class="search-params__input" type="checkbox" id="checkbox10"  >
-                    <label class="search-params__label" for="checkbox10">その他</label>
+                    <input v-model="SearchParams.IsGameCreator" class="search-params__input" type="checkbox" id="checkbox10"  >
+                    <label class="search-params__label" for="checkbox10">ゲーム関連</label>
+                </div>
+                <div class="search-params__input-group">
+                    <input v-model="SearchParams.IsOthers" class="search-params__input" type="checkbox" id="checkbox11"  >
+                    <label class="search-params__label" for="checkbox11">その他</label>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="search-params__body">
-        <p class="search-params__heading">勤務形態</p>
-        <div class="search-params__row">
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.Short" class="search-params__input" type="checkbox" id="checkbox11"  >
-                    <label class="search-params__label" for="checkbox11">短期インターン</label>
-                </div>
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.PartTime" class="search-params__input" type="checkbox" id="checkbox13"  >
-                    <label class="search-params__label" for="checkbox13">アルバイト</label>
-                </div>
-            </div>
-            <div class="search-params__column">
-                <div class="search-params__input-group">
-                    <input v-model="SearchParams.Long" class="search-params__input" type="checkbox" id="checkbox12"  >
-                    <label class="search-params__label" for="checkbox12">長期インターン</label>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="search-params__footer">
         <button class="search-params__button" type="button" @click="emitSearchRequest">この条件で検索</button>
     </div>
@@ -85,6 +68,7 @@ export default {
                 IsMachineLearning: true,
                 IsMobile: true,
                 IsDesigner: true,
+                IsGameCreator: true,
                 IsOthers: true,
             }
         }
@@ -103,6 +87,8 @@ export default {
     background-color: #efefef;
     max-width: 720px;
     border-radius: 5px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+        0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .search-params__header {
     display: flex;

@@ -21,10 +21,14 @@
         </div>
         <ul class="nav__list">
             <li class="nav__item" v-if="!isLogin">
-                <a class="nav__link" href="/register">新規登録</a>
+                <a class="nav__link nav__link--strong" href="/register"
+                    >新規登録</a
+                >
             </li>
             <li class="nav__item" v-if="!isLogin">
-                <a class="nav__link" href="/login">ログイン</a>
+                <a class="nav__link nav__link--strong" href="/login"
+                    >ログイン</a
+                >
             </li>
             <li class="nav__item" v-if="isLogin">
                 <a class="nav__link" href="/home">マイページ</a>
@@ -86,11 +90,18 @@ export default {
 .nav__item {
     text-align: center;
     padding-left: 15px;
+    color: #333;
 }
 
 .nav__link {
     text-align: center;
     color: #333;
+}
+
+.nav__link--strong {
+    color: #0065cc;
+    font-weight: bolder;
+    font-size: 13px;
 }
 
 .nav__link--sub-text {

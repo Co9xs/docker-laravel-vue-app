@@ -55,7 +55,7 @@ export default {
     top: 0;
     left: 0;
     overflow: hidden;
-    color: #f98f07;
+    color: #ffb808;
 }
 
 .star-rating__back {
@@ -64,7 +64,7 @@ export default {
 
 .star-rating__number {
     font-size: 1.2rem;
-    color: #ffb808;
+    color: #ee6054;
     margin-left: 5px;
     font-weight: bold;
 }

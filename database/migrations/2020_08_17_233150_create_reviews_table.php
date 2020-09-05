@@ -19,6 +19,7 @@ class CreateReviewsTable extends Migration
             $table->enum('type_of_occupation', ['フロントエンドエンジニア', 'デザイナー', 'バックエンドエンジニア', 'インフラエンジニア', '機械学習エンジニア', 'データサイエンティスト', 'iOS&Androidエンジニア', 'ゲームクリエイター', 'その他'])->default('フロントエンドエンジニア');
             $table->tinyInteger('evaluation')->unsigned();
             $table->text('body');
+            $table->string('company_name');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('company_id')->unsigned();

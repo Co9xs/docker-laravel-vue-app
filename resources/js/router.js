@@ -5,6 +5,7 @@ import ReviewList from "./pages/Reviews/List.vue";
 import ReviewDetail from "./pages/Reviews/Detail.vue";
 import ReviewCreate from "./pages/Reviews/Create.vue";
 import CompanyList from "./pages/Companies/List.vue";
+import CompanyDetail from "./pages/Companies/Detail.vue";
 import User from "./pages/User.vue";
 import Login from "./pages/Auth/Login.vue";
 import Register from "./pages/Auth/Register.vue";
@@ -22,7 +23,7 @@ const routes = [
         path: "/login",
         component: Login,
         beforeEnter(to, from, next) {
-            console.log('test')
+            console.log("test");
             if (store.getters["auth/check"]) {
                 next("/");
             } else {
@@ -48,7 +49,7 @@ const routes = [
     },
     {
         path: "/companies/:corporateNum/review/create",
-        component: ReviewCreate
+        component: CompanyDetail
     },
     {
         path: "/companies",

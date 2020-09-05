@@ -7,6 +7,7 @@ use App\Review;
 use App\Company;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ReviewController extends Controller
 {
@@ -19,6 +20,7 @@ class ReviewController extends Controller
         $is_designer = $request->input('IsDesigner');
         $is_mobile = $request->input('IsMobile');
         $is_machine = $request->input('IsMachineLearning');
+        $is_game = $request->input('IsGameCreator');
         $is_others = $request->input('IsOthers');
         $result = [];
         if (empty($is_front)) {
@@ -27,7 +29,7 @@ class ReviewController extends Controller
         }
         if ($is_front === "true") {
             $query = Review::query();
-            $query->with('user', 'company')->where('body', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'フロントエンドエンジニア');
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'フロントエンドエンジニア');
             $reviews = $query->get();
             foreach ($reviews as $review) {
                 $result[] = $review;
@@ -35,7 +37,7 @@ class ReviewController extends Controller
         }
         if ($is_back === "true") {
             $query = Review::query();
-            $query->with('user', 'company')->where('body', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'バックエンドエンジニア');
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'バックエンドエンジニア');
             $reviews = $query->get();
             foreach ($reviews as $review) {
                 $result[] = $review;
@@ -43,7 +45,7 @@ class ReviewController extends Controller
         }
         if ($is_infra === "true") {
             $query = Review::query();
-            $query->with('user', 'company')->where('body', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'インフラエンジニア');
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'インフラエンジニア');
             $reviews = $query->get();
             foreach ($reviews as $review) {
                 $result[] = $review;
@@ -51,7 +53,7 @@ class ReviewController extends Controller
         }
         if ($is_designer === "true") {
             $query = Review::query();
-            $query->with('user', 'company')->where('body', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'デザイナー');
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'デザイナー');
             $reviews = $query->get();
             foreach ($reviews as $review) {
                 $result[] = $review;
@@ -59,7 +61,7 @@ class ReviewController extends Controller
         }
         if ($is_mobile === "true") {
             $query = Review::query();
-            $query->with('user', 'company')->where('body', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'iOS&Androidエンジニア');
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'iOS&Androidエンジニア');
             $reviews = $query->get();
             foreach ($reviews as $review) {
                 $result[] = $review;
@@ -67,7 +69,15 @@ class ReviewController extends Controller
         }
         if ($is_machine === "true") {
             $query = Review::query();
-            $query->with('user', 'company')->where('body', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', '機械学習系エンジニア');
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', '機械学習系エンジニア');
+            $reviews = $query->get();
+            foreach ($reviews as $review) {
+                $result[] = $review;
+            }
+        }
+        if ($is_game === "true") {
+            $query = Review::query();
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'ゲームクリエイター');
             $reviews = $query->get();
             foreach ($reviews as $review) {
                 $result[] = $review;
@@ -75,7 +85,7 @@ class ReviewController extends Controller
         }
         if ($is_others === "true") {
             $query = Review::query();
-            $query->with('user', 'company')->where('body', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'その他');
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'その他');
             $reviews = $query->get();
             foreach ($reviews as $review) {
                 $result[] = $review;
@@ -84,17 +94,13 @@ class ReviewController extends Controller
         return $result;
     }
 
-    public function create(Company $company)
-    {
-        return view('reviews.create', ['company' => $company]);    
-    }
-
     public function store(ReviewRequest $request, Review $review)
     {
         $review->work_style = $request->work_style;
         $review->type_of_occupation = $request->type_of_occupation;
         $review->evaluation = $request->evaluation;
         $review->body = $request->body;
+        $review->company_name = $request->company_name;
         $review->user_id = $request->user_id;
         $review->company_id = $request->company_id;
         $review->save();
