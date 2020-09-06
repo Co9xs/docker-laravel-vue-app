@@ -114,6 +114,12 @@ class ReviewController extends Controller
         return $result;
     }   
 
+    public function destroy(Review $review)
+    {
+        $review->delete();
+        return redirect('/reviews');
+    }
+    
     public function edit(Review $review)
     {
         return view('reviews.edit', ['review' => $review]);
@@ -123,12 +129,6 @@ class ReviewController extends Controller
     {
         $review->body=$request->body;
         $review->save();
-        return redirect('/reviews');
-    }
-
-    public function destroy(Review $review)
-    {
-        $review->delete();
         return redirect('/reviews');
     }
 

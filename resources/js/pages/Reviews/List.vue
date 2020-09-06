@@ -130,7 +130,6 @@ export default {
             userId: "auth/userId"
         }),
         reviewsForPagination() {
-            console.log("このcomputedはthis.reviewsの変更を検知して走ります");
             const current = this.currentPage * this.parPage;
             const start = current - this.parPage;
             if (this.reviews.length !== 0) {

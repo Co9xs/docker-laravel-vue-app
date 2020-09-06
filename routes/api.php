@@ -27,6 +27,7 @@ Route::get('/user', function() {
 Route::get('/v1/reviews', 'ReviewController@index');
 Route::post('/v1/reviews', 'ReviewController@store');
 Route::get('/v1/reviews/{review}', 'ReviewController@show');
+Route::delete('/reviews/{review}', 'ReviewController@destroy');
 Route::post('/v1/companies/search', 'CompanyController@search');
 Route::post('/v1/companies', 'CompanyController@show');
 Route::post('/v1/companies/add', 'CompanyController@store');

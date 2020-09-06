@@ -18,10 +18,21 @@
             </div>
             <div class="action-icons" v-if="review.user.id === user_id">
                 <div class="action-icons__delete">
-                    <i class="fas fa-trash-alt"></i>
+                    <a class="action-icons__link" @click="openModal()"
+                        ><i class="fas fa-trash-alt"></i
+                    ></a>
                 </div>
+                <Modal
+                    :target="'口コミ'"
+                    :action="'削除'"
+                    v-if="isOpen"
+                    @close="closeModal()"
+                    @action="deleteReview()"
+                ></Modal>
                 <div class="action-icons__edit">
-                    <i class="fas fa-pen"></i>
+                    <a class="action-icons__link" href=""
+                        ><i class="fas fa-pen"></i
+                    ></a>
                 </div>
             </div>
         </div>
@@ -36,7 +47,7 @@
                 ></StarRating>
             </div>
             <div class="review__body">
-                {{ excerpt(review.body, 100) }}
+                {{ excerpt(review.body, 50) }}
             </div>
             <div class="review__bottom">
                 <a class="review__link" :href="'/reviews/' + review.id">
@@ -53,14 +64,21 @@
 <script>
 import StarRating from "../StarRating.vue";
 import UserInfo from "../UserInfo.vue";
+import Modal from "../Modal.vue";
 import { mapGetters } from "vuex";
 export default {
     components: {
         StarRating,
-        UserInfo
+        UserInfo,
+        Modal
     },
     props: {
         review: Object
+    },
+    data() {
+        return {
+            isOpen: false
+        };
     },
     methods: {
         excerpt(text, max) {
@@ -68,6 +86,15 @@ export default {
                 return text.substr(0, max) + "...";
             }
             return text;
+        },
+        openModal() {
+            this.isOpen = true;
+        },
+        closeModal() {
+            this.isOpen = false;
+        },
+        deleteReview() {
+            
         }
     },
     computed: {
@@ -136,19 +163,19 @@ export default {
     color: #7f7f7f;
 }
 
+.action-icons__link {
+    color: #7f7f7f;
+}
+
+.action-icons__link:hover {
+    color: #333!important;
+    transform: scale(1.5);
+}
+
 .action-icons__delete,
 .action-icons__edit {
     transform: scale(1.4);
     padding: 3px;
-}
-
-.action-icons__delete:hover {
-    color: #333;
-    transform: scale(1.5);
-}
-
-.action-icons__edit:hover {
-    color: #333;
-    transform: scale(1.5);
+    margin-left: 5px;
 }
 </style>
