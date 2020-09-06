@@ -16,8 +16,13 @@
                     {{ review.company.area }}
                 </span>
             </div>
-            <div class="ellipsis-icon">
-                <i class="fas fa-ellipsis-v"></i>
+            <div class="action-icons" v-if="review.user.id === user_id">
+                <div class="action-icons__delete">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+                <div class="action-icons__edit">
+                    <i class="fas fa-pen"></i>
+                </div>
             </div>
         </div>
         <div class="review__user-info">
@@ -48,6 +53,7 @@
 <script>
 import StarRating from "../StarRating.vue";
 import UserInfo from "../UserInfo.vue";
+import { mapGetters } from "vuex";
 export default {
     components: {
         StarRating,
@@ -63,6 +69,11 @@ export default {
             }
             return text;
         }
+    },
+    computed: {
+        ...mapGetters({
+            user_id: "auth/userId"
+        })
     }
 };
 </script>
@@ -118,5 +129,26 @@ export default {
 .review__time {
     font-size: 12px;
     color: #333;
+}
+
+.action-icons {
+    display: flex;
+    color: #7f7f7f;
+}
+
+.action-icons__delete,
+.action-icons__edit {
+    transform: scale(1.4);
+    padding: 3px;
+}
+
+.action-icons__delete:hover {
+    color: #333;
+    transform: scale(1.5);
+}
+
+.action-icons__edit:hover {
+    color: #333;
+    transform: scale(1.5);
 }
 </style>

@@ -32,10 +32,13 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div v-if="isActive === '1'">
-                          コンテンツ2
-                          </div>
+                            コンテンツ2
+                        </div>
                         <div class="review-create" v-if="isActive === '2'">
-                            <ReviewCreateForm :company="company"></ReviewCreateForm>
+                            <ReviewCreateForm
+                                :company="company"
+                                @postRequest="addReview"
+                            ></ReviewCreateForm>
                         </div>
                     </div>
                 </div>
@@ -55,15 +58,6 @@ export default {
     data() {
         return {
             company: null,
-            formData: {
-                work_style: null,
-                type_of_occupation: null,
-                evaluation: 0,
-                body: "",
-                user_id: 1,
-                company_id: null,
-                company_name: ""
-            },
             isActive: "1"
         };
     },
@@ -73,7 +67,6 @@ export default {
                 number: this.$route.params.corporateNum
             };
             const response = await axios.post("/api/v1/companies", data);
-            this.formData.company_name = response.data.corporation.name;
             const companyData = {
                 name: response.data.corporation.name,
                 average_point: 0,
@@ -87,15 +80,16 @@ export default {
                 companyData
             );
             this.company = response2.data;
-            this.formData.company_id = this.company.id;
         },
-        async addReview() {
-            const response = await axios.post("/api/v1/reviews", this.formData);
+        async addReview(reviewData) {
+            reviewData.company_id = this.company.id;
+            reviewData.company_name = this.company.name;
+            const response = await axios.post("/api/v1/reviews", reviewData);
             this.$router.push("/reviews");
         },
-        change: function(num) {
+        change(num) {
             this.isActive = num;
-        },
+        }
     },
     created() {
         this.upsertCompany();
@@ -105,7 +99,7 @@ export default {
 
 <style scoped>
 .container {
-    max-width: 980px !important;
+    max-width: 720px !important;
 }
 .company-show {
     padding: 24px 0;

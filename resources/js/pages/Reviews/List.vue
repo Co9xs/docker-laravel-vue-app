@@ -12,19 +12,31 @@
                     :target="'口コミ'"
                     v-if="searched"
                 ></SearchResult>
-                <div class="review-list-pagination" v-if="reviews.length !== 0">
-                    <Paginate
-                        :page-count="getPageCount"
-                        :page-range="3"
-                        :margin-pages="2"
-                        :click-handler="clickCallback"
-                        :prev-text="'<< '"
-                        :next-text="' >>'"
-                        :container-class="'pagination pg-blue'"
-                        :page-class="'page-item'"
-                        :page-link-class="'page-link'"
+                <div class="review-list-topbar">
+                    <div
+                        class="review-list-pagination"
+                        v-if="reviews.length !== 0"
                     >
-                    </Paginate>
+                        <Paginate
+                            :page-count="getPageCount"
+                            :page-range="3"
+                            :margin-pages="2"
+                            :click-handler="clickCallback"
+                            :prev-text="'<< '"
+                            :next-text="' >>'"
+                            :container-class="'pagination pg-blue'"
+                            :page-class="'page-item'"
+                            :page-link-class="'page-link'"
+                        >
+                        </Paginate>
+                    </div>
+                    <div class="review-list-dropdown">
+                        <DropDownMenu
+                            :label="'並び替え'"
+                            :listItems="items"
+                            @labelClicked="sortBy"
+                        ></DropDownMenu>
+                    </div>
                 </div>
                 <div
                     class="review-card mt-3"
@@ -45,6 +57,7 @@ import SearchParameter from "../../components/SearchParameter.vue";
 import Loading from "../../components/Loading.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
 import SearchResult from "../../components/SearchResult.vue";
+import DropDownMenu from "../../components/DropDownMenu";
 import Paginate from "vuejs-paginate";
 export default {
     components: {
@@ -53,7 +66,8 @@ export default {
         Loading,
         ReviewCard,
         SearchResult,
-        Paginate
+        Paginate,
+        DropDownMenu
     },
     data() {
         return {
@@ -61,8 +75,9 @@ export default {
             reviews: [],
             searched: false,
             loading: true,
-            parPage: 3,
-            currentPage: 1
+            parPage: 4,
+            currentPage: 1,
+            items: ["評価の高い順", "新着順", "いいねの多い順"]
         };
     },
 
@@ -83,8 +98,31 @@ export default {
             this.searched = true;
             this.loading = false;
         },
-        clickCallback: function(pageNum) {
+        clickCallback(pageNum) {
             this.currentPage = Number(pageNum);
+        },
+        sortBy(order) {
+            switch (order) {
+                case "評価の高い順":
+                    this.reviews.sort((review, nextReview) => {
+                        if (review.evaluation > nextReview.evaluation)
+                            return -1;
+                        if (review.evaluation < nextReview.evaluation) return 1;
+                        return 0;
+                    });
+                    break;
+                case "新着順":
+                    this.reviews.sort((review, nextReview) => {
+                        if (review.created_at > nextReview.created_at)
+                            return -1;
+                        if (review.created_at < nextReview.created_at) return 1;
+                        return 0;
+                    });
+                    break;
+                case "いいねの多い順":
+                    break;
+                default:
+            }
         }
     },
     computed: {
@@ -92,6 +130,7 @@ export default {
             userId: "auth/userId"
         }),
         reviewsForPagination() {
+            console.log("このcomputedはthis.reviewsの変更を検知して走ります");
             const current = this.currentPage * this.parPage;
             const start = current - this.parPage;
             if (this.reviews.length !== 0) {
@@ -127,6 +166,7 @@ export default {
 .pagination {
     display: flex;
     list-style-type: none;
+    margin: 0;
 }
 .pagination li {
     border: 1px solid #ddd;
@@ -146,5 +186,11 @@ export default {
 
 .disabled {
     cursor: not-allowed;
+}
+
+.review-list-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 </style>
