@@ -151,6 +151,9 @@
     user-select: none;
 }
 .pagination li {
-    line-height: 34px!important;
+    line-height: 34px !important;
 }
 
+body {
+    background-color: #f2f6f7 !important;
+}

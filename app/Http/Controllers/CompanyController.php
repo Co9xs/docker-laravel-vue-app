@@ -48,4 +48,9 @@ class CompanyController extends Controller
         );
         return $company;
     } 
+    
+    public function reviews(Company $company) 
+    {
+        return $company->reviews()->with('user', 'company')->get();
+    }
 }

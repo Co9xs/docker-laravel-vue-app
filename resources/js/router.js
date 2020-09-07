@@ -6,7 +6,7 @@ import ReviewDetail from "./pages/Reviews/Detail.vue";
 import ReviewCreate from "./pages/Reviews/Create.vue";
 import CompanyList from "./pages/Companies/List.vue";
 import CompanyDetail from "./pages/Companies/Detail.vue";
-import User from "./pages/User.vue";
+import MyPage from "./pages/MyPage.vue";
 import Login from "./pages/Auth/Login.vue";
 import Register from "./pages/Auth/Register.vue";
 import Test from "./pages/Test.vue";
@@ -36,8 +36,8 @@ const routes = [
         component: Register
     },
     {
-        path: "/home",
-        component: User
+        path: "/mypage/:id",
+        component: MyPage
     },
     {
         path: "/reviews",

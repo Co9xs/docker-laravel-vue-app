@@ -21,9 +21,6 @@
 export default {
     props: {
         review: Object
-    },
-    mounted() {
-        // console.log(this.review)
     }
 };
 </script>

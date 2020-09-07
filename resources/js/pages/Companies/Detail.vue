@@ -5,7 +5,10 @@
                 <h5 class="company-show__name">{{ company.name }}</h5>
                 <p class="company-show__area">本社所在地：{{ company.area }}</p>
                 <div class="company-show__star-rating">
-                    <StarRating :label="'平均評価'" :starNum="4"></StarRating>
+                    <StarRating
+                        :label="'平均評価'"
+                        :starNum="company.average_point"
+                    ></StarRating>
                 </div>
             </div>
             <div class="tab-menu">
@@ -15,7 +18,7 @@
                         :class="{ selected: isActive === '1' }"
                     >
                         <a class="tab-menu__link" @click="change('1')"
-                            >口コミ一覧(32)</a
+                            >口コミ一覧(<span class="tab-menu__link--strong">{{reviews.length}}</span>)</a
                         >
                     </li>
                     <li
@@ -30,9 +33,18 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div v-if="isActive === '1'">
-                            コンテンツ2
+                            <div v-if="reviews.length === 0">
+                                この企業への口コミはまだありません。
+                            </div>
+                            <div
+                                class="mt-3"
+                                v-for="review in reviews"
+                                :key="review.id"
+                            >
+                                <ReviewCard :review="review"></ReviewCard>
+                            </div>
                         </div>
                         <div class="review-create" v-if="isActive === '2'">
                             <ReviewCreateForm
@@ -50,14 +62,18 @@
 <script>
 import StarRating from "../../components/StarRating.vue";
 import ReviewCreateForm from "../../components/ReviewCreateForm.vue";
+import ReviewCard from "../../components/Review/ReviewCard.vue";
 export default {
     components: {
         StarRating,
-        ReviewCreateForm
+        ReviewCreateForm,
+        ReviewCard
     },
     data() {
         return {
             company: null,
+            reviews: [],
+            average_point: 0,
             isActive: "1"
         };
     },
@@ -69,7 +85,7 @@ export default {
             const response = await axios.post("/api/v1/companies", data);
             const companyData = {
                 name: response.data.corporation.name,
-                average_point: 0,
+                average_point: this.average_point,
                 area:
                     response.data.corporation.prefectureName +
                     response.data.corporation.cityName,
@@ -80,6 +96,8 @@ export default {
                 companyData
             );
             this.company = response2.data;
+            this.getReviewsOn(this.company.id);
+            this.calcAveragePoint();
         },
         async addReview(reviewData) {
             reviewData.company_id = this.company.id;
@@ -89,6 +107,12 @@ export default {
         },
         change(num) {
             this.isActive = num;
+        },
+        async getReviewsOn(company_id) {
+            const response = await axios.get(
+                `/api/v1/companies/${company_id}/reviews`
+            );
+            this.reviews = response.data;
         }
     },
     created() {
@@ -98,9 +122,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-    max-width: 720px !important;
-}
 .company-show {
     padding: 24px 0;
 }
@@ -133,18 +154,22 @@ export default {
 }
 
 .tab-menu__item {
-    padding: 3px 0;
-    padding: 3px 12px;
+    padding: 5px 12px;
     margin-right: 10px;
 }
 
 .selected {
     border-bottom: 2px solid #ffb808;
     color: #ffb808;
+    font-weight: bold;
 }
 
 .tab-menu__link {
     color: #ffb808;
+}
+
+.tab-menu__link--strong {
+    color:#EE6054;
 }
 
 .review-create__form {

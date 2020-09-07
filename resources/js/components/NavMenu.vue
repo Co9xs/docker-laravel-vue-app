@@ -31,7 +31,7 @@
                 >
             </li>
             <li class="nav__item" v-if="isLogin">
-                <a class="nav__link" href="/home">マイページ</a>
+                <a class="nav__link" :href="`/mypage/${userId}`">マイページ</a>
             </li>
             <li class="nav__item" v-if="isLogin">
                 <a class="nav__link" @click="logout">ログアウト</a>
@@ -50,7 +50,8 @@ export default {
     },
     computed: {
         ...mapGetters({
-            isLogin: "auth/checkAuth"
+            isLogin: "auth/checkAuth",
+            userId: "auth/userId"
         })
     }
 };
@@ -89,19 +90,19 @@ export default {
 
 .nav__item {
     text-align: center;
-    padding-left: 15px;
+    padding-left: 12px;
     color: #333;
 }
 
 .nav__link {
     text-align: center;
     color: #333;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 .nav__link--strong {
     color: #0065cc;
-    font-weight: bolder;
-    font-size: 13px;
 }
 
 .nav__link--sub-text {

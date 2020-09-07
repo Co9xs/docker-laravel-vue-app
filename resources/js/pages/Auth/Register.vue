@@ -118,7 +118,6 @@
                                             id="register-sex-man"
                                             value="男性"
                                             v-model="registerForm.sex"
-                                            
                                         />
                                         <label for="register-sex-man"
                                             >男性</label
@@ -159,9 +158,7 @@
                                         <option value="19卒">19卒</option>
                                         <option value="20卒">20卒</option>
                                         <option value="21卒">21卒</option>
-                                        <option value="22卒"
-                                            >22卒</option
-                                        >
+                                        <option value="22卒">22卒</option>
                                         <option value="23卒">23卒</option>
                                         <option value="24卒">24卒</option>
                                     </select>
@@ -227,7 +224,6 @@ export default {
 </script>
 
 <style>
-
 .register {
     margin-top: 50px;
     background-color: #fff;
