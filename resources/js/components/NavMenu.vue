@@ -59,7 +59,7 @@ export default {
 
 <style scoped>
 .nav {
-    max-width: 1110px;
+    max-width: 980px;
     height: 70px;
     padding: 0 15px;
     margin-right: auto;

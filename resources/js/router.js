@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Top from "./pages/Top.vue";
 import ReviewList from "./pages/Reviews/List.vue";
 import ReviewDetail from "./pages/Reviews/Detail.vue";
+import ReviewEdit from "./pages/Reviews/Edit.vue";
 import ReviewCreate from "./pages/Reviews/Create.vue";
 import CompanyList from "./pages/Companies/List.vue";
 import CompanyDetail from "./pages/Companies/Detail.vue";
@@ -46,6 +47,10 @@ const routes = [
     {
         path: "/reviews/:id",
         component: ReviewDetail
+    },
+    {
+        path: "/reviews/:id/edit",
+        component: ReviewEdit
     },
     {
         path: "/companies/:corporateNum/review/create",

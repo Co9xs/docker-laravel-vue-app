@@ -10,4 +10,9 @@ class UserController extends Controller
     {
         return $user->reviews()->with('user', 'company')->get();
     }
+    public function update (Request $request, User $user) 
+    {
+        $user->fill($request->all())->save();
+        return $user;
+    }
 }

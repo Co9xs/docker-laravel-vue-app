@@ -1,5 +1,5 @@
 <template>
-    <div class="search-params mt-3">
+    <div class="search-params">
         <div class="search-params__header">
             <p class="search-params__title">
                 <i class="search-params__icon fas fa-lg fa-search"></i
@@ -157,8 +157,6 @@ export default {
     background-color: #efefef;
     max-width: 720px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
-        0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .search-params__header {
     display: flex;

@@ -14,4 +14,8 @@ class Review extends Model
     {
         return $this->belongsTo('App\Company');
     }
+
+    protected $fillable = [
+        'evaluation', 'type_of_occupation', 'work_style', 'body'
+    ];
 }

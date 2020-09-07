@@ -117,19 +117,14 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         $review->delete();
-        return redirect('/reviews');
+        return;
     }
     
-    public function edit(Review $review)
-    {
-        return view('reviews.edit', ['review' => $review]);
-    }
 
-    public function update(ReviewRequest $request, Review $review)
+    public function update(Request $request, Review $review)
     {
-        $review->body=$request->body;
-        $review->save();
-        return redirect('/reviews');
+        $review->fill($request->all())->save();
+        return $review;
     }
 
 }

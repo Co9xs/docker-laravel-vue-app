@@ -27,10 +27,10 @@
                     :action="'削除'"
                     v-if="isOpen"
                     @close="closeModal()"
-                    @action="deleteReview()"
+                    @action="onDeleteRequest(review.id)"
                 ></Modal>
                 <div class="action-icons__edit">
-                    <a class="action-icons__link" href=""
+                    <a class="action-icons__link" :href="`/reviews/${review.id}/edit`"
                         ><i class="fas fa-pen"></i
                     ></a>
                 </div>
@@ -93,9 +93,10 @@ export default {
         closeModal() {
             this.isOpen = false;
         },
-        deleteReview() {
-            
+        onDeleteRequest(review_id) {
+            this.$emit('delete', review_id)
         }
+
     },
     computed: {
         ...mapGetters({
@@ -168,7 +169,7 @@ export default {
 }
 
 .action-icons__link:hover {
-    color: #333!important;
+    color: #333 !important;
     transform: scale(1.5);
 }
 

@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row">
             <Loading v-show="loading"></Loading>
-            <div class="col-md-4" v-show="!loading">
+            <div class="col-md-4 mt-3 mb-3" v-show="!loading">
                 <SearchParameter @searchRequest="search"></SearchParameter>
             </div>
-            <div class="col-md-8" v-show="!loading">
-                <h3 class="h4 mt-3">口コミを見る</h3>
+            <div class="col-md-8 mt-3 mb-3" v-show="!loading" style="background-color: #fff; border-radius: 5px;">
+                <h4 class="h4 mt-3">口コミを見る</h4>
                 <SearchResult
                     :number="reviews.length"
                     :target="'口コミ'"
@@ -43,7 +43,10 @@
                     v-for="review in reviewsForPagination"
                     :key="review.id"
                 >
-                    <ReviewCard :review="review"></ReviewCard>
+                    <ReviewCard
+                        :review="review"
+                        @delete="deleteReview"
+                    ></ReviewCard>
                 </div>
             </div>
         </div>
@@ -123,6 +126,13 @@ export default {
                     break;
                 default:
             }
+        },
+        async deleteReview(review_id) {
+            const response = await axios.post(`/api/v1/reviews/${review_id}`);
+            this.$router.go({
+                path: this.$router.currentRoute.path,
+                force: true
+            });
         }
     },
     computed: {

@@ -22,6 +22,7 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/user', function() {
   return Auth::user();
 })->name('user');
+Route::post('/users/{user}', 'UserController@update');
 
 Route::get('/users/{user}/reviews', 'UserController@reviews');
 
@@ -29,7 +30,8 @@ Route::get('/users/{user}/reviews', 'UserController@reviews');
 Route::get('/v1/reviews', 'ReviewController@index');
 Route::post('/v1/reviews', 'ReviewController@store');
 Route::get('/v1/reviews/{review}', 'ReviewController@show');
-Route::delete('/reviews/{review}', 'ReviewController@destroy');
+Route::post('/v1/reviews/{review}/edit', 'ReviewController@update');
+Route::post('/v1/reviews/{review}', 'ReviewController@destroy');
 Route::get('/v1/companies/{company}/reviews', 'CompanyController@reviews');
 Route::post('/v1/companies/search', 'CompanyController@search');
 Route::post('/v1/companies', 'CompanyController@show');

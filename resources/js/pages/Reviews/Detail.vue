@@ -33,11 +33,6 @@
                 <div class="card-text">
                     {{ review.body }}
                 </div>
-                <p class="m-0" style="text-align: right;">
-                    <a href="">
-                        <i class="fas fa-thumbs-up"></i>参考になった
-                    </a>
-                </p>
             </div>
         </div>
     </div>
@@ -73,3 +68,9 @@ export default {
     }
 };
 </script>
+
+<style>
+.container {
+    width: 980px !important;
+}
+</style>

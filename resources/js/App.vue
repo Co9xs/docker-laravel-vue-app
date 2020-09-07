@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main">
         <Loading v-show="loading"></Loading>
         <header v-show="!loading">
             <NavMenu></NavMenu>
@@ -47,16 +47,16 @@ export default {
 </script>
 
 <style>
+.main {
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
 header {
     background-color: #fff;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
-        0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 footer {
     background-color: #464343;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
 }
 </style>
