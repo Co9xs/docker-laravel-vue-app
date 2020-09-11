@@ -1,11 +1,13 @@
 <template>
     <div class="container">
         <div class="row">
-            <Loading v-show="loading"></Loading>
-            <div class="col-md-4 mt-3 mb-3" v-show="!loading">
+            <div class="col-md-4 mt-3 mb-3">
                 <SearchParameter @searchRequest="search"></SearchParameter>
             </div>
-            <div class="col-md-8 mt-3 mb-3" v-show="!loading" style="background-color: #fff; border-radius: 5px;">
+            <div
+                class="col-md-8 mt-3 mb-3"
+                style="background-color: #fff; border-radius: 5px;"
+            >
                 <h4 class="h4 mt-3">口コミを見る</h4>
                 <SearchResult
                     :number="reviews.length"
@@ -80,14 +82,16 @@ export default {
             loading: true,
             parPage: 4,
             currentPage: 1,
-            items: ["評価の高い順", "新着順", "いいねの多い順"]
+            items: ["評価の高い順", "新着順"]
         };
     },
 
     methods: {
         async getReviews() {
+            console.log("get reviews");
             this.loading = true;
             const response = await axios.get(`api/v1/reviews`);
+            console.log(response.data);
             this.reviews = response.data;
             this.loading = false;
         },
@@ -98,11 +102,12 @@ export default {
                 `api/v1/reviews?keyword=${params.keyword}&IsFront=${params.IsFront}&IsBack=${params.IsBack}&IsInfra=${params.IsInfra}&IsDesigner=${params.IsDesigner}&IsMobile=${params.IsMobile}&IsMachineLearning=${params.IsMachineLearning}&IsGameCreator=${params.IsGameCreator}&IsOthers=${params.IsOthers}`
             );
             this.reviews = response.data;
+            console.log(response.data);
             this.searched = true;
             this.loading = false;
         },
         clickCallback(pageNum) {
-            this.currentPage = Number(pageNum);
+            this.currentPage = parseInt(pageNum);
         },
         sortBy(order) {
             switch (order) {
@@ -122,8 +127,6 @@ export default {
                         return 0;
                     });
                     break;
-                case "いいねの多い順":
-                    break;
                 default:
             }
         },
@@ -133,6 +136,20 @@ export default {
                 path: this.$router.currentRoute.path,
                 force: true
             });
+        },
+        async test() {
+            if (this.$route.query.hogehoge) {
+                this.loading = true;
+                this.searched = false;
+                const keyword = this.$route.query.hogehoge;
+                const response = await axios.get(
+                    `api/v1/reviews?keyword=${keyword}`
+                );
+                console.log(response.data);
+                this.reviews = response.data;
+                this.searched = true;
+                this.loading = false;
+            }
         }
     },
     computed: {
@@ -152,6 +169,7 @@ export default {
     },
     mounted() {
         this.getReviews();
+        this.test();
     }
 };
 </script>

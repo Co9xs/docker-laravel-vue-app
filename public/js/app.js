@@ -1948,6 +1948,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -4315,6 +4319,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4467,6 +4491,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -4493,7 +4519,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loading: true,
       parPage: 4,
       currentPage: 1,
-      items: ["評価の高い順", "新着順", "いいねの多い順"]
+      items: ["評価の高い順", "新着順"]
     };
   },
   methods: {
@@ -4506,16 +4532,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                console.log("get reviews");
                 _this.loading = true;
-                _context.next = 3;
+                _context.next = 4;
                 return axios.get("api/v1/reviews");
 
-              case 3:
+              case 4:
                 response = _context.sent;
+                console.log(response.data);
                 _this.reviews = response.data;
                 _this.loading = false;
 
-              case 6:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -4540,10 +4568,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 4:
                 response = _context2.sent;
                 _this2.reviews = response.data;
+                console.log(response.data);
                 _this2.searched = true;
                 _this2.loading = false;
 
-              case 8:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -4552,7 +4581,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     clickCallback: function clickCallback(pageNum) {
-      this.currentPage = Number(pageNum);
+      this.currentPage = parseInt(pageNum);
     },
     sortBy: function sortBy(order) {
       switch (order) {
@@ -4570,9 +4599,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             if (review.created_at < nextReview.created_at) return 1;
             return 0;
           });
-          break;
-
-        case "いいねの多い順":
           break;
 
         default:
@@ -4605,6 +4631,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
+    },
+    test: function test() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var keyword, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (!_this4.$route.query.hogehoge) {
+                  _context4.next = 11;
+                  break;
+                }
+
+                _this4.loading = true;
+                _this4.searched = false;
+                keyword = _this4.$route.query.hogehoge;
+                _context4.next = 6;
+                return axios.get("api/v1/reviews?keyword=".concat(keyword));
+
+              case 6:
+                response = _context4.sent;
+                console.log(response.data);
+                _this4.reviews = response.data;
+                _this4.searched = true;
+                _this4.loading = false;
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
@@ -4624,6 +4685,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   }),
   mounted: function mounted() {
     this.getReviews();
+    this.test();
   }
 });
 
@@ -4680,8 +4742,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_StarRating_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/StarRating.vue */ "./resources/js/components/StarRating.vue");
-/* harmony import */ var _components_SerchBar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/SerchBar.vue */ "./resources/js/components/SerchBar.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_StarRating_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/StarRating.vue */ "./resources/js/components/StarRating.vue");
+/* harmony import */ var _components_SerchBar_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/SerchBar.vue */ "./resources/js/components/SerchBar.vue");
+/* harmony import */ var _components_Loading_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Loading.vue */ "./resources/js/components/Loading.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -4745,12 +4816,122 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    StarRating: _components_StarRating_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    SearchBar: _components_SerchBar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    StarRating: _components_StarRating_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SearchBar: _components_SerchBar_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Loading: _components_Loading_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      reviews: [],
+      companies: [],
+      loading: false
+    };
+  },
+  methods: {
+    getReviews: function getReviews() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.loading = true;
+                _context.next = 3;
+                return axios.get("api/v1/reviews");
+
+              case 3:
+                response = _context.sent;
+                _this.reviews = response.data;
+                _this.loading = false;
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    getCompanies: function getCompanies() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.loading = true;
+                _context2.next = 3;
+                return axios.get("api/v1/companies");
+
+              case 3:
+                response = _context2.sent;
+                _this2.companies = response.data;
+                _this2.loading = false;
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    search: function search(keyword) {
+      this.$router.push({
+        path: "reviews",
+        query: {
+          hogehoge: keyword
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getReviews();
+    this.getCompanies();
   }
 });
 
@@ -9188,7 +9369,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.main {\n    margin: 0;\n    display: flex;\n    flex-flow: column;\n    min-height: 100vh;\n}\nheader {\n    background-color: #fff;\n}\nfooter {\n    background-color: #464343;\n}\n", ""]);
+exports.push([module.i, "\n.wrapper {\n    display: flex;\n    flex-direction: column;\n    min-height: 100vh;\n}\n.main {\n    margin: 0;\n    display: flex;\n    flex-flow: column;\n    min-height: 100vh;\n}\nheader {\n    background-color: #fff;\n}\nfooter {\n    margin-top: auto;\n    background-color: #464343;\n}\n", ""]);
 
 // exports
 
@@ -9245,7 +9426,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.footer-inner[data-v-61a7c374] {\n  height: 60px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.footer-nav[data-v-61a7c374] {\n  display: flex;\n  margin: 0;\n  padding: 0;\n}\n.footer-nav__item[data-v-61a7c374] {\n  list-style: none;\n  font-size: 12px;\n}\n.footer-nav__link[data-v-61a7c374] {\n  color: #efefef;\n  padding: 5px;\n}\n.footer__copyright[data-v-61a7c374] {\n  font-size: 10px;\n  color: #efefef;\n}\n", ""]);
+exports.push([module.i, "\n.footer-inner[data-v-61a7c374] {\n    height: 60px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n.footer-nav[data-v-61a7c374] {\n    display: flex;\n    margin: 0;\n    padding: 0;\n}\n.footer-nav__item[data-v-61a7c374] {\n    list-style: none;\n    font-size: 12px;\n}\n.footer-nav__link[data-v-61a7c374] {\n    color: #efefef;\n    padding: 5px;\n}\n.footer__copyright[data-v-61a7c374] {\n    font-size: 10px;\n    color: #efefef;\n}\n", ""]);
 
 // exports
 
@@ -9569,6 +9750,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, "\n.container {\n    width: 980px !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.review-create__form[data-v-479e42a7] {\n  padding: 16px 0;\n}\n.review-create__title[data-v-479e42a7] {\n  font-size: 18px;\n}\n.review-create__input-group[data-v-479e42a7] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: left;\n  margin-bottom: 16px;\n}\n.review-create__label[data-v-479e42a7] {\n  margin: 0;\n  font-weight: bold;\n}\n.review-create__input[data-v-479e42a7] {\n  width: 50%;\n}\n.review-create__textarea[data-v-479e42a7] {\n  padding: 5px;\n}\n.review-create__button[data-v-479e42a7] {\n  color: #fff;\n  background-color: #4fc251;\n  border: none;\n  border-radius: 2px;\n  padding: 5px 16px;\n}\n", ""]);
 
 // exports
 
@@ -42142,6 +42342,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/List.vue?vue&type=style&index=0&id=38561b3b&scoped=true&lang=css&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Reviews/List.vue?vue&type=style&index=0&id=38561b3b&scoped=true&lang=css& ***!
@@ -42771,54 +43001,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "main" },
-    [
-      _c("Loading", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.loading,
-            expression: "loading"
-          }
-        ]
-      }),
-      _vm._v(" "),
-      _c(
-        "header",
-        {
+  return _c("div", { staticClass: "wrapper" }, [
+    _c(
+      "div",
+      { staticClass: "loading" },
+      [
+        _c("Loading", {
           directives: [
             {
               name: "show",
               rawName: "v-show",
-              value: !_vm.loading,
-              expression: "!loading"
+              value: _vm.loading,
+              expression: "loading"
             }
           ]
-        },
-        [_c("NavMenu")],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "main",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: !_vm.loading,
-              expression: "!loading"
-            }
-          ]
-        },
-        [_c("RouterView")],
-        1
-      ),
-      _vm._v(" "),
-      _c("footer", {
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
         directives: [
           {
             name: "show",
@@ -42826,11 +43030,18 @@ var render = function() {
             value: !_vm.loading,
             expression: "!loading"
           }
-        ]
-      })
-    ],
-    1
-  )
+        ],
+        staticClass: "main"
+      },
+      [
+        _c("header", [_c("NavMenu")], 1),
+        _vm._v(" "),
+        _c("main", [_c("RouterView")], 1),
+        _vm._v(" "),
+        _c("footer", [_c("Footer")], 1)
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43040,26 +43251,38 @@ var staticRenderFns = [
     return _c("div", { staticClass: "container footer-inner" }, [
       _c("ul", { staticClass: "footer-nav" }, [
         _c("li", { staticClass: "footer-nav__item" }, [
-          _c("a", { staticClass: "footer-nav__link", attrs: { href: "" } }, [
-            _vm._v("お問い合わせ")
-          ])
+          _c(
+            "a",
+            { staticClass: "footer-nav__link", attrs: { href: "/contact" } },
+            [_vm._v("お問い合わせ")]
+          )
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "footer-nav__item" }, [
-          _c("a", { staticClass: "footer-nav__link", attrs: { href: "" } }, [
-            _vm._v("プライバシーポリシー")
-          ])
+          _c(
+            "a",
+            {
+              staticClass: "footer-nav__link",
+              attrs: { href: "/privacy-policy" }
+            },
+            [_vm._v("プライバシーポリシー")]
+          )
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "footer-nav__item" }, [
-          _c("a", { staticClass: "footer-nav__link", attrs: { href: "" } }, [
-            _vm._v("法人情報の取得元について")
-          ])
+          _c(
+            "a",
+            {
+              staticClass: "footer-nav__link",
+              attrs: { href: "/company-api-info" }
+            },
+            [_vm._v("法人情報の取得元について")]
+          )
         ])
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "footer__copyright" }, [
-        _vm._v("Copyright ©︎ ryo fujishima All Rights Reserved.")
+        _vm._v("Copyright ©︎ ryo fujishima 2020")
       ])
     ])
   }
@@ -46347,10 +46570,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7& ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -46362,225 +46585,262 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "review-create" }, [
-    _c("form", { staticClass: "review-create__form" }, [
-      _c("p", { staticClass: "review-create__title" }, [
-        _vm._v('"' + _vm._s(_vm.review) + '"への口コミを編集')
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "review-create__row" }, [
-        _c("div", { staticClass: "review-create__column" }, [
-          _c("div", { staticClass: "review-create__input-group" }, [
-            _c(
-              "label",
-              { staticClass: "review-create__label", attrs: { for: "volume" } },
-              [_vm._v("総合評価（5段階）")]
-            ),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "review-create" }, [
+          _c("form", { staticClass: "review-create__form" }, [
+            _c("p", { staticClass: "review-create__title" }, [
+              _vm._v(
+                '"' + _vm._s(_vm.review.company.name) + '"への口コミを編集'
+              )
+            ]),
             _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.review.evaluation,
-                  expression: "review.evaluation"
-                }
-              ],
-              staticClass: "review-create__input",
-              attrs: {
-                type: "range",
-                id: "volume",
-                name: "volume",
-                min: "0",
-                max: "5"
-              },
-              domProps: { value: _vm.review.evaluation },
-              on: {
-                __r: function($event) {
-                  return _vm.$set(_vm.review, "evaluation", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "review-create__input-group" }, [
-            _c(
-              "label",
-              {
-                staticClass: "review-create__label",
-                attrs: { for: "type_of_work" }
-              },
-              [_vm._v("職種")]
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
+            _c("div", { staticClass: "review-create__row" }, [
+              _c("div", { staticClass: "review-create__column" }, [
+                _c("div", { staticClass: "review-create__input-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "review-create__label",
+                      attrs: { for: "volume" }
+                    },
+                    [_vm._v("総合評価（5段階）")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.review.evaluation,
+                        expression: "review.evaluation"
+                      }
+                    ],
+                    staticClass: "review-create__input",
+                    attrs: {
+                      type: "range",
+                      id: "volume",
+                      name: "volume",
+                      min: "0",
+                      max: "5"
+                    },
+                    domProps: { value: _vm.review.evaluation },
+                    on: {
+                      __r: function($event) {
+                        return _vm.$set(
+                          _vm.review,
+                          "evaluation",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "review-create__input-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "review-create__label",
+                      attrs: { for: "type_of_work" }
+                    },
+                    [_vm._v("職種")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.review.type_of_occupation,
+                          expression: "review.type_of_occupation"
+                        }
+                      ],
+                      staticClass: "review-create__input",
+                      attrs: { name: "type_of_work", id: "type_of_work" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.review,
+                            "type_of_occupation",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "フロントエンドエンジニア" } },
+                        [_vm._v("フロントエンドエンジニア")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "デザイナー" } }, [
+                        _vm._v("デザイナー")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: "バックエンドエンジニア" } },
+                        [_vm._v("バックエンドエンジニア")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "インフラエンジニア" } }, [
+                        _vm._v("インフラエンジニア")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "機械学習エンジニア" } }, [
+                        _vm._v("機械学習エンジニア")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: "データサイエンティスト" } },
+                        [_vm._v("データサイエンティスト")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: "iOS&Androidエンジニア" } },
+                        [_vm._v("iOS&Androidエンジニア")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ゲームクリエイター" } }, [
+                        _vm._v("ゲームクリエイター")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "その他" } }, [
+                        _vm._v("その他")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "review-create__input-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "review-create__label",
+                      attrs: { for: "term" }
+                    },
+                    [_vm._v("勤務形態")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.review.work_style,
+                          expression: "review.work_style"
+                        }
+                      ],
+                      staticClass: "review-create__input",
+                      attrs: { name: "term", id: "term" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.review,
+                            "work_style",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "短期インターン" } }, [
+                        _vm._v("短期インターン")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "長期インターン" } }, [
+                        _vm._v("長期インターン")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "アルバイト" } }, [
+                        _vm._v("アルバイト")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "その他" } }, [
+                        _vm._v("その他")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "review-create__input-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "review-create__label",
+                      attrs: { for: "volume" }
+                    },
+                    [_vm._v("口コミ本文")]
+                  ),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.review.body,
+                        expression: "review.body"
+                      }
+                    ],
+                    staticClass: "review-create__textarea",
+                    attrs: { cols: "40", rows: "10" },
+                    domProps: { value: _vm.review.body },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.review, "body", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.review.type_of_occupation,
-                    expression: "review.type_of_occupation"
-                  }
-                ],
-                staticClass: "review-create__input",
-                attrs: { name: "type_of_work", id: "type_of_work" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.review,
-                      "type_of_occupation",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "フロントエンドエンジニア" } }, [
-                  _vm._v("フロントエンドエンジニア")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "デザイナー" } }, [
-                  _vm._v("デザイナー")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "バックエンドエンジニア" } }, [
-                  _vm._v("バックエンドエンジニア")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "インフラエンジニア" } }, [
-                  _vm._v("インフラエンジニア")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "機械学習エンジニア" } }, [
-                  _vm._v("機械学習エンジニア")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "データサイエンティスト" } }, [
-                  _vm._v("データサイエンティスト")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "iOS&Androidエンジニア" } }, [
-                  _vm._v("iOS&Androidエンジニア")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "ゲームクリエイター" } }, [
-                  _vm._v("ゲームクリエイター")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "その他" } }, [_vm._v("その他")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "review-create__input-group" }, [
-            _c(
-              "label",
-              { staticClass: "review-create__label", attrs: { for: "term" } },
-              [_vm._v("勤務形態")]
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.review.work_style,
-                    expression: "review.work_style"
-                  }
-                ],
-                staticClass: "review-create__input",
-                attrs: { name: "term", id: "term" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.review,
-                      "work_style",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "短期インターン" } }, [
-                  _vm._v("短期インターン")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "長期インターン" } }, [
-                  _vm._v("長期インターン")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "アルバイト" } }, [
-                  _vm._v("アルバイト")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "その他" } }, [_vm._v("その他")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "review-create__input-group" }, [
-            _c(
-              "label",
-              { staticClass: "review-create__label", attrs: { for: "volume" } },
-              [_vm._v("口コミ本文")]
-            ),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.review.body,
-                  expression: "review.body"
-                }
-              ],
-              staticClass: "review-create__textarea",
-              attrs: { cols: "40", rows: "10" },
-              domProps: { value: _vm.review.body },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.review, "body", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "review-create__button",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.updateReview(_vm.review.id)
-                }
-              }
-            },
-            [_vm._v("更新")]
-          )
+                    staticClass: "review-create__button",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.updateReview(_vm.review.id)
+                      }
+                    }
+                  },
+                  [_vm._v("更新")]
+                )
+              ])
+            ])
+          ])
         ])
       ])
     ])
@@ -46609,117 +46869,83 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _c("Loading", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.loading,
-              expression: "loading"
-            }
-          ]
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.loading,
-                expression: "!loading"
-              }
-            ],
-            staticClass: "col-md-4 mt-3 mb-3"
-          },
-          [_c("SearchParameter", { on: { searchRequest: _vm.search } })],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.loading,
-                expression: "!loading"
-              }
-            ],
-            staticClass: "col-md-8 mt-3 mb-3",
-            staticStyle: { "background-color": "#fff", "border-radius": "5px" }
-          },
-          [
-            _c("h4", { staticClass: "h4 mt-3" }, [_vm._v("口コミを見る")]),
-            _vm._v(" "),
-            _vm.searched
-              ? _c("SearchResult", {
-                  attrs: { number: _vm.reviews.length, target: "口コミ" }
-                })
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-4 mt-3 mb-3" },
+        [_c("SearchParameter", { on: { searchRequest: _vm.search } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "col-md-8 mt-3 mb-3",
+          staticStyle: { "background-color": "#fff", "border-radius": "5px" }
+        },
+        [
+          _c("h4", { staticClass: "h4 mt-3" }, [_vm._v("口コミを見る")]),
+          _vm._v(" "),
+          _vm.searched
+            ? _c("SearchResult", {
+                attrs: { number: _vm.reviews.length, target: "口コミ" }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "review-list-topbar" }, [
+            _vm.reviews.length !== 0
+              ? _c(
+                  "div",
+                  { staticClass: "review-list-pagination" },
+                  [
+                    _c("Paginate", {
+                      attrs: {
+                        "page-count": _vm.getPageCount,
+                        "page-range": 3,
+                        "margin-pages": 2,
+                        "click-handler": _vm.clickCallback,
+                        "prev-text": "<< ",
+                        "next-text": " >>",
+                        "container-class": "pagination pg-blue",
+                        "page-class": "page-item",
+                        "page-link-class": "page-link"
+                      }
+                    })
+                  ],
+                  1
+                )
               : _vm._e(),
             _vm._v(" "),
-            _c("div", { staticClass: "review-list-topbar" }, [
-              _vm.reviews.length !== 0
-                ? _c(
-                    "div",
-                    { staticClass: "review-list-pagination" },
-                    [
-                      _c("Paginate", {
-                        attrs: {
-                          "page-count": _vm.getPageCount,
-                          "page-range": 3,
-                          "margin-pages": 2,
-                          "click-handler": _vm.clickCallback,
-                          "prev-text": "<< ",
-                          "next-text": " >>",
-                          "container-class": "pagination pg-blue",
-                          "page-class": "page-item",
-                          "page-link-class": "page-link"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "review-list-dropdown" },
-                [
-                  _c("DropDownMenu", {
-                    attrs: { label: "並び替え", listItems: _vm.items },
-                    on: { labelClicked: _vm.sortBy }
-                  })
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.reviewsForPagination, function(review) {
-              return _c(
-                "div",
-                { key: review.id, staticClass: "review-card mt-3" },
-                [
-                  _c("ReviewCard", {
-                    attrs: { review: review },
-                    on: { delete: _vm.deleteReview }
-                  })
-                ],
-                1
-              )
-            })
-          ],
-          2
-        )
-      ],
-      1
-    )
+            _c(
+              "div",
+              { staticClass: "review-list-dropdown" },
+              [
+                _c("DropDownMenu", {
+                  attrs: { label: "並び替え", listItems: _vm.items },
+                  on: { labelClicked: _vm.sortBy }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.reviewsForPagination, function(review) {
+            return _c(
+              "div",
+              { key: review.id, staticClass: "review-card mt-3" },
+              [
+                _c("ReviewCard", {
+                  attrs: { review: review },
+                  on: { delete: _vm.deleteReview }
+                })
+              ],
+              1
+            )
+          })
+        ],
+        2
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -46785,45 +47011,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("section", { staticClass: "mv" }, [
-      _c("div", { staticClass: "container" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "search" }, [
-          _c(
-            "div",
-            { staticClass: "search__inner" },
-            [
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _c("SearchBar", {
-                attrs: { defaultText: "会社名で検索（例: 株式会社〇〇）" },
-                on: {
-                  error: function($event) {
-                    return _vm.notifyError()
-                  }
-                }
-              }),
-              _vm._v(" "),
+  return _c(
+    "div",
+    [
+      _c("Loading", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.loading,
+            expression: "loading"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.loading,
+              expression: "!loading"
+            }
+          ],
+          staticClass: "mv"
+        },
+        [
+          _c("div", { staticClass: "container" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "search" }, [
               _c(
-                "a",
-                { staticClass: "search__link", attrs: { href: "/reviews" } },
-                [_vm._v("口コミ一覧を見てみる")]
+                "div",
+                { staticClass: "search__inner" },
+                [
+                  _c("p", { staticClass: "search__text" }, [
+                    _vm._v("\n                        現在の口コミ投稿数:"),
+                    _c("span", { staticClass: "search__text--strong" }, [
+                      _vm._v(_vm._s(_vm.reviews.length))
+                    ]),
+                    _vm._v("件\n                    ")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "search__text" }, [
+                    _vm._v("\n                        現在の口コミ掲載企業数:"),
+                    _c("span", { staticClass: "search__text--strong" }, [
+                      _vm._v(_vm._s(_vm.companies.length))
+                    ]),
+                    _vm._v("件\n                    ")
+                  ]),
+                  _vm._v(" "),
+                  _c("SearchBar", {
+                    attrs: { defaultText: "会社名で検索（例: 株式会社〇〇）" },
+                    on: {
+                      error: function($event) {
+                        return _vm.notifyError()
+                      },
+                      searchRequest: _vm.search
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "search__link",
+                      attrs: { href: "/reviews" }
+                    },
+                    [_vm._v("口コミ一覧を見てみる")]
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _vm._m(3),
-    _vm._v(" "),
-    _vm._m(4)
-  ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.loading,
+              expression: "!loading"
+            }
+          ],
+          staticClass: "feature"
+        },
+        [_vm._m(1)]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -46831,134 +47114,100 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h2", { staticClass: "mv__heading" }, [
-      _vm._v("エンジニア特化型の口コミ投稿サイト"),
+      _vm._v("\n                エンジニア特化型の口コミ投稿サイト"),
       _c("br"),
-      _vm._v("ITインターン.com")
+      _vm._v("ITインターン.com\n            ")
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "search__text" }, [
-      _vm._v("現在の口コミ投稿数:"),
-      _c("span", { staticClass: "search__text--strong" }, [_vm._v("79")]),
-      _vm._v("件")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "search__text" }, [
-      _vm._v("現在の口コミ掲載企業数:"),
-      _c("span", { staticClass: "search__text--strong" }, [_vm._v("13")]),
-      _vm._v("件")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "feature" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h3", { staticClass: "feature__heading" }, [
-          _vm._v("ITインターン.comの3つの特徴")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "points" }, [
-          _c("div", { staticClass: "points__inner" }, [
-            _c("div", { staticClass: "point-panel" }, [
-              _c("div", { staticClass: "point-panel__inner" }, [
-                _c("p", { staticClass: "point-panel__num" }, [_vm._v("1")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "point-panel__img" }),
-                _vm._v(" "),
-                _c("h4", { staticClass: "point-panel__heading" }, [
-                  _c("span", { staticClass: "point-panel__heading--strong" }, [
-                    _vm._v("IT関連に特化")
-                  ]),
-                  _vm._v("した"),
-                  _c("br"),
-                  _vm._v("口コミだけを掲載")
+    return _c("div", { staticClass: "container" }, [
+      _c("h3", { staticClass: "feature__heading" }, [
+        _vm._v("ITインターン.comの3つの特徴")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "points" }, [
+        _c("div", { staticClass: "points__inner" }, [
+          _c("div", { staticClass: "point-panel" }, [
+            _c("div", { staticClass: "point-panel__inner" }, [
+              _c("p", { staticClass: "point-panel__num" }, [_vm._v("1")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "point-panel__img" }),
+              _vm._v(" "),
+              _c("h4", { staticClass: "point-panel__heading" }, [
+                _c("span", { staticClass: "point-panel__heading--strong" }, [
+                  _vm._v("IT関連に特化")
                 ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "point-panel__text" }, [
-                  _vm._v(
-                    "エンジニアやデザイナー等IT関連のインターンの情報だけを掲載しているので、必要な情報がすぐ見つかります。"
-                  )
-                ])
+                _vm._v("した"),
+                _c("br"),
+                _vm._v("口コミだけを掲載\n                            ")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "point-panel__text" }, [
+                _vm._v(
+                  "\n                                エンジニアやデザイナー等IT関連のインターンの情報だけを掲載しているので、必要な情報がすぐ見つかります。\n                            "
+                )
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "point-panel" }, [
-              _c("div", { staticClass: "point-panel__inner" }, [
-                _c("p", { staticClass: "point-panel__num" }, [_vm._v("2")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "point-panel__img" }),
-                _vm._v(" "),
-                _c("h4", { staticClass: "point-panel__heading" }, [
-                  _c("span", { staticClass: "point-panel__heading--strong" }, [
-                    _vm._v("匿名性")
-                  ]),
-                  _vm._v("だから"),
-                  _c("br"),
-                  _vm._v("安心して投稿できる")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "point-panel" }, [
+            _c("div", { staticClass: "point-panel__inner" }, [
+              _c("p", { staticClass: "point-panel__num" }, [_vm._v("2")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "point-panel__img" }),
+              _vm._v(" "),
+              _c("h4", { staticClass: "point-panel__heading" }, [
+                _c("span", { staticClass: "point-panel__heading--strong" }, [
+                  _vm._v("匿名性")
                 ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "point-panel__text" }, [
-                  _vm._v(
-                    "匿名性のため自分の名前は公開されません。そのため、「会社にバレたくない…」という人でも正直な口コミを投稿できます。"
-                  )
-                ])
+                _vm._v("だから"),
+                _c("br"),
+                _vm._v("安心して投稿できる\n                            ")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "point-panel__text" }, [
+                _vm._v(
+                  "\n                                匿名性のため自分の名前は公開されません。そのため、「会社にバレたくない…」という人でも正直な口コミを投稿できます。\n                            "
+                )
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "point-panel" }, [
-              _c("div", { staticClass: "point-panel__inner" }, [
-                _c("p", { staticClass: "point-panel__num" }, [_vm._v("3")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "point-panel__img" }),
-                _vm._v(" "),
-                _c("h4", { staticClass: "point-panel__heading" }, [
-                  _c("span", { staticClass: "point-panel__heading--strong" }, [
-                    _vm._v("職種・形態ごと")
-                  ]),
-                  _vm._v("に"),
-                  _c("br"),
-                  _vm._v("絞り込み検索可能")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "point-panel" }, [
+            _c("div", { staticClass: "point-panel__inner" }, [
+              _c("p", { staticClass: "point-panel__num" }, [_vm._v("3")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "point-panel__img" }),
+              _vm._v(" "),
+              _c("h4", { staticClass: "point-panel__heading" }, [
+                _c("span", { staticClass: "point-panel__heading--strong" }, [
+                  _vm._v("職種・形態ごと")
                 ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "point-panel__text" }, [
-                  _vm._v(
-                    "職種(フロントエンドorバックエンド)や形態(長期or短期)など様々な検索条件で絞り込みが可能です。"
-                  )
-                ])
+                _vm._v("に"),
+                _c("br"),
+                _vm._v("絞り込み検索可能\n                            ")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "point-panel__text" }, [
+                _vm._v(
+                  "\n                                職種(フロントエンドorバックエンド)や形態(長期or短期)など様々な検索条件で絞り込みが可能です。\n                            "
+                )
               ])
             ])
           ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "cta" }, [
+        _c("a", { staticClass: "cta__login", attrs: { href: "/login" } }, [
+          _vm._v("ログインはこちら")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "cta" }, [
-          _c("button", { staticClass: "cta__login" }, [
-            _vm._v("ログインはこちら")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "cta__signup", attrs: { href: "" } }, [
-            _vm._v("新規登録はこちら")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "new-arrival" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h3", { staticClass: "new-arrival__heading" }, [
-          _vm._v("新着の口コミ")
+        _c("a", { staticClass: "cta__signup", attrs: { href: "/register" } }, [
+          _vm._v("新規登録はこちら")
         ])
       ])
     ])
@@ -68337,9 +68586,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Edit_vue_vue_type_template_id_479e42a7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=479e42a7& */ "./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&");
+/* harmony import */ var _Edit_vue_vue_type_template_id_479e42a7_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=479e42a7&scoped=true& */ "./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&scoped=true&");
 /* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/pages/Reviews/Edit.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _Edit_vue_vue_type_style_index_0_id_479e42a7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css& */ "./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -68347,13 +68598,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Edit_vue_vue_type_template_id_479e42a7___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Edit_vue_vue_type_template_id_479e42a7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Edit_vue_vue_type_template_id_479e42a7_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_479e42a7_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "479e42a7",
   null
   
 )
@@ -68379,19 +68630,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7& ***!
-  \****************************************************************************/
+/***/ "./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css& ***!
+  \******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_style_index_0_id_479e42a7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/Edit.vue?vue&type=style&index=0&id=479e42a7&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_style_index_0_id_479e42a7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_style_index_0_id_479e42a7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_style_index_0_id_479e42a7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_style_index_0_id_479e42a7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_style_index_0_id_479e42a7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&scoped=true&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&scoped=true& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_479e42a7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=479e42a7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_479e42a7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_479e42a7_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=479e42a7&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Reviews/Edit.vue?vue&type=template&id=479e42a7&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_479e42a7_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_479e42a7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_479e42a7_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

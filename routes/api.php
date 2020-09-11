@@ -35,4 +35,5 @@ Route::post('/v1/reviews/{review}', 'ReviewController@destroy');
 Route::get('/v1/companies/{company}/reviews', 'CompanyController@reviews');
 Route::post('/v1/companies/search', 'CompanyController@search');
 Route::post('/v1/companies', 'CompanyController@show');
+Route::get('/v1/companies', 'CompanyController@index');
 Route::post('/v1/companies/add', 'CompanyController@store');

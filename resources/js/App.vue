@@ -1,15 +1,19 @@
 <template>
-    <div class="main">
-        <Loading v-show="loading"></Loading>
-        <header v-show="!loading">
-            <NavMenu></NavMenu>
-        </header>
-        <main v-show="!loading">
-            <RouterView></RouterView>
-        </main>
-        <footer v-show="!loading">
-            <!-- <Footer></Footer> -->
-        </footer>
+    <div class="wrapper">
+        <div class="loading">
+            <Loading v-show="loading"></Loading>
+        </div>
+        <div class="main" v-show="!loading">
+            <header>
+                <NavMenu></NavMenu>
+            </header>
+            <main>
+                <RouterView></RouterView>
+            </main>
+            <footer>
+                <Footer></Footer>
+            </footer>
+        </div>
     </div>
 </template>
 
@@ -47,6 +51,12 @@ export default {
 </script>
 
 <style>
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .main {
     margin: 0;
     display: flex;
@@ -57,6 +67,7 @@ header {
     background-color: #fff;
 }
 footer {
+    margin-top: auto;
     background-color: #464343;
 }
 </style>

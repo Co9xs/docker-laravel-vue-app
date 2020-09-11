@@ -8,7 +8,12 @@ use App\Company;
 
 class CompanyController extends Controller
 {
-    public function search(Request $request) {
+    public function index() {
+        return Company::all();
+    }
+
+    public function search(Request $request) 
+    {
         $encoded_name = urlencode($request->name);
         $url = 
         'https://api.houjin-bangou.nta.go.jp/4/name?id=KGpBHpB6erjnk&name='.$encoded_name.'&type=12&mode=2&kind=03&target=2';
@@ -21,7 +26,8 @@ class CompanyController extends Controller
         return $json;
     }
 
-    public function show(Request $request) {
+    public function show(Request $request) 
+    {
         $corporate_number = $request->number;
         $url = 
         'https://api.houjin-bangou.nta.go.jp/4/num?id=KGpBHpB6erjnk&number='.$corporate_number.'&type=12';
@@ -34,11 +40,8 @@ class CompanyController extends Controller
         return $json;
     }
 
-    public function store(Request $request) {
-        // $company->name = $request->name;
-        // $company->average_point = $request->average_point;
-        // $company->area = $request->area;
-        // $company->corporate_number = $request->corporate_number;
+    public function store(Request $request) 
+    {
         $company = Company::updateOrCreate(
             ['corporate_number' => $request->corporate_number],
             ['name' => $request->name, 
