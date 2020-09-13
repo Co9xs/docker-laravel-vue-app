@@ -2,44 +2,37 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 mt-3">
-                <div class="review-step">
-                    <p class="review-step__title">
-                        口コミ投稿の方法
-                    </p>
-                    <div class="review-step__body">
-                        <div class="review-step__content">
-                            <div class="review-step__icon">
-                                <i class="fas fa-3x fa-search"></i>
-                            </div>
-                            <p class="review-step__heading">
-                                ①会社を検索
-                            </p>
-                            <div class="review-step__text">
-                                検索バーから口コミを書きたい会社名を検索。正式名称で検索すると見つけやすくなります。
-                            </div>
+                <div class="tl">
+                    <div class="tl-content main-bdr">
+                        <div class="tl_label">STEP.1</div>
+                        <div class="tl_title">会社を検索</div>
+                        <div class="tl_main">
+                            検索バーから口コミを書きたい会社名を検索。正式名称で検索すると見つけやすくなります。
                         </div>
-                        <div class="review-step__content">
-                            <div class="review-step__icon">
-                                <i class="fas fa-3x fa-building"></i>
-                            </div>
-                            <p class="review-step__heading">
-                                ②会社を選択
-                            </p>
-                            <div class="review-step__text">
-                                口コミを投稿したい会社をクリック。同名の会社がある時は、正しい所在地を確認しましょう。
-                            </div>
+                        <div class="tl_marker main-bdr main-bc"></div>
+                    </div>
+                    <div class="tl-content main-bdr">
+                        <div class="tl_label">STEP.2</div>
+                        <div class="tl_title">会社を選択</div>
+                        <div class="tl_main">
+                            口コミを投稿したい会社をクリック。同名の会社がある時は、正しい所在地を確認しましょう。
                         </div>
-                        <div class="review-step__content">
-                            <div class="review-step__icon">
-                                <i class="far fa-3x fa-comment"></i>
-                            </div>
-                            <p class="review-step__heading">
-                                ③口コミを投稿
-                            </p>
-                            <div class="review-step__text">
+                        <div class="tl_marker main-bdr main-bc"></div>
+                    </div>
+                    <div class="tl-content main-bdr">
+                        <div class="tl_label">STEP.3</div>
+                        <div class="tl_title">口コミを投稿</div>
+                        <div class="tl_main">
+                            <p>
                                 画面の指示に従って口コミを投稿。公序良俗に反する内容などは書かないようにして下さい。
-                            </div>
+                            </p>
                         </div>
+                        <div class="tl_marker main-bdr main-bc"></div>
+                    </div>
+                    <div class="tl-content main-bdr">
+                        <div class="tl_title">投稿完了！</div>
+                        <div class="tl_main"></div>
+                        <div class="tl_marker main-bdr main-bc"></div>
                     </div>
                 </div>
             </div>
@@ -54,6 +47,7 @@
                         @searchRequest="search"
                     ></SearchBar>
                     <SearchResult
+                        v-if="searched"
                         :number="companies.length"
                         :target="'会社'"
                     ></SearchResult>
@@ -127,38 +121,73 @@ export default {
     color: #ee6054;
 }
 
-.review-step {
-    padding: 16px;
-    background-color: #fff;
-    max-width: 720px;
-    border-radius: 5px;
+.main-bdr {
+    border-color: #6bb6ff;
 }
 
-.review-step__title {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
+.tl-content {
+    position: relative;
+    padding: 0 0 1.5em 1.8em;
 }
 
-.review-step__content {
-    text-align: center;
-    padding: 0 10px 0 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+.tl-content:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 24px;
+    bottom: 0;
+    left: 6px;
+    width: 3px;
+    background: #ccd5db;
 }
 
-.review-step__icon {
-    color: #081239;
-    padding: 10px 10px 10px 5px;
+.tl-content:not(:first-of-type):not(:last-of-type) .tl_marker {
+    background: transparent;
 }
 
-.review-step__text {
+.tl-content:last-of-type:before {
+    content: none;
+}
+
+.tl-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.tl_label {
+    padding-top: 2px;
+    color: #90969a;
     font-size: 14px;
+    font-weight: bold;
 }
 
-.review-step__heading {
+.tl_title {
+    font-size: 1.1em;
     font-weight: bold;
-    font-size: 16px;
-    margin: 0;
+    line-height: 1.5;
+}
+
+.tl_main {
+    margin-top: 0.5em;
+    padding: 0 0 1.5em;
+    font-size: 0.9em;
+    line-height: 1.6;
+    border-bottom: dashed 1px #ccd5db;
+}
+
+.main-bc {
+    background-color: #6bb6ff;
+}
+
+.tl_marker {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: solid 3px #6bb6ff;
 }
 </style>

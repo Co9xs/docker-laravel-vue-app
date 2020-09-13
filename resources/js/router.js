@@ -4,7 +4,8 @@ import Top from "./pages/Top.vue";
 import ReviewList from "./pages/Reviews/List.vue";
 import ReviewDetail from "./pages/Reviews/Detail.vue";
 import ReviewEdit from "./pages/Reviews/Edit.vue";
-import ReviewCreate from "./pages/Reviews/Create.vue";
+import InfomationOfCorporateAPI from "./pages/InfomationOfCorporateAPI.vue";
+import PrivacyPolicy from "./pages/PrivacyPolicy.vue";
 import CompanyList from "./pages/Companies/List.vue";
 import CompanyDetail from "./pages/Companies/Detail.vue";
 import MyPage from "./pages/MyPage.vue";
@@ -63,6 +64,14 @@ const routes = [
     {
         path: "/test",
         component: Test
+    },
+    {
+        path: "/company-api-info",
+        component: InfomationOfCorporateAPI
+    },
+    {
+        path: "/privacy-policy",
+        component: PrivacyPolicy
     }
 ];
 

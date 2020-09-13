@@ -41,6 +41,7 @@
                     </div>
                 </div>
                 <div
+                    v-show="!loading"
                     class="review-card mt-3"
                     v-for="review in reviewsForPagination"
                     :key="review.id"
@@ -88,21 +89,25 @@ export default {
 
     methods: {
         async getReviews() {
-            console.log("get reviews");
-            this.loading = true;
-            const response = await axios.get(`api/v1/reviews`);
-            console.log(response.data);
-            this.reviews = response.data;
-            this.loading = false;
+            if(!this.$route.query.keyword) {
+                this.loading = true;
+                const response = await axios.get(`api/v1/reviews`);
+                this.reviews = response.data;
+                console.log('get review!!');
+                this.loading = false;
+            }
+        },
+        createQueryString(params) {
+            return '?' + Object.entries(params).map(entry => `${entry[0]}=${entry[1]}`).join('&');
         },
         async search(params) {
             this.loading = true;
             this.searched = false;
+            const query = this.createQueryString(params);
             const response = await axios.get(
-                `api/v1/reviews?keyword=${params.keyword}&IsFront=${params.IsFront}&IsBack=${params.IsBack}&IsInfra=${params.IsInfra}&IsDesigner=${params.IsDesigner}&IsMobile=${params.IsMobile}&IsMachineLearning=${params.IsMachineLearning}&IsGameCreator=${params.IsGameCreator}&IsOthers=${params.IsOthers}`
+                `api/v1/reviews` + query
             );
             this.reviews = response.data;
-            console.log(response.data);
             this.searched = true;
             this.loading = false;
         },
@@ -137,15 +142,14 @@ export default {
                 force: true
             });
         },
-        async test() {
-            if (this.$route.query.hogehoge) {
+        async searchByTopPage() {
+            if (this.$route.query.keyword) {
                 this.loading = true;
                 this.searched = false;
-                const keyword = this.$route.query.hogehoge;
+                const keyword = this.$route.query.keyword;
                 const response = await axios.get(
                     `api/v1/reviews?keyword=${keyword}`
                 );
-                console.log(response.data);
                 this.reviews = response.data;
                 this.searched = true;
                 this.loading = false;
@@ -169,7 +173,7 @@ export default {
     },
     mounted() {
         this.getReviews();
-        this.test();
+        this.searchByTopPage();
     }
 };
 </script>

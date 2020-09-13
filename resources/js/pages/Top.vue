@@ -40,9 +40,7 @@
                         <div class="point-panel">
                             <div class="point-panel__inner">
                                 <p class="point-panel__num">1</p>
-                                <!-- <img class="point-panel__img" src="" alt=""> -->
-                                <div class="point-panel__img"></div>
-                                <!-- /.point-panel__img -->
+                                <img class="point-panel__img" src="/img/lap-top.svg" alt="">
                                 <h4 class="point-panel__heading">
                                     <span class="point-panel__heading--strong"
                                         >IT関連に特化</span
@@ -56,13 +54,11 @@
                         <div class="point-panel">
                             <div class="point-panel__inner">
                                 <p class="point-panel__num">2</p>
-                                <!-- <img class="point-panel__img" src="" alt=""> -->
-                                <div class="point-panel__img"></div>
-                                <!-- /.point-panel__img -->
+                                <img class="point-panel__img" src="/img/person-question.svg" alt="">
                                 <h4 class="point-panel__heading">
                                     <span class="point-panel__heading--strong"
                                         >匿名性</span
-                                    >だから<br />安心して投稿できる
+                                    >だから<br />安心して投稿可能
                                 </h4>
                                 <p class="point-panel__text">
                                     匿名性のため自分の名前は公開されません。そのため、「会社にバレたくない…」という人でも正直な口コミを投稿できます。
@@ -72,16 +68,14 @@
                         <div class="point-panel">
                             <div class="point-panel__inner">
                                 <p class="point-panel__num">3</p>
-                                <!-- <img class="point-panel__img" src="" alt=""> -->
-                                <div class="point-panel__img"></div>
-                                <!-- /.point-panel__img -->
+                                <img class="point-panel__img" src="/img/search.svg" alt="">
                                 <h4 class="point-panel__heading">
                                     <span class="point-panel__heading--strong"
-                                        >職種・形態ごと</span
-                                    >に<br />絞り込み検索可能
+                                        >職種ごと</span
+                                    >に<br />絞り込み検索
                                 </h4>
                                 <p class="point-panel__text">
-                                    職種(フロントエンドorバックエンド)や形態(長期or短期)など様々な検索条件で絞り込みが可能です。
+                                    会社名や職種ごと(フロントエンドエンジニアorバックエンドエンジニア)に様々な検索条件で絞り込みが可能です。
                                 </p>
                             </div>
                         </div>
@@ -129,7 +123,7 @@ export default {
         search(keyword) {
             this.$router.push({
                 path: "reviews",
-                query: { hogehoge: keyword }
+                query: { keyword: keyword }
             });
         }
     },

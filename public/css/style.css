@@ -93,10 +93,8 @@
 }
 
 .point-panel__img {
-    width: 80px;
+    width: 70px;
     height: 70px;
-    background-color: #efefef;
-    border: 1px solid #3f3f3f;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 24px;

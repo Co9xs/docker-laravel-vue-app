@@ -23,11 +23,11 @@ class ReviewController extends Controller
         $is_game = $request->input('IsGameCreator');
         $is_others = $request->input('IsOthers');
         $result = [];
-        if (empty($is_front) && !empty($keyword)) {
+        if (empty($is_front)) {
             $reviews = Review::with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->get();
             return $reviews;
         }
-        if ($is_front === true) {
+        if ($is_front === "true") {
             $query = Review::query();
             $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'フロントエンドエンジニア');
             $reviews = $query->get();
@@ -35,7 +35,7 @@ class ReviewController extends Controller
                 $result[] = $review;
             }
         }
-        if ($is_back === true) {
+        if ($is_back === "true") {
             $query = Review::query();
             $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'バックエンドエンジニア');
             $reviews = $query->get();
@@ -43,7 +43,7 @@ class ReviewController extends Controller
                 $result[] = $review;
             }
         }
-        if ($is_infra === true) {
+        if ($is_infra === "true") {
             $query = Review::query();
             $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'インフラエンジニア');
             $reviews = $query->get();
@@ -51,7 +51,7 @@ class ReviewController extends Controller
                 $result[] = $review;
             }
         }
-        if ($is_designer === true) {
+        if ($is_designer === "true") {
             $query = Review::query();
             $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'デザイナー');
             $reviews = $query->get();
@@ -59,7 +59,7 @@ class ReviewController extends Controller
                 $result[] = $review;
             }
         }
-        if ($is_mobile === true) {
+        if ($is_mobile === "true") {
             $query = Review::query();
             $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'iOS&Androidエンジニア');
             $reviews = $query->get();
@@ -67,7 +67,7 @@ class ReviewController extends Controller
                 $result[] = $review;
             }
         }
-        if ($is_machine === true) {
+        if ($is_machine === "true") {
             $query = Review::query();
             $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', '機械学習系エンジニア');
             $reviews = $query->get();
@@ -75,7 +75,7 @@ class ReviewController extends Controller
                 $result[] = $review;
             }
         }
-        if ($is_game === true) {
+        if ($is_game === "true") {
             $query = Review::query();
             $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'ゲームクリエイター');
             $reviews = $query->get();
@@ -83,7 +83,7 @@ class ReviewController extends Controller
                 $result[] = $review;
             }
         }
-        if ($is_others === true) {
+        if ($is_others === "true") {
             $query = Review::query();
             $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', 'その他');
             $reviews = $query->get();

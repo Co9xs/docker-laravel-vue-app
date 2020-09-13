@@ -81,6 +81,10 @@ export default {
     color: #333;
 }
 
+.nav__logo:hover {
+    text-decoration: none;
+}
+
 .nav__list {
     display: flex;
     list-style: none;
@@ -99,6 +103,10 @@ export default {
     color: #333;
     font-weight: bold;
     font-size: 13px;
+}
+
+.nav__link:hover {
+    text-decoration: none;
 }
 
 .nav__link--strong {
