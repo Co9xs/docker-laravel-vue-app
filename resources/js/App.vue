@@ -19,7 +19,7 @@
 
 <script>
 import StarRating from "./components/StarRating.vue";
-import SearchBar from "./components/SerchBar.vue";
+import SearchBar from "./components/SearchBar.vue";
 import NavMenu from "./components/NavMenu.vue";
 import Loading from "./components/Loading.vue";
 import Footer from "./components/Footer.vue";

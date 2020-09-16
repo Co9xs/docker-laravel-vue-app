@@ -5,7 +5,7 @@
             :placeholder="this.defaultText"
             class="search-bar__input"
             type="text"
-            @keyup.enter="search()"
+            @keydown.enter="search"
         />
         <button @click="search()" class="search-bar__btn" type="button">
             検索
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { ENTER_KEY_CODE_FOR_JP_CONVERSION } from "../constants/index";
 export default {
     props: {
         defaultText: String
@@ -29,7 +30,8 @@ export default {
                 throw new Error("キーワードは30文字以内で指定してください");
             }
         },
-        search() {
+        search(event) {
+            if (event.keyCode === ENTER_KEY_CODE_FOR_JP_CONVERSION) return;
             this.$emit("searchRequest", this.keyword);
         }
     }
@@ -64,6 +66,6 @@ export default {
     border: none;
     background-color: #ffb808;
     border-radius: 0 3px 3px 0;
-    color:#fff;
+    color: #fff;
 }
 </style>

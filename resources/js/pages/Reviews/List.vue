@@ -4,52 +4,54 @@
             <div class="col-md-4 mt-3 mb-3">
                 <SearchParameter @searchRequest="search"></SearchParameter>
             </div>
-            <div
-                class="col-md-8 mt-3 mb-3"
-                style="background-color: #fff; border-radius: 5px;"
-            >
-                <h4 class="h4 mt-3">口コミを見る</h4>
-                <SearchResult
-                    :number="reviews.length"
-                    :target="'口コミ'"
-                    v-if="searched"
-                ></SearchResult>
-                <div class="review-list-topbar">
-                    <div
-                        class="review-list-pagination"
-                        v-if="reviews.length !== 0"
-                    >
-                        <Paginate
-                            :page-count="getPageCount"
-                            :page-range="3"
-                            :margin-pages="2"
-                            :click-handler="clickCallback"
-                            :prev-text="'<< '"
-                            :next-text="' >>'"
-                            :container-class="'pagination pg-blue'"
-                            :page-class="'page-item'"
-                            :page-link-class="'page-link'"
-                        >
-                        </Paginate>
-                    </div>
-                    <div class="review-list-dropdown">
-                        <DropDownMenu
-                            :label="'並び替え'"
-                            :listItems="items"
-                            @labelClicked="sortBy"
-                        ></DropDownMenu>
-                    </div>
+            <div class="col-md-8 mt-3 mb-3 review-list">
+                <div class="review-list__loading" v-show="loading">
+                    <Loading></Loading>
                 </div>
-                <div
-                    v-show="!loading"
-                    class="review-card mt-3"
-                    v-for="review in reviewsForPagination"
-                    :key="review.id"
-                >
-                    <ReviewCard
-                        :review="review"
-                        @delete="deleteReview"
-                    ></ReviewCard>
+                <div class="review-list__content" v-show="!loading">
+                    <h4 class="h4 mt-3">口コミを見る</h4>
+                    <SearchResult
+                        :number="reviews.length"
+                        :target="'口コミ'"
+                        v-if="searched"
+                    ></SearchResult>
+                    <div class="review-list__header">
+                        <div
+                            class="review-list__pagination"
+                            v-if="reviews.length !== 0"
+                        >
+                            <Paginate
+                                :page-count="getPageCount"
+                                :page-range="3"
+                                :margin-pages="2"
+                                :click-handler="clickCallback"
+                                :prev-text="'<< '"
+                                :next-text="' >>'"
+                                :container-class="'pagination pg-blue'"
+                                :page-class="'page-item'"
+                                :page-link-class="'page-link'"
+                            >
+                            </Paginate>
+                        </div>
+                        <div class="review-list__dropdown">
+                            <DropDownMenu
+                                :label="'並び替え'"
+                                :listItems="items"
+                                @labelClicked="sortBy"
+                            ></DropDownMenu>
+                        </div>
+                    </div>
+                    <div
+                        v-show="!loading"
+                        class="review-list__card mt-3"
+                        v-for="review in reviewsForPagination"
+                        :key="review.id"
+                    >
+                        <ReviewCard
+                            :review="review"
+                            @delete="deleteReview"
+                        ></ReviewCard>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +60,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import SearchBar from "../../components/SerchBar.vue";
+import SearchBar from "../../components/SearchBar.vue";
 import SearchParameter from "../../components/SearchParameter.vue";
 import Loading from "../../components/Loading.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
@@ -89,24 +91,26 @@ export default {
 
     methods: {
         async getReviews() {
-            if(!this.$route.query.keyword) {
+            if (!this.$route.query.keyword) {
                 this.loading = true;
                 const response = await axios.get(`api/v1/reviews`);
                 this.reviews = response.data;
-                console.log('get review!!');
                 this.loading = false;
             }
         },
         createQueryString(params) {
-            return '?' + Object.entries(params).map(entry => `${entry[0]}=${entry[1]}`).join('&');
+            return (
+                "?" +
+                Object.entries(params)
+                    .map(entry => `${entry[0]}=${entry[1]}`)
+                    .join("&")
+            );
         },
         async search(params) {
             this.loading = true;
             this.searched = false;
             const query = this.createQueryString(params);
-            const response = await axios.get(
-                `api/v1/reviews` + query
-            );
+            const response = await axios.get(`api/v1/reviews` + query);
             this.reviews = response.data;
             this.searched = true;
             this.loading = false;
@@ -179,19 +183,15 @@ export default {
 </script>
 
 <style scoped>
-.search-bar__top {
-    max-width: 508px;
-}
-.search-bar__result {
-    padding: 10px 0 10px 0;
-    margin: 0;
-    font-size: 16px;
+.review-list {
+    background-color: #fff;
+    border-radius: 5px;
 }
 
-.search-bar__result--strong {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ee6054;
+.review-list__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .pagination {
@@ -217,11 +217,5 @@ export default {
 
 .disabled {
     cursor: not-allowed;
-}
-
-.review-list-topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 </style>
