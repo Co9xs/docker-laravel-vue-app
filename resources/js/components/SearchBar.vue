@@ -31,7 +31,9 @@ export default {
             }
         },
         search(event) {
-            if (event.keyCode === ENTER_KEY_CODE_FOR_JP_CONVERSION) return;
+            if(event) {
+                if (event.keyCode === ENTER_KEY_CODE_FOR_JP_CONVERSION) return;
+            }
             this.$emit("searchRequest", this.keyword);
         }
     }

@@ -69,7 +69,7 @@ class ReviewController extends Controller
         }
         if ($is_machine === "true") {
             $query = Review::query();
-            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', '機械学習系エンジニア');
+            $query->with('user', 'company')->where('company_name', 'LIKE', "%{$keyword}%")->where('type_of_occupation', '=', '機械学習エンジニア');
             $reviews = $query->get();
             foreach ($reviews as $review) {
                 $result[] = $review;
