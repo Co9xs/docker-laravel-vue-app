@@ -17,10 +17,27 @@
                         :target="'会社'"
                     ></SearchResult>
                 </div>
+                <div
+                    class="company-list__pagination"
+                    v-if="companies.length !== 0"
+                >
+                    <Paginate
+                        :page-count="getPageCount"
+                        :page-range="3"
+                        :margin-pages="2"
+                        :click-handler="clickCallback"
+                        :prev-text="'<< '"
+                        :next-text="' >>'"
+                        :container-class="'pagination pg-blue'"
+                        :page-class="'page-item'"
+                        :page-link-class="'page-link'"
+                    >
+                    </Paginate>
+                </div>
                 <Loading v-if="loading"></Loading>
                 <div
                     class="mt-3"
-                    v-for="company in companies"
+                    v-for="company in companiesForPagination"
                     :key="company.id"
                 >
                     <CompanyCard :company="company"></CompanyCard>
@@ -37,6 +54,8 @@ import SearchParameter from "../../components/SearchParameter.vue";
 import SearchResult from "../../components/SearchResult.vue";
 import CompanyCard from "../../components/Company/CompanyCard.vue";
 import ReviewCreateStep from "../../components/ReviewCreateStep.vue";
+import Paginate from "vuejs-paginate";
+
 export default {
     components: {
         SearchBar,
@@ -44,13 +63,16 @@ export default {
         SearchParameter,
         SearchResult,
         CompanyCard,
-        ReviewCreateStep
+        ReviewCreateStep,
+        Paginate
     },
     data() {
         return {
             companies: [],
             loading: false,
-            searched: false
+            searched: false,
+            parPage: 4,
+            currentPage: 1
         };
     },
     methods: {
@@ -67,6 +89,21 @@ export default {
                 this.loading = false;
                 this.searched = true;
             }
+        },
+        clickCallback(pageNum) {
+            this.currentPage = parseInt(pageNum);
+        }
+    },
+    computed: {
+        companiesForPagination() {
+            const current = this.currentPage * this.parPage;
+            const start = current - this.parPage;
+            if (this.companies.length !== 0) {
+                return this.companies.slice(start, current);
+            }
+        },
+        getPageCount() {
+            return Math.ceil(this.companies.length / this.parPage);
         }
     }
 };

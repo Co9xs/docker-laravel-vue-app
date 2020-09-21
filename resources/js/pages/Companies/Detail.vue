@@ -1,6 +1,9 @@
 <template>
     <div class="container">
-        <div class="company-show">
+        <div class="company-show__loading" v-if="loading">
+            <Loading></Loading>
+        </div>
+        <div class="company-show" v-if="!loading">
             <div class="company-show__header">
                 <h5 class="company-show__name">{{ company.name }}</h5>
                 <p class="company-show__area">本社所在地：{{ company.area }}</p>
@@ -37,8 +40,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <Loading v-if="loading"></Loading>
-                        <div v-if="isActive === '1' && !loading">
+                        <div v-if="isActive === '1'">
                             <div v-if="reviews.length === 0">
                                 この企業への口コミはまだありません。
                             </div>
@@ -68,7 +70,7 @@ import StarRating from "../../components/StarRating.vue";
 import ReviewCreateForm from "../../components/ReviewCreateForm.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
 import Loading from "../../components/Loading.vue";
-import { options } from "../../toastOptions"
+import { options } from "../../toastOptions";
 export default {
     components: {
         StarRating,
@@ -79,14 +81,14 @@ export default {
     data() {
         return {
             company: null,
-            reviews: [],
             average_point: 0,
+            reviews: [],
             isActive: "1",
             loading: false
         };
     },
     methods: {
-        async upsertCompany() {
+        async updateOrCreateCompany() {
             const data = {
                 number: this.$route.params.corporateNum
             };
@@ -104,7 +106,8 @@ export default {
                 companyData
             );
             this.company = response2.data;
-            this.getReviewsOn(this.company.id);
+            await this.getReviewsOn(this.company.id);
+            this.company.average_point = this.calcAveragePoint();
         },
         async addReview(reviewData) {
             reviewData.company_id = this.company.id;
@@ -126,10 +129,16 @@ export default {
         },
         showToast(message, options) {
             this.$toasted.success(message, options);
+        },
+        calcAveragePoint() {
+            const evaluations = this.reviews.map(review => review.evaluation);
+            const sum = evaluations.reduce((sum, current) => sum + current);
+            const average = sum / this.reviews.length;
+            return average;
         }
     },
     created() {
-        this.upsertCompany();
+        this.updateOrCreateCompany();
     }
 };
 </script>

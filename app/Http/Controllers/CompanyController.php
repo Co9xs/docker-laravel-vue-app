@@ -47,7 +47,8 @@ class CompanyController extends Controller
             ['name' => $request->name, 
             'average_point' => $request->average_point, 
             'area' => $request->area,
-            'corporate_number' => $request->corporate_number]
+            'corporate_number' => $request->corporate_number,
+            ]
         );
         return $company;
     } 

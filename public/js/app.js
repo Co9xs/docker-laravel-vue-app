@@ -3373,6 +3373,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -3388,14 +3390,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       company: null,
-      reviews: [],
       average_point: 0,
+      reviews: [],
       isActive: "1",
       loading: false
     };
   },
   methods: {
-    upsertCompany: function upsertCompany() {
+    updateOrCreateCompany: function updateOrCreateCompany() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -3424,10 +3426,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 response2 = _context.sent;
                 _this.company = response2.data;
+                _context.next = 11;
+                return _this.getReviewsOn(_this.company.id);
 
-                _this.getReviewsOn(_this.company.id);
+              case 11:
+                _this.company.average_point = _this.calcAveragePoint();
 
-              case 10:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -3496,10 +3501,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     showToast: function showToast(message, options) {
       this.$toasted.success(message, options);
+    },
+    calcAveragePoint: function calcAveragePoint() {
+      var evaluations = this.reviews.map(function (review) {
+        return review.evaluation;
+      });
+      var sum = evaluations.reduce(function (sum, current) {
+        return sum + current;
+      });
+      var average = sum / this.reviews.length;
+      return average;
     }
   },
   created: function created() {
-    this.upsertCompany();
+    this.updateOrCreateCompany();
   }
 });
 
@@ -3522,6 +3537,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_SearchResult_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/SearchResult.vue */ "./resources/js/components/SearchResult.vue");
 /* harmony import */ var _components_Company_CompanyCard_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Company/CompanyCard.vue */ "./resources/js/components/Company/CompanyCard.vue");
 /* harmony import */ var _components_ReviewCreateStep_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/ReviewCreateStep.vue */ "./resources/js/components/ReviewCreateStep.vue");
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_7__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3560,6 +3577,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3573,13 +3608,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     SearchParameter: _components_SearchParameter_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     SearchResult: _components_SearchResult_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     CompanyCard: _components_Company_CompanyCard_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    ReviewCreateStep: _components_ReviewCreateStep_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    ReviewCreateStep: _components_ReviewCreateStep_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Paginate: vuejs_paginate__WEBPACK_IMPORTED_MODULE_7___default.a
   },
   data: function data() {
     return {
       companies: [],
       loading: false,
-      searched: false
+      searched: false,
+      parPage: 4,
+      currentPage: 1
     };
   },
   methods: {
@@ -3617,6 +3655,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    clickCallback: function clickCallback(pageNum) {
+      this.currentPage = parseInt(pageNum);
+    }
+  },
+  computed: {
+    companiesForPagination: function companiesForPagination() {
+      var current = this.currentPage * this.parPage;
+      var start = current - this.parPage;
+
+      if (this.companies.length !== 0) {
+        return this.companies.slice(start, current);
+      }
+    },
+    getPageCount: function getPageCount() {
+      return Math.ceil(this.companies.length / this.parPage);
     }
   }
 });
@@ -3971,6 +4025,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -45264,134 +45323,136 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "company-show" }, [
-      _c("div", { staticClass: "company-show__header" }, [
-        _c("h5", { staticClass: "company-show__name" }, [
-          _vm._v(_vm._s(_vm.company.name))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "company-show__area" }, [
-          _vm._v("本社所在地：" + _vm._s(_vm.company.area))
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "company-show__star-rating" },
-          [
-            _c("StarRating", {
-              attrs: { label: "平均評価", starNum: _vm.company.average_point }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tab-menu" }, [
-        _c("ul", { staticClass: "tab-menu__list" }, [
-          _c(
-            "li",
-            {
-              staticClass: "tab-menu__item",
-              class: { selected: _vm.isActive === "1" }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "tab-menu__link",
-                  on: {
-                    click: function($event) {
-                      return _vm.changeTab("1")
-                    }
+    _vm.loading
+      ? _c("div", { staticClass: "company-show__loading" }, [_c("Loading")], 1)
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.loading
+      ? _c("div", { staticClass: "company-show" }, [
+          _c("div", { staticClass: "company-show__header" }, [
+            _c("h5", { staticClass: "company-show__name" }, [
+              _vm._v(_vm._s(_vm.company.name))
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "company-show__area" }, [
+              _vm._v("本社所在地：" + _vm._s(_vm.company.area))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "company-show__star-rating" },
+              [
+                _c("StarRating", {
+                  attrs: {
+                    label: "平均評価",
+                    starNum: _vm.company.average_point
                   }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "tab-menu" }, [
+            _c("ul", { staticClass: "tab-menu__list" }, [
+              _c(
+                "li",
+                {
+                  staticClass: "tab-menu__item",
+                  class: { selected: _vm.isActive === "1" }
                 },
                 [
-                  _vm._v("口コミ一覧("),
-                  _c("span", { staticClass: "tab-menu__link--strong" }, [
-                    _vm._v(_vm._s(_vm.reviews.length))
-                  ]),
-                  _vm._v(")")
+                  _c(
+                    "a",
+                    {
+                      staticClass: "tab-menu__link",
+                      on: {
+                        click: function($event) {
+                          return _vm.changeTab("1")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("口コミ一覧("),
+                      _c("span", { staticClass: "tab-menu__link--strong" }, [
+                        _vm._v(_vm._s(_vm.reviews.length))
+                      ]),
+                      _vm._v(")")
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "tab-menu__item",
+                  class: { selected: _vm.isActive === "2" }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "tab-menu__link",
+                      on: {
+                        click: function($event) {
+                          return _vm.changeTab("2")
+                        }
+                      }
+                    },
+                    [_vm._v("口コミを書く")]
+                  )
                 ]
               )
-            ]
-          ),
+            ])
+          ]),
           _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "tab-menu__item",
-              class: { selected: _vm.isActive === "2" }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "tab-menu__link",
-                  on: {
-                    click: function($event) {
-                      return _vm.changeTab("2")
-                    }
-                  }
-                },
-                [_vm._v("口コミを書く")]
-              )
-            ]
-          )
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-8" }, [
+                _vm.isActive === "1"
+                  ? _c(
+                      "div",
+                      [
+                        _vm.reviews.length === 0
+                          ? _c("div", [
+                              _vm._v(
+                                "\n                            この企業への口コミはまだありません。\n                        "
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._l(_vm.reviews, function(review) {
+                          return _c(
+                            "div",
+                            { key: review.id, staticClass: "mt-3" },
+                            [_c("ReviewCard", { attrs: { review: review } })],
+                            1
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isActive === "2"
+                  ? _c(
+                      "div",
+                      { staticClass: "review-create" },
+                      [
+                        _c("ReviewCreateForm", {
+                          attrs: { company: _vm.company },
+                          on: { postRequest: _vm.addReview }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e()
+              ])
+            ])
+          ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            { staticClass: "col-md-8" },
-            [
-              _vm.loading ? _c("Loading") : _vm._e(),
-              _vm._v(" "),
-              _vm.isActive === "1" && !_vm.loading
-                ? _c(
-                    "div",
-                    [
-                      _vm.reviews.length === 0
-                        ? _c("div", [
-                            _vm._v(
-                              "\n                            この企業への口コミはまだありません。\n                        "
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm._l(_vm.reviews, function(review) {
-                        return _c(
-                          "div",
-                          { key: review.id, staticClass: "mt-3" },
-                          [_c("ReviewCard", { attrs: { review: review } })],
-                          1
-                        )
-                      })
-                    ],
-                    2
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.isActive === "2"
-                ? _c(
-                    "div",
-                    { staticClass: "review-create" },
-                    [
-                      _c("ReviewCreateForm", {
-                        attrs: { company: _vm.company },
-                        on: { postRequest: _vm.addReview }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e()
-            ],
-            1
-          )
-        ])
-      ])
-    ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -45449,9 +45510,32 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _vm.companies.length !== 0
+            ? _c(
+                "div",
+                { staticClass: "company-list__pagination" },
+                [
+                  _c("Paginate", {
+                    attrs: {
+                      "page-count": _vm.getPageCount,
+                      "page-range": 3,
+                      "margin-pages": 2,
+                      "click-handler": _vm.clickCallback,
+                      "prev-text": "<< ",
+                      "next-text": " >>",
+                      "container-class": "pagination pg-blue",
+                      "page-class": "page-item",
+                      "page-link-class": "page-link"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _vm.loading ? _c("Loading") : _vm._e(),
           _vm._v(" "),
-          _vm._l(_vm.companies, function(company) {
+          _vm._l(_vm.companiesForPagination, function(company) {
             return _c(
               "div",
               { key: company.id, staticClass: "mt-3" },
@@ -46207,35 +46291,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("Loading", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.loading,
-            expression: "loading"
-          }
-        ]
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: !_vm.loading,
-              expression: "!loading"
-            }
-          ],
-          staticClass: "card mt-3"
-        },
-        [
+  return _c("div", { staticClass: "container" }, [
+    _vm.loading
+      ? _c("div", { staticClass: "review-detail__loading" }, [_c("Loading")], 1)
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.loading
+      ? _c("div", { staticClass: "card mt-3 mb-3" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("h5", { staticClass: "h5 card-title" }, [
               _vm._v(
@@ -46249,24 +46311,15 @@ var render = function() {
               "div",
               { staticClass: "font-weight-lighter d-flex" },
               [
-                _c("p", { staticClass: "mb-0" }, [_vm._v("総合評価")]),
-                _vm._v(" "),
-                _c("StarRating", { attrs: { starNum: _vm.review.evaluation } })
+                _c("StarRating", {
+                  attrs: { starNum: _vm.review.evaluation, label: "総合評価" }
+                })
               ],
               1
             ),
             _vm._v(" "),
             _c("div", { staticClass: "d-flex flex-row" }, [
-              _c("div", {
-                staticStyle: {
-                  width: "46px",
-                  height: "46px",
-                  border: "1px #efefef solid",
-                  "border-radius": "50%",
-                  overfloe: "hidden",
-                  "margin-right": "5px"
-                }
-              }),
+              _vm._m(0),
               _vm._v(" "),
               _c("div", [
                 _c("div", { staticClass: "font-weight-bold" }, [
@@ -46303,13 +46356,37 @@ var render = function() {
               )
             ])
           ])
-        ]
-      )
-    ],
-    1
-  )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("a", { attrs: { href: "/reviews" } }, [_vm._v("レビュー一覧に戻る")])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: {
+          width: "46px",
+          height: "46px",
+          border: "1px #efefef solid",
+          "border-radius": "50%",
+          overfloe: "hidden",
+          "margin-right": "5px"
+        }
+      },
+      [
+        _c("img", {
+          attrs: { src: "https://cdn.jobtalk.jp/top/img/3c2b37a.svg" }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 

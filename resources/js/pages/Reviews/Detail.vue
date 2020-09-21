@@ -1,20 +1,24 @@
 <template>
     <div class="container">
-        <Loading v-show="loading"></Loading>
-        <div v-show="!loading" class="card mt-3">
+        <div class="review-detail__loading" v-if="loading">
+            <Loading></Loading>
+        </div>
+        <div v-if="!loading" class="card mt-3 mb-3">
             <div class="card-body">
                 <h5 class="h5 card-title">
                     {{ review.company.name }}
                 </h5>
                 <div class="font-weight-lighter d-flex">
-                    <p class="mb-0">総合評価</p>
-                    <StarRating :starNum="review.evaluation"></StarRating>
+                    <StarRating
+                        :starNum="review.evaluation"
+                        :label="'総合評価'"
+                    ></StarRating>
                 </div>
                 <div class="d-flex flex-row">
                     <div
                         style="width: 46px; height: 46px; border: 1px #efefef solid; border-radius: 50%; overfloe: hidden; margin-right:5px;"
                     >
-                        <!-- <img :src="'../../../../public/storage/top.jpg'"> -->
+                        <img src="https://cdn.jobtalk.jp/top/img/3c2b37a.svg" />
                     </div>
                     <div>
                         <div class="font-weight-bold">
@@ -35,6 +39,7 @@
                 </div>
             </div>
         </div>
+        <a href="/reviews">レビュー一覧に戻る</a>
     </div>
 </template>
 
