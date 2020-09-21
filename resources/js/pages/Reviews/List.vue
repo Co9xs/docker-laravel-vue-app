@@ -141,7 +141,7 @@ export default {
         },
         async deleteReview(review_id) {
             const response = await axios.post(`/api/v1/reviews/${review_id}`);
-            this.$router.go({
+            await this.$router.go({
                 path: this.$router.currentRoute.path,
                 force: true
             });

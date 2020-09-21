@@ -10,15 +10,10 @@
                         <label class="review-create__label" for="volume"
                             >総合評価（5段階）</label
                         >
-                        <input
-                            class="review-create__input"
-                            type="range"
-                            id="volume"
-                            name="volume"
-                            min="0"
-                            max="5"
-                            v-model="reviewForm.evaluation"
-                        />
+                            <star-rating
+                                v-model="reviewForm.evaluation"
+                                :star-size="30"
+                            ></star-rating>
                     </div>
                     <div class="review-create__input-group">
                         <label class="review-create__label" for="type_of_work"
@@ -83,14 +78,18 @@
 
 <script>
 import { mapGetters } from "vuex";
+import StarRating from "vue-star-rating";
 export default {
+    components: {
+        StarRating
+    },
     props: {
         company: Object
     },
     data() {
         return {
             reviewForm: {
-                evaluation: null,
+                evaluation: 0,
                 type_of_occupation: null,
                 work_style: null,
                 body: null,
@@ -101,9 +100,9 @@ export default {
         };
     },
     methods: {
-        postRequest() {
+        async postRequest() {
             this.reviewForm.user_id = this.user_id;
-            this.$emit("postRequest", this.reviewForm);
+            await this.$emit("postRequest", this.reviewForm);
         }
     },
     computed: {

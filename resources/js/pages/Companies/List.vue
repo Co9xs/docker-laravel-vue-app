@@ -4,7 +4,7 @@
             <div class="col-md-4 mt-3 mb-3">
                 <ReviewCreateStep></ReviewCreateStep>
             </div>
-            <div class="col-md-8 mt-3 mb-3 company-list">
+            <div class="col-md-8 mt-3 mb-3 pb-3 company-list">
                 <h4 class="h4 mt-3">会社検索</h4>
                 <div class="company-list__search-bar">
                     <SearchBar

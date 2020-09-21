@@ -17,15 +17,18 @@
                         class="tab-menu__item"
                         :class="{ selected: isActive === '1' }"
                     >
-                        <a class="tab-menu__link" @click="change('1')"
-                            >口コミ一覧(<span class="tab-menu__link--strong">{{reviews.length}}</span>)</a
+                        <a class="tab-menu__link" @click="changeTab('1')"
+                            >口コミ一覧(<span class="tab-menu__link--strong">{{
+                                reviews.length
+                            }}</span
+                            >)</a
                         >
                     </li>
                     <li
                         class="tab-menu__item"
                         :class="{ selected: isActive === '2' }"
                     >
-                        <a class="tab-menu__link" @click="change('2')"
+                        <a class="tab-menu__link" @click="changeTab('2')"
                             >口コミを書く</a
                         >
                     </li>
@@ -33,8 +36,9 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div v-if="isActive === '1'">
+                    <div class="col-md-8">
+                        <Loading v-if="loading"></Loading>
+                        <div v-if="isActive === '1' && !loading">
                             <div v-if="reviews.length === 0">
                                 この企業への口コミはまだありません。
                             </div>
@@ -63,18 +67,22 @@
 import StarRating from "../../components/StarRating.vue";
 import ReviewCreateForm from "../../components/ReviewCreateForm.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
+import Loading from "../../components/Loading.vue";
+import { options } from "../../toastOptions"
 export default {
     components: {
         StarRating,
         ReviewCreateForm,
-        ReviewCard
+        ReviewCard,
+        Loading
     },
     data() {
         return {
             company: null,
             reviews: [],
             average_point: 0,
-            isActive: "1"
+            isActive: "1",
+            loading: false
         };
     },
     methods: {
@@ -97,22 +105,27 @@ export default {
             );
             this.company = response2.data;
             this.getReviewsOn(this.company.id);
-            this.calcAveragePoint();
         },
         async addReview(reviewData) {
             reviewData.company_id = this.company.id;
             reviewData.company_name = this.company.name;
             const response = await axios.post("/api/v1/reviews", reviewData);
-            this.$router.push("/reviews");
+            await this.$router.push("/reviews");
+            this.showToast("口コミを投稿しました", options);
         },
-        change(num) {
+        changeTab(num) {
             this.isActive = num;
         },
         async getReviewsOn(company_id) {
+            this.loading = true;
             const response = await axios.get(
                 `/api/v1/companies/${company_id}/reviews`
             );
             this.reviews = response.data;
+            this.loading = false;
+        },
+        showToast(message, options) {
+            this.$toasted.success(message, options);
         }
     },
     created() {
@@ -169,7 +182,7 @@ export default {
 }
 
 .tab-menu__link--strong {
-    color:#EE6054;
+    color: #ee6054;
 }
 
 .review-create__form {
