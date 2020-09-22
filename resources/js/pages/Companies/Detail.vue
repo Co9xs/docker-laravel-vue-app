@@ -44,7 +44,10 @@
                             <div v-if="reviews.length === 0">
                                 この企業への口コミはまだありません。
                             </div>
-                            <div class="company-detail__pagination mt-3">
+                            <div
+                                class="company-detail__pagination mt-3"
+                                v-if="reviews.length > 0"
+                            >
                                 <Paginate
                                     :page-count="getPageCount"
                                     :page-range="3"
@@ -59,7 +62,7 @@
                                 </Paginate>
                             </div>
                             <div
-                                class="mt-3"
+                                class="mt-2"
                                 v-for="review in reviewsForPagination"
                                 :key="review.id"
                             >
@@ -130,7 +133,11 @@ export default {
             const data = {
                 number: this.$route.params.corporateNum
             };
-            const response = await axios.post("/api/v1/companies", data);
+            const response = await axios
+                .post("/api/v1/companies", data)
+                .catch(error => {
+                    this.$router.push("/not-found");
+                });
             const companyData = {
                 name: response.data.corporation.name,
                 average_point: this.average_point,

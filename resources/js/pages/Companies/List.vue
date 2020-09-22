@@ -5,6 +5,22 @@
                 <ReviewCreateStep></ReviewCreateStep>
             </div>
             <div class="col-md-8 mt-3 mb-3 pb-3 company-list">
+                <div class="company-list__caution">
+                    <p class="company-list__heading">検索時の注意事項</p>
+                    <div class="company-list__message">
+                        ①できるだけ<span class="company-list__message--strong"
+                            >正確な会社名</span
+                        >で検索しましょう。<br />
+                        （例：「株式会社」など広すぎるワードで検索するとエラーになります）
+                    </div>
+                    <div class="company-list__message">
+                        ②アルファベットや英語は<span
+                            class="company-list__message--strong"
+                            >カタカナに直して</span
+                        >検索しましょう。<br />
+                        （例：「✕ 株式会社ABC」→「○ 株式会社エービーシー」）
+                    </div>
+                </div>
                 <h4 class="h4 mt-3">会社検索</h4>
                 <div class="company-list__search-bar">
                     <SearchBar
@@ -55,6 +71,7 @@ import SearchResult from "../../components/SearchResult.vue";
 import CompanyCard from "../../components/Company/CompanyCard.vue";
 import ReviewCreateStep from "../../components/ReviewCreateStep.vue";
 import Paginate from "vuejs-paginate";
+import { options } from "../../toastOptions";
 
 export default {
     components: {
@@ -83,7 +100,18 @@ export default {
             this.searched = false;
             this.loading = true;
             this.companies = [];
-            const response = await axios.post("api/v1/companies/search", param);
+            const response = await axios
+                .post("api/v1/companies/search", param)
+                .catch(error => {
+                    if (error.response.status === 500) {
+                        this.loading = false;
+                        this.showToast(
+                            "サーバーエラーが発生しました。検索ワードを確認してください",
+                            options
+                        );
+                        return;
+                    }
+                });
             if (response.status === 200) {
                 this.companies = response.data.corporation;
                 this.loading = false;
@@ -92,6 +120,9 @@ export default {
         },
         clickCallback(pageNum) {
             this.currentPage = parseInt(pageNum);
+        },
+        showToast(message, options) {
+            this.$toasted.error(message, options);
         }
     },
     computed: {
@@ -116,5 +147,27 @@ export default {
 }
 .company-list__search-bar {
     max-width: 508px;
+}
+.company-list__caution {
+    background-color: #efefef;
+    list-style: none;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 16px 0;
+}
+
+.company-list__heading {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.company-list__message {
+    padding: 4px 0;
+}
+
+.company-list__message--strong {
+    color: #ed6054;
+    font-weight: bold;
 }
 </style>

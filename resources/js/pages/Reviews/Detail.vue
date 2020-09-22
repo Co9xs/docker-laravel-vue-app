@@ -61,9 +61,11 @@ export default {
         async fetchReview() {
             this.loading = true;
             const reviewId = parseInt(this.$route.params.id, 10);
-            const response = await axios.get(
-                `http://localhost:8000/api/v1/reviews/${reviewId}`
-            );
+            const response = await axios
+                .get(`/api/v1/reviews/${reviewId}`)
+                .catch(error => {
+                    this.$router.push("/not-found");
+                });
             this.review = response.data;
             this.loading = false;
         }

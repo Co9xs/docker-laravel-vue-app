@@ -3428,6 +3428,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3471,7 +3474,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   number: _this.$route.params.corporateNum
                 };
                 _context.next = 3;
-                return axios.post("/api/v1/companies", data);
+                return axios.post("/api/v1/companies", data)["catch"](function (error) {
+                  _this.$router.push("/not-found");
+                });
 
               case 3:
                 response = _context.sent;
@@ -3615,6 +3620,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ReviewCreateStep_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/ReviewCreateStep.vue */ "./resources/js/components/ReviewCreateStep.vue");
 /* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
 /* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _toastOptions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../toastOptions */ "./resources/js/toastOptions.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3670,6 +3676,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3713,7 +3736,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.loading = true;
                 _this.companies = [];
                 _context.next = 6;
-                return axios.post("api/v1/companies/search", param);
+                return axios.post("api/v1/companies/search", param)["catch"](function (error) {
+                  if (error.response.status === 500) {
+                    _this.loading = false;
+
+                    _this.showToast("サーバーエラーが発生しました。検索ワードを確認してください", _toastOptions__WEBPACK_IMPORTED_MODULE_8__["options"]);
+
+                    return;
+                  }
+                });
 
               case 6:
                 response = _context.sent;
@@ -3734,6 +3765,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     clickCallback: function clickCallback(pageNum) {
       this.currentPage = parseInt(pageNum);
+    },
+    showToast: function showToast(message, options) {
+      this.$toasted.error(message, options);
     }
   },
   computed: {
@@ -4210,7 +4244,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.loading = true;
                 reviewId = parseInt(_this.$route.params.id, 10);
                 _context.next = 4;
-                return axios.get("http://localhost:8000/api/v1/reviews/".concat(reviewId));
+                return axios.get("/api/v1/reviews/".concat(reviewId))["catch"](function (error) {
+                  _this.$router.push("/not-found");
+                });
 
               case 4:
                 response = _context.sent;
@@ -4390,7 +4426,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 review_id = _this.$route.params.id;
                 _context.next = 3;
-                return axios.get("/api/v1/reviews/".concat(review_id));
+                return axios.get("/api/v1/reviews/".concat(review_id))["catch"](function (error) {
+                  _this.$router.push("/not-found");
+                });
 
               case 3:
                 response = _context.sent;
@@ -9712,7 +9750,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.company-list {\n    background-color: #fff;\n    border-radius: 5px;\n}\n.company-list__search-bar {\n    max-width: 508px;\n}\n", ""]);
+exports.push([module.i, "\n.company-list {\n    background-color: #fff;\n    border-radius: 5px;\n}\n.company-list__search-bar {\n    max-width: 508px;\n}\n.company-list__caution {\n    background-color: #efefef;\n    list-style: none;\n    border-radius: 5px;\n    padding: 8px;\n    margin: 16px 0;\n}\n.company-list__heading {\n    font-size: 16px;\n    font-weight: bold;\n    margin: 0;\n}\n.company-list__message {\n    padding: 4px 0;\n}\n.company-list__message--strong {\n    color: #ed6054;\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -9731,7 +9769,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.contact__row {\n    display: flex;\n}\n.contact__heading {\n    margin: 0;\n    padding: 8px;\n    font-weight: bold;\n    display: flex;\n    align-items: center;\n}\n.contact__icon {\n    padding-right: 4px;\n}\n.contact__link {\n    padding: 8px;\n}\n.contact__content {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    margin-right: 32px;\n}\n.contact__image {\n    width: 100px;\n    height: 100px;\n    border-radius: 50%;\n    background-position: center;\n    background-size: cover;\n}\n.contact__image--twitter {\n    background-image: url(\"/img/profile-twitter.JPG\");\n}\n.contact__image--github {\n    background-image: url(\"/img/profile-github.jpeg\");\n}\n", ""]);
+exports.push([module.i, "\n.contact__row {\n    display: flex;\n    justify-content: space-evenly;\n}\n.contact__heading {\n    margin: 0;\n    padding: 8px;\n    font-weight: bold;\n    display: flex;\n    align-items: center;\n}\n.contact__icon {\n    padding-right: 4px;\n}\n.contact__link {\n    padding: 8px;\n}\n.contact__content {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n}\n.contact__image {\n    width: 100px;\n    height: 100px;\n    border-radius: 50%;\n    background-position: center;\n    background-size: cover;\n}\n.contact__image--twitter {\n    background-image: url(\"/img/profile-twitter.JPG\");\n}\n.contact__image--github {\n    background-image: url(\"/img/profile-github.jpeg\");\n}\n", ""]);
 
 // exports
 
@@ -45543,31 +45581,35 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "company-detail__pagination mt-3" },
-                          [
-                            _c("Paginate", {
-                              attrs: {
-                                "page-count": _vm.getPageCount,
-                                "page-range": 3,
-                                "margin-pages": 2,
-                                "click-handler": _vm.clickCallback,
-                                "prev-text": "<< ",
-                                "next-text": " >>",
-                                "container-class": "pagination pg-blue",
-                                "page-class": "page-item",
-                                "page-link-class": "page-link"
-                              }
-                            })
-                          ],
-                          1
-                        ),
+                        _vm.reviews.length > 0
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "company-detail__pagination mt-3"
+                              },
+                              [
+                                _c("Paginate", {
+                                  attrs: {
+                                    "page-count": _vm.getPageCount,
+                                    "page-range": 3,
+                                    "margin-pages": 2,
+                                    "click-handler": _vm.clickCallback,
+                                    "prev-text": "<< ",
+                                    "next-text": " >>",
+                                    "container-class": "pagination pg-blue",
+                                    "page-class": "page-item",
+                                    "page-link-class": "page-link"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm._l(_vm.reviewsForPagination, function(review) {
                           return _c(
                             "div",
-                            { key: review.id, staticClass: "mt-3" },
+                            { key: review.id, staticClass: "mt-2" },
                             [_c("ReviewCard", { attrs: { review: review } })],
                             1
                           )
@@ -45664,6 +45706,8 @@ var render = function() {
         "div",
         { staticClass: "col-md-8 mt-3 mb-3 pb-3 company-list" },
         [
+          _vm._m(0),
+          _vm._v(" "),
           _c("h4", { staticClass: "h4 mt-3" }, [_vm._v("会社検索")]),
           _vm._v(" "),
           _c(
@@ -45723,7 +45767,42 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "company-list__caution" }, [
+      _c("p", { staticClass: "company-list__heading" }, [
+        _vm._v("検索時の注意事項")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "company-list__message" }, [
+        _vm._v("\n                    ①できるだけ"),
+        _c("span", { staticClass: "company-list__message--strong" }, [
+          _vm._v("正確な会社名")
+        ]),
+        _vm._v("で検索しましょう。"),
+        _c("br"),
+        _vm._v(
+          "\n                    （例：「株式会社」など広すぎるワードで検索するとエラーになります）\n                "
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "company-list__message" }, [
+        _vm._v("\n                    ②アルファベットや英語は"),
+        _c("span", { staticClass: "company-list__message--strong" }, [
+          _vm._v("カタカナに直して")
+        ]),
+        _vm._v("検索しましょう。"),
+        _c("br"),
+        _vm._v(
+          "\n                    （例：「✕ 株式会社ABC」→「○ 株式会社エービーシー」）\n                "
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45754,7 +45833,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "col-md-2" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-8 mt-5 mb-5" }, [
           _c("div", { staticClass: "contact" }, [
             _c("h4", { staticClass: "contact__title h4 mt-3" }, [
               _vm._v("お問い合わせ")
@@ -45817,7 +45898,9 @@ var staticRenderFns = [
               ])
             ])
           ])
-        ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2" })
       ])
     ])
   }
@@ -46414,6 +46497,45 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("h5", { staticClass: "mypage__title" }, [_vm._v("マイページ")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NotFound.vue?vue&type=template&id=a26bf910&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NotFound.vue?vue&type=template&id=a26bf910& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12 mb-3 mt-3" }, [
+          _c("p", [_vm._v("お探しのページは見つかりませんでした")]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "/" } }, [_vm._v("TOPページへ")])
+        ])
+      ])
     ])
   }
 ]
@@ -68759,6 +68881,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/NotFound.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/pages/NotFound.vue ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NotFound_vue_vue_type_template_id_a26bf910___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NotFound.vue?vue&type=template&id=a26bf910& */ "./resources/js/pages/NotFound.vue?vue&type=template&id=a26bf910&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _NotFound_vue_vue_type_template_id_a26bf910___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NotFound_vue_vue_type_template_id_a26bf910___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/NotFound.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/NotFound.vue?vue&type=template&id=a26bf910&":
+/*!************************************************************************!*\
+  !*** ./resources/js/pages/NotFound.vue?vue&type=template&id=a26bf910& ***!
+  \************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_a26bf910___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NotFound.vue?vue&type=template&id=a26bf910& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NotFound.vue?vue&type=template&id=a26bf910&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_a26bf910___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_a26bf910___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/PrivacyPolicy.vue":
 /*!**********************************************!*\
   !*** ./resources/js/pages/PrivacyPolicy.vue ***!
@@ -69166,7 +69341,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Contact_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/Contact.vue */ "./resources/js/pages/Contact.vue");
 /* harmony import */ var _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/Auth/Login.vue */ "./resources/js/pages/Auth/Login.vue");
 /* harmony import */ var _pages_Auth_Register_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/Auth/Register.vue */ "./resources/js/pages/Auth/Register.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var _pages_NotFound_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/NotFound.vue */ "./resources/js/pages/NotFound.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+
 
 
 
@@ -69190,7 +69367,7 @@ var routes = [{
   path: "/login",
   component: _pages_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
-    if (_store__WEBPACK_IMPORTED_MODULE_14__["default"].getters["auth/checkAuth"]) {
+    if (_store__WEBPACK_IMPORTED_MODULE_15__["default"].getters["auth/checkAuth"]) {
       next("/");
     } else {
       next();
@@ -69203,9 +69380,9 @@ var routes = [{
   path: "/mypage/:id",
   component: _pages_MyPage_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_14__["default"].getters["auth/checkAuth"]) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_15__["default"].getters["auth/checkAuth"]) {
       next("/login");
-    } else if (_store__WEBPACK_IMPORTED_MODULE_14__["default"].getters["auth/userId"] != to.params.id) {
+    } else if (_store__WEBPACK_IMPORTED_MODULE_15__["default"].getters["auth/userId"] != to.params.id) {
       next(from);
     } else {
       next();
@@ -69235,6 +69412,21 @@ var routes = [{
 }, {
   path: "/contact",
   component: _pages_Contact_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+}, // {
+//     path: "/reviews/*",
+//     component: NotFound
+// },
+// {
+//     path: "/reviews/*/edit",
+//     component: NotFound
+// },
+// {
+//     path: "/companies/*/review/create",
+//     component: NotFound
+// },
+{
+  path: "/*",
+  component: _pages_NotFound_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",
@@ -69415,7 +69607,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "options", function() { return options; });
 var options = {
-  duration: 2000,
+  duration: 5000,
   action: {
     text: "OK",
     onClick: function onClick(e, toast) {

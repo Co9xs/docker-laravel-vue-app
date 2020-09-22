@@ -1,5 +1,5 @@
 export const options = {
-    duration: 2000,
+    duration: 5000,
     action: {
         text: "OK",
         onClick: function(e, toast) {

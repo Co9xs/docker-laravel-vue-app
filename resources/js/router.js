@@ -12,6 +12,7 @@ import MyPage from "./pages/MyPage.vue";
 import Contact from "./pages/Contact.vue";
 import Login from "./pages/Auth/Login.vue";
 import Register from "./pages/Auth/Register.vue";
+import NotFound from "./pages/NotFound.vue";
 import store from "./store";
 
 Vue.use(VueRouter);
@@ -80,6 +81,22 @@ const routes = [
     {
         path: "/contact",
         component: Contact
+    },
+        // {
+        //     path: "/reviews/*",
+        //     component: NotFound
+        // },
+        // {
+        //     path: "/reviews/*/edit",
+        //     component: NotFound
+        // },
+        // {
+        //     path: "/companies/*/review/create",
+        //     component: NotFound
+        // },
+    {
+        path: "/*",
+        component: NotFound
     }
 ];
 

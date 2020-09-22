@@ -128,7 +128,11 @@ export default {
     methods: {
         async getReview() {
             const review_id = this.$route.params.id;
-            const response = await axios.get(`/api/v1/reviews/${review_id}`);
+            const response = await axios
+                .get(`/api/v1/reviews/${review_id}`)
+                .catch(error => {
+                    this.$router.push("/not-found");
+                });
             this.review = response.data;
         },
         async updateReview(review_id) {

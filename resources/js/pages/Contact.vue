@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 mt-5 mb-5">
                 <div class="contact">
                     <h4 class="contact__title h4 mt-3">お問い合わせ</h4>
                     <p class="contant__message">
@@ -43,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 </template>
@@ -50,6 +52,7 @@
 <style>
 .contact__row {
     display: flex;
+    justify-content: space-evenly;
 }
 
 .contact__heading {
@@ -73,7 +76,6 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-right: 32px;
 }
 .contact__image {
     width: 100px;
