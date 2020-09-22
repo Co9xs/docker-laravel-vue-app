@@ -44,9 +44,23 @@
                             <div v-if="reviews.length === 0">
                                 この企業への口コミはまだありません。
                             </div>
+                            <div class="company-detail__pagination mt-3">
+                                <Paginate
+                                    :page-count="getPageCount"
+                                    :page-range="3"
+                                    :margin-pages="2"
+                                    :click-handler="clickCallback"
+                                    :prev-text="'<< '"
+                                    :next-text="' >>'"
+                                    :container-class="'pagination pg-blue'"
+                                    :page-class="'page-item'"
+                                    :page-link-class="'page-link'"
+                                >
+                                </Paginate>
+                            </div>
                             <div
                                 class="mt-3"
-                                v-for="review in reviews"
+                                v-for="review in reviewsForPagination"
                                 :key="review.id"
                             >
                                 <ReviewCard :review="review"></ReviewCard>
@@ -85,6 +99,7 @@ import StarRating from "../../components/StarRating.vue";
 import ReviewCreateForm from "../../components/ReviewCreateForm.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
 import Loading from "../../components/Loading.vue";
+import Paginate from "vuejs-paginate";
 import { options } from "../../toastOptions";
 import { mapGetters } from "vuex";
 
@@ -93,7 +108,8 @@ export default {
         StarRating,
         ReviewCreateForm,
         ReviewCard,
-        Loading
+        Loading,
+        Paginate
     },
     data() {
         return {
@@ -101,10 +117,15 @@ export default {
             average_point: 0,
             reviews: [],
             isActive: "1",
-            loading: false
+            loading: false,
+            parPage: 4,
+            currentPage: 1
         };
     },
     methods: {
+        clickCallback(pageNum) {
+            this.currentPage = parseInt(pageNum);
+        },
         async updateOrCreateCompany() {
             const data = {
                 number: this.$route.params.corporateNum
@@ -157,7 +178,17 @@ export default {
     computed: {
         ...mapGetters({
             loggedIn: "auth/checkAuth"
-        })
+        }),
+        reviewsForPagination() {
+            const current = this.currentPage * this.parPage;
+            const start = current - this.parPage;
+            if (this.reviews.length !== 0) {
+                return this.reviews.slice(start, current);
+            }
+        },
+        getPageCount() {
+            return Math.ceil(this.reviews.length / this.parPage);
+        }
     },
     created() {
         this.updateOrCreateCompany();

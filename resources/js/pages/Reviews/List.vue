@@ -36,7 +36,7 @@
                         <div class="review-list__dropdown">
                             <DropDownMenu
                                 :label="'並び替え'"
-                                :listItems="items"
+                                :listItems="orders"
                                 @labelClicked="sortBy"
                             ></DropDownMenu>
                         </div>
@@ -85,7 +85,7 @@ export default {
             loading: true,
             parPage: 4,
             currentPage: 1,
-            items: ["評価の高い順", "新着順"]
+            orders: ["評価の高い順", "新着順"]
         };
     },
     methods: {

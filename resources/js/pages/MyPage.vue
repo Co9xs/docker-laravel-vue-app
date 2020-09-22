@@ -82,9 +82,25 @@
                                         >
                                             投稿した口コミはまだありません
                                         </li>
+                                        <li class="company-detail__pagination">
+                                            <Paginate
+                                                :page-count="getPageCount"
+                                                :page-range="3"
+                                                :margin-pages="2"
+                                                :click-handler="clickCallback"
+                                                :prev-text="'<< '"
+                                                :next-text="' >>'"
+                                                :container-class="
+                                                    'pagination pg-blue'
+                                                "
+                                                :page-class="'page-item'"
+                                                :page-link-class="'page-link'"
+                                            >
+                                            </Paginate>
+                                        </li>
                                         <li
-                                            class="mypage__item"
-                                            v-for="review in reviews"
+                                            class="mypage__item mt-1"
+                                            v-for="review in reviewsForPagination"
                                             :key="review.id"
                                         >
                                             <ReviewCard
@@ -206,19 +222,26 @@
 
 <script>
 import ReviewCard from "../components/Review/ReviewCard";
-import { options } from "../toastOptions"
+import Paginate from "vuejs-paginate";
+import { options } from "../toastOptions";
 export default {
     components: {
-        ReviewCard
+        ReviewCard,
+        Paginate
     },
     data() {
         return {
             isActive: "1",
             user: null,
-            reviews: null
+            reviews: [],
+            parPage: 4,
+            currentPage: 1
         };
     },
     methods: {
+        clickCallback(pageNum) {
+            this.currentPage = parseInt(pageNum);
+        },
         changeTab(num) {
             this.isActive = num;
         },
@@ -237,11 +260,23 @@ export default {
                 `/api/users/${this.user.id}`,
                 user
             );
-            this.changeTab('1');
+            this.changeTab("1");
             this.showToast("ユーザー情報を更新しました", options);
         },
         showToast(message, options) {
             this.$toasted.success(message, options);
+        }
+    },
+    computed: {
+        reviewsForPagination() {
+            const current = this.currentPage * this.parPage;
+            const start = current - this.parPage;
+            if (this.reviews.length !== 0) {
+                return this.reviews.slice(start, current);
+            }
+        },
+        getPageCount() {
+            return Math.ceil(this.reviews.length / this.parPage);
         }
     },
     mounted() {
@@ -255,7 +290,7 @@ export default {
     background-color: #fff;
     border-radius: 5px;
     padding: 12px 24px;
-    margin-top: 24px;
+    margin: 24px 0;
 }
 
 .mypage__heading {

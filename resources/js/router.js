@@ -9,6 +9,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.vue";
 import CompanyList from "./pages/Companies/List.vue";
 import CompanyDetail from "./pages/Companies/Detail.vue";
 import MyPage from "./pages/MyPage.vue";
+import Contact from "./pages/Contact.vue";
 import Login from "./pages/Auth/Login.vue";
 import Register from "./pages/Auth/Register.vue";
 import store from "./store";
@@ -75,6 +76,10 @@ const routes = [
     {
         path: "/privacy-policy",
         component: PrivacyPolicy
+    },
+    {
+        path: "/contact",
+        component: Contact
     }
 ];
 
