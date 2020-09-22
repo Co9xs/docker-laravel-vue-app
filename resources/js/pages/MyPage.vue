@@ -3,6 +3,7 @@
         <div class="mypage">
             <div class="mypage__header">
                 <div class="mypage__avatar">
+                    <AvatarCropper></AvatarCropper>
                     <img class="mypage__image" src alt />
                 </div>
                 <h5 class="mypage__title">マイページ</h5>
@@ -222,12 +223,14 @@
 
 <script>
 import ReviewCard from "../components/Review/ReviewCard";
+import AvatarCropper from "../components/AvatarCropper";
 import Paginate from "vuejs-paginate";
 import { options } from "../toastOptions";
 export default {
     components: {
         ReviewCard,
-        Paginate
+        Paginate,
+        AvatarCropper
     },
     data() {
         return {
