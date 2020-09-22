@@ -234,7 +234,7 @@ export default {
             isActive: "1",
             user: null,
             reviews: [],
-            parPage: 4,
+            parPage: 2,
             currentPage: 1
         };
     },
