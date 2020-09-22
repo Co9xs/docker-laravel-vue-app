@@ -53,10 +53,25 @@
                             </div>
                         </div>
                         <div class="review-create" v-if="isActive === '2'">
-                            <ReviewCreateForm
-                                :company="company"
-                                @postRequest="addReview"
-                            ></ReviewCreateForm>
+                            <div class="review-create__form" v-if="loggedIn">
+                                <ReviewCreateForm
+                                    :company="company"
+                                    @postRequest="addReview"
+                                ></ReviewCreateForm>
+                            </div>
+                            <div class="review-create__cta" v-if="!loggedIn">
+                                <p class="review-create__message">
+                                    口コミの投稿機能を利用するにはログインが必要です。
+                                </p>
+                                <a class="review-create__login" href="/login"
+                                    >ログインはこちら</a
+                                >
+                                <a
+                                    class="review-create__signup"
+                                    href="/register"
+                                    >新規登録はこちら</a
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,6 +86,8 @@ import ReviewCreateForm from "../../components/ReviewCreateForm.vue";
 import ReviewCard from "../../components/Review/ReviewCard.vue";
 import Loading from "../../components/Loading.vue";
 import { options } from "../../toastOptions";
+import { mapGetters } from "vuex";
+
 export default {
     components: {
         StarRating,
@@ -137,6 +154,11 @@ export default {
             return average;
         }
     },
+    computed: {
+        ...mapGetters({
+            loggedIn: "auth/checkAuth"
+        })
+    },
     created() {
         this.updateOrCreateCompany();
     }
@@ -194,10 +216,6 @@ export default {
     color: #ee6054;
 }
 
-.review-create__form {
-    padding: 16px 0;
-}
-
 .review-create__title {
     font-size: 18px;
 }
@@ -232,5 +250,40 @@ export default {
     border: none;
     border-radius: 2px;
     padding: 5px 16px;
+}
+
+.review-create__cta {
+    text-align: center;
+    display: flex;
+    padding: 8px 0;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.review-create__message {
+    margin: 0;
+    padding: 8px 0;
+}
+
+.review-create__login {
+    padding: 8px 32px 8px 32px;
+    color: #fff;
+    background-color: #ffb808;
+    border: none !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+        0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+}
+
+.review-create__login:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.review-create__signup {
+    display: block;
+    padding: 8px;
+    border: none;
 }
 </style>

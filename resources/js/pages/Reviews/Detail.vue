@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <a href="/reviews">レビュー一覧に戻る</a>
+        <a v-if="!loading" href="/reviews">口コミ一覧に戻る</a>
     </div>
 </template>
 

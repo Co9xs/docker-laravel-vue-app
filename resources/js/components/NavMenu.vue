@@ -42,10 +42,16 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { options } from "../toastOptions";
+
 export default {
     methods: {
         async logout() {
             await this.$store.dispatch("auth/logout");
+            this.showToast("ログアウトしました", options);
+        },
+        showToast(message, options) {
+            this.$toasted.info(message, options);
         }
     },
     computed: {

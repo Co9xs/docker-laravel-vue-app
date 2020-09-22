@@ -11,7 +11,6 @@ import CompanyDetail from "./pages/Companies/Detail.vue";
 import MyPage from "./pages/MyPage.vue";
 import Login from "./pages/Auth/Login.vue";
 import Register from "./pages/Auth/Register.vue";
-import Test from "./pages/Test.vue";
 import store from "./store";
 
 Vue.use(VueRouter);
@@ -25,8 +24,7 @@ const routes = [
         path: "/login",
         component: Login,
         beforeEnter(to, from, next) {
-            console.log("test");
-            if (store.getters["auth/check"]) {
+            if (store.getters["auth/checkAuth"]) {
                 next("/");
             } else {
                 next();
@@ -39,7 +37,16 @@ const routes = [
     },
     {
         path: "/mypage/:id",
-        component: MyPage
+        component: MyPage,
+        beforeEnter(to, from, next) {
+            if (!store.getters["auth/checkAuth"]) {
+                next("/login");
+            } else if (store.getters["auth/userId"] != to.params.id) {
+                next(from);
+            } else {
+                next();
+            }
+        }
     },
     {
         path: "/reviews",
@@ -60,10 +67,6 @@ const routes = [
     {
         path: "/companies",
         component: CompanyList
-    },
-    {
-        path: "/test",
-        component: Test
     },
     {
         path: "/company-api-info",

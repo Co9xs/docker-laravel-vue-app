@@ -52,6 +52,8 @@
 </template>
 
 <script>
+import { options } from "../../toastOptions";
+
 export default {
     data() {
         return {
@@ -66,6 +68,10 @@ export default {
         async login() {
             await this.$store.dispatch("auth/login", this.loginForm);
             this.$router.push("/");
+            this.showToast("ログインしました", options);
+        },
+        showToast(message, options) {
+            this.$toasted.success(message, options);
         }
     }
 };
@@ -118,7 +124,7 @@ export default {
 .login__btn {
     text-align: center;
     padding: 5px 15px;
-    background-color: #00beff;
+    background-color: #FFB808;
     border: none;
     border-radius: 3px;
     color: #fff;

@@ -88,7 +88,6 @@ export default {
             items: ["評価の高い順", "新着順"]
         };
     },
-
     methods: {
         async getReviews() {
             if (!this.$route.query.keyword) {
