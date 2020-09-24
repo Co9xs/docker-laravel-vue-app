@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <img v-if="userAvatar" :src="userAvatar">
-    <button id="pick-avatar">Select an image</button>
+    <button id="pick-avatar">画像を選択</button>
     <avatar-cropper
       @uploaded="handleUploaded"
       trigger="#pick-avatar"

@@ -43217,9 +43217,7 @@ var render = function() {
     [
       _vm.userAvatar ? _c("img", { attrs: { src: _vm.userAvatar } }) : _vm._e(),
       _vm._v(" "),
-      _c("button", { attrs: { id: "pick-avatar" } }, [
-        _vm._v("Select an image")
-      ]),
+      _c("button", { attrs: { id: "pick-avatar" } }, [_vm._v("画像を選択")]),
       _vm._v(" "),
       _c("avatar-cropper", {
         attrs: { trigger: "#pick-avatar", "upload-url": "/files/upload" },
