@@ -2917,7 +2917,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     review: Object
@@ -3729,33 +3728,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                console.log('search');
                 param = {
                   name: keyword
                 };
                 _this.searched = false;
                 _this.loading = true;
                 _this.companies = [];
-                _context.next = 6;
+                _context.next = 7;
                 return axios.post("api/v1/companies/search", param)["catch"](function (error) {
                   if (error.response.status === 500) {
                     _this.loading = false;
 
-                    _this.showToast("サーバーエラーが発生しました。検索ワードを確認してください", _toastOptions__WEBPACK_IMPORTED_MODULE_8__["options"]);
+                    _this.showToast("サーバーエラーが発生しました。管理者にお問い合わせください。", _toastOptions__WEBPACK_IMPORTED_MODULE_8__["options"]);
 
                     return;
                   }
                 });
 
-              case 6:
+              case 7:
                 response = _context.sent;
 
                 if (response.status === 200) {
-                  _this.companies = response.data.corporation;
+                  _this.companies = response.data.corporation.length > 1 ? response.data.corporation : [response.data.corporation];
                   _this.loading = false;
                   _this.searched = true;
                 }
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -9671,7 +9671,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.user__avatar {\n    width: 46px;\n    height: 46px;\n    border: 1px #efefef solid;\n    border-radius: 50%;\n    overflow: hidden;\n    margin-right: 5px;\n}\n", ""]);
+exports.push([module.i, "\n.user__avatar {\n    width: 46px;\n    height: 46px;\n    border: 1px #efefef solid;\n    border-radius: 50%;\n    overflow: hidden;\n    margin-right: 5px;\n    background-size: cover;\n}\n.user__avatar--man {\n    background-image: url('/img/man.png');\n}\n.user__avatar--woman {\n    background-image: url('/img/woman.png');\n}\n", ""]);
 
 // exports
 
@@ -44116,11 +44116,7 @@ var render = function() {
       {
         staticClass: "search-bar__btn",
         attrs: { type: "button" },
-        on: {
-          click: function($event) {
-            return _vm.search()
-          }
-        }
+        on: { click: _vm.search }
       },
       [_vm._v("\n        検索\n    ")]
     )
@@ -44759,7 +44755,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "user d-flex flex-row" }, [
-    _vm._m(0),
+    _vm.review.user.sex === "男性"
+      ? _c("div", { staticClass: "user__avatar user__avatar--man" })
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.review.user.sex === "女性"
+      ? _c("div", { staticClass: "user__avatar user__avatar--woman" })
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "user__info" }, [
       _c("div", { staticClass: "font-weight-bold" }, [
@@ -44786,18 +44788,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "user__avatar" }, [
-      _c("img", {
-        attrs: { src: "https://cdn.jobtalk.jp/top/img/3c2b37a.svg" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -69672,8 +69663,8 @@ function getCookieValue(searchKey) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/fujishimaryo/my-vue-app/laravel-vue-app/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/fujishimaryo/my-vue-app/laravel-vue-app/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/laravel-vue-app/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/laravel-vue-app/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

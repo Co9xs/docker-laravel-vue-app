@@ -1,8 +1,7 @@
 <template>
     <div class="user d-flex flex-row">
-        <div class="user__avatar">
-            <img src="https://cdn.jobtalk.jp/top/img/3c2b37a.svg">
-        </div>
+        <div v-if="review.user.sex === '男性'" class="user__avatar user__avatar--man"></div>
+        <div v-if="review.user.sex === '女性'" class="user__avatar user__avatar--woman"></div>
         <div class="user__info">
             <div class="font-weight-bold">
                 {{ review.user.school_name }}/{{
@@ -33,5 +32,14 @@ export default {
     border-radius: 50%;
     overflow: hidden;
     margin-right: 5px;
+    background-size: cover;
+}
+
+.user__avatar--man {
+    background-image: url('/img/man.png');
+}
+
+.user__avatar--woman {
+    background-image: url('/img/woman.png');
 }
 </style>

@@ -94,6 +94,7 @@ export default {
     },
     methods: {
         async search(keyword) {
+            console.log('search')
             const param = {
                 name: keyword
             };
@@ -106,14 +107,14 @@ export default {
                     if (error.response.status === 500) {
                         this.loading = false;
                         this.showToast(
-                            "サーバーエラーが発生しました。検索ワードを確認してください",
+                            "サーバーエラーが発生しました。管理者にお問い合わせください。",
                             options
                         );
                         return;
                     }
                 });
             if (response.status === 200) {
-                this.companies = response.data.corporation;
+                this.companies = response.data.corporation.length > 1 ? response.data.corporation : [response.data.corporation];
                 this.loading = false;
                 this.searched = true;
             }

@@ -7,7 +7,7 @@
             type="text"
             @keydown.enter="search"
         />
-        <button @click="search()" class="search-bar__btn" type="button">
+        <button @click="search" class="search-bar__btn" type="button">
             検索
         </button>
     </div>
