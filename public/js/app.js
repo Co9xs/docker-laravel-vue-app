@@ -3430,6 +3430,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -3573,8 +3574,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
       var sum = evaluations.reduce(function (sum, current) {
         return sum + current;
-      });
-      var average = sum / this.reviews.length;
+      }, 0);
+      var average = this.reviews.length !== 0 ? sum / this.reviews.length : 0;
       return average;
     }
   },
@@ -45477,24 +45478,30 @@ var render = function() {
     !_vm.loading
       ? _c("div", { staticClass: "company-show" }, [
           _c("div", { staticClass: "company-show__header" }, [
-            _c("h5", { staticClass: "company-show__name" }, [
-              _vm._v(_vm._s(_vm.company.name))
-            ]),
+            _vm.company
+              ? _c("h5", { staticClass: "company-show__name" }, [
+                  _vm._v(_vm._s(_vm.company.name))
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _c("p", { staticClass: "company-show__area" }, [
-              _vm._v("本社所在地：" + _vm._s(_vm.company.area))
-            ]),
+            _vm.company
+              ? _c("p", { staticClass: "company-show__area" }, [
+                  _vm._v("本社所在地：" + _vm._s(_vm.company.area))
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "company-show__star-rating" },
               [
-                _c("StarRating", {
-                  attrs: {
-                    label: "平均評価",
-                    starNum: _vm.company.average_point
-                  }
-                })
+                _vm.company
+                  ? _c("StarRating", {
+                      attrs: {
+                        label: "平均評価",
+                        starNum: _vm.company.average_point
+                      }
+                    })
+                  : _vm._e()
               ],
               1
             )

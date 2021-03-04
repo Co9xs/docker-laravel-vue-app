@@ -5,10 +5,11 @@
         </div>
         <div class="company-show" v-if="!loading">
             <div class="company-show__header">
-                <h5 class="company-show__name">{{ company.name }}</h5>
-                <p class="company-show__area">本社所在地：{{ company.area }}</p>
+                <h5 class="company-show__name" v-if="company">{{ company.name }}</h5>
+                <p class="company-show__area" v-if="company">本社所在地：{{ company.area }}</p>
                 <div class="company-show__star-rating">
                     <StarRating
+                        v-if="company"
                         :label="'平均評価'"
                         :starNum="company.average_point"
                     ></StarRating>
@@ -177,8 +178,8 @@ export default {
         },
         calcAveragePoint() {
             const evaluations = this.reviews.map(review => review.evaluation);
-            const sum = evaluations.reduce((sum, current) => sum + current);
-            const average = sum / this.reviews.length;
+            const sum = evaluations.reduce((sum, current) => sum + current, 0);
+            const average = this.reviews.length !==0 ? sum / this.reviews.length : 0;
             return average;
         }
     },
