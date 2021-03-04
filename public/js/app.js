@@ -3510,7 +3510,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -3518,17 +3517,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 reviewData.company_id = _this2.company.id;
                 reviewData.company_name = _this2.company.name;
                 _context2.next = 4;
-                return axios.post("/api/v1/reviews", reviewData);
+                return axios.post("/api/v1/reviews", reviewData).then(function (res) {})["catch"](function (error) {
+                  _this2.showToast("サーバーエラーが発生しました。", _toastOptions__WEBPACK_IMPORTED_MODULE_6__["options"], 'error');
+                });
 
               case 4:
-                response = _context2.sent;
-                _context2.next = 7;
+                _context2.next = 6;
                 return _this2.$router.push("/reviews");
 
-              case 7:
+              case 6:
                 _this2.showToast("口コミを投稿しました", _toastOptions__WEBPACK_IMPORTED_MODULE_6__["options"]);
 
-              case 8:
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -3566,7 +3566,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     showToast: function showToast(message, options) {
-      this.$toasted.success(message, options);
+      var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'success';
+
+      if (type === 'success') {
+        this.$toasted.success(message, options);
+      }
+
+      if (type === 'error') {
+        this.$toasted.error(message, options);
+      }
     },
     calcAveragePoint: function calcAveragePoint() {
       var evaluations = this.reviews.map(function (review) {
@@ -43840,37 +43848,39 @@ var render = function() {
                 }
               },
               [
-                _c("option", { attrs: { value: "1" } }, [
+                _c("option", { attrs: { value: "フロントエンドエンジニア" } }, [
                   _vm._v("フロントエンドエンジニア")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [_vm._v("デザイナー")]),
+                _c("option", { attrs: { value: "デザイナー" } }, [
+                  _vm._v("デザイナー")
+                ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [
+                _c("option", { attrs: { value: "バックエンドエンジニア" } }, [
                   _vm._v("バックエンドエンジニア")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "4" } }, [
+                _c("option", { attrs: { value: "インフラエンジニア" } }, [
                   _vm._v("インフラエンジニア")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "5" } }, [
+                _c("option", { attrs: { value: "機械学習エンジニア" } }, [
                   _vm._v("機械学習エンジニア")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "6" } }, [
+                _c("option", { attrs: { value: "データサイエンティスト" } }, [
                   _vm._v("データサイエンティスト")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "7" } }, [
+                _c("option", { attrs: { value: "iOS&Androidエンジニア" } }, [
                   _vm._v("iOS&Androidエンジニア")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "8" } }, [
+                _c("option", { attrs: { value: "ゲームクリエイター" } }, [
                   _vm._v("ゲームクリエイター")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "9" } }, [_vm._v("その他")])
+                _c("option", { attrs: { value: "その他" } }, [_vm._v("その他")])
               ]
             )
           ]),
@@ -43914,17 +43924,19 @@ var render = function() {
                 }
               },
               [
-                _c("option", { attrs: { value: "1" } }, [
+                _c("option", { attrs: { value: "短期インターン" } }, [
                   _vm._v("短期インターン")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [
+                _c("option", { attrs: { value: "長期インターン" } }, [
                   _vm._v("長期インターン")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("アルバイト")]),
+                _c("option", { attrs: { value: "アルバイト" } }, [
+                  _vm._v("アルバイト")
+                ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "4" } }, [_vm._v("その他")])
+                _c("option", { attrs: { value: "その他" } }, [_vm._v("その他")])
               ]
             )
           ]),

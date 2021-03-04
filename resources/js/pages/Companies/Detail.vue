@@ -158,7 +158,11 @@ export default {
         async addReview(reviewData) {
             reviewData.company_id = this.company.id;
             reviewData.company_name = this.company.name;
-            const response = await axios.post("/api/v1/reviews", reviewData);
+            await axios.post("/api/v1/reviews", reviewData)
+            .then(res => {})
+            .catch(error => {
+                this.showToast("サーバーエラーが発生しました。", options, 'error')
+            })
             await this.$router.push("/reviews");
             this.showToast("口コミを投稿しました", options);
         },
@@ -173,15 +177,20 @@ export default {
             this.reviews = response.data;
             this.loading = false;
         },
-        showToast(message, options) {
-            this.$toasted.success(message, options);
+        showToast(message, options, type='success') {
+            if(type==='success') {
+                this.$toasted.success(message, options);
+            }
+            if(type==='error') {
+                this.$toasted.error(message, options);
+            }
         },
         calcAveragePoint() {
             const evaluations = this.reviews.map(review => review.evaluation);
             const sum = evaluations.reduce((sum, current) => sum + current, 0);
             const average = this.reviews.length !==0 ? sum / this.reviews.length : 0;
             return average;
-        }
+        },
     },
     computed: {
         ...mapGetters({

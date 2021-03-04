@@ -25,15 +25,15 @@
                             id="type_of_work"
                             v-model="reviewForm.type_of_occupation"
                         >
-                            <option value="1">フロントエンドエンジニア</option>
-                            <option value="2">デザイナー</option>
-                            <option value="3">バックエンドエンジニア</option>
-                            <option value="4">インフラエンジニア</option>
-                            <option value="5">機械学習エンジニア</option>
-                            <option value="6">データサイエンティスト</option>
-                            <option value="7">iOS&Androidエンジニア</option>
-                            <option value="8">ゲームクリエイター</option>
-                            <option value="9">その他</option>
+                            <option value="フロントエンドエンジニア">フロントエンドエンジニア</option>
+                            <option value="デザイナー">デザイナー</option>
+                            <option value="バックエンドエンジニア">バックエンドエンジニア</option>
+                            <option value="インフラエンジニア">インフラエンジニア</option>
+                            <option value="機械学習エンジニア">機械学習エンジニア</option>
+                            <option value="データサイエンティスト">データサイエンティスト</option>
+                            <option value="iOS&Androidエンジニア">iOS&Androidエンジニア</option>
+                            <option value="ゲームクリエイター">ゲームクリエイター</option>
+                            <option value="その他">その他</option>
                         </select>
                     </div>
                     <div class="review-create__input-group">
@@ -46,10 +46,10 @@
                             id="term"
                             v-model="reviewForm.work_style"
                         >
-                            <option value="1">短期インターン</option>
-                            <option value="2">長期インターン</option>
-                            <option value="3">アルバイト</option>
-                            <option value="4">その他</option>
+                            <option value="短期インターン">短期インターン</option>
+                            <option value="長期インターン">長期インターン</option>
+                            <option value="アルバイト">アルバイト</option>
+                            <option value="その他">その他</option>
                         </select>
                     </div>
                     <div class="review-create__input-group">
