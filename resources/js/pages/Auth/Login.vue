@@ -1,12 +1,16 @@
 <template>
     <div class="container">
-        <div class="row">
+        <Loading v-show="loading"></Loading>
+        <div class="row" v-show="!loading">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="login">
                     <form class="login__form" @submit.prevent="login()">
                         <p class="login__title">
                             ログイン
+                        </p>
+                        <p class="login__message" v-if="hasLoginError">
+                            メールアドレスまたはパスワードが間違っています。
                         </p>
                         <div class="login__row">
                             <div class="login__column">
@@ -53,22 +57,36 @@
 
 <script>
 import { options } from "../../toastOptions";
+import Loading from "../../components/Loading";
 
 export default {
+    components: {
+        Loading
+    },
     data() {
         return {
             loginForm: {
                 email: "",
                 password: "",
                 password_confirmation: ""
-            }
+            },
+            hasLoginError: false,
+            loading: false,
         };
     },
     methods: {
-        async login() {
-            await this.$store.dispatch("auth/login", this.loginForm);
-            this.$router.push("/");
-            this.showToast("ログインしました", options);
+        login() {
+            this.hasLoginError = false;
+            this.loading = true;
+            this.$store.dispatch("auth/login", this.loginForm)
+            .then(response => {
+                this.loading = false;
+                this.$router.push("/");
+                this.showToast("ログインしました", options);
+            }).catch(error => {
+                this.loading = false;
+                this.hasLoginError = true;
+            })
         },
         showToast(message, options) {
             this.$toasted.success(message, options);
@@ -102,6 +120,13 @@ export default {
     font-weight: bold;
     margin: 0;
     padding: 5px;
+}
+
+.login__message {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    color: #dc143c;
 }
 
 .login__input-group {

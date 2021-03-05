@@ -2228,21 +2228,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _toastOptions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../toastOptions */ "./resources/js/toastOptions.js");
-
-
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _toastOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toastOptions */ "./resources/js/toastOptions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
 //
@@ -2293,30 +2285,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     logout: function logout() {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.$store.dispatch("auth/logout");
+      this.$store.dispatch("auth/logout").then(function (reponse) {
+        _this.$router.push("/");
 
-              case 2:
-                _this.showToast("ログアウトしました", _toastOptions__WEBPACK_IMPORTED_MODULE_2__["options"]);
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
+        _this.showToast("ログアウトしました", _toastOptions__WEBPACK_IMPORTED_MODULE_1__["options"], 'success');
+      })["catch"](function (error) {
+        _this.showToast("サーバーエラーが発生しました", _toastOptions__WEBPACK_IMPORTED_MODULE_1__["options"], 'erorr');
+      });
     },
-    showToast: function showToast(message, options) {
-      this.$toasted.info(message, options);
+    showToast: function showToast(message, options, type) {
+      if (type === 'error') {
+        this.$toasted.erorr(message, options);
+      }
+
+      if (type === 'success') {
+        this.$toasted.success(message, options);
+      }
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     isLogin: "auth/checkAuth",
     userId: "auth/userId"
   }))
@@ -2934,103 +2921,98 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _toastOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toastOptions */ "./resources/js/toastOptions.js");
+/* harmony import */ var _toastOptions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../toastOptions */ "./resources/js/toastOptions.js");
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Loading */ "./resources/js/components/Loading.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Loading: _components_Loading__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {
       loginForm: {
         email: "",
         password: "",
         password_confirmation: ""
-      }
+      },
+      hasLoginError: false,
+      loading: false
     };
   },
   methods: {
     login: function login() {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.$store.dispatch("auth/login", _this.loginForm);
+      this.hasLoginError = false;
+      this.loading = true;
+      this.$store.dispatch("auth/login", this.loginForm).then(function (response) {
+        _this.loading = false;
 
-              case 2:
-                _this.$router.push("/");
+        _this.$router.push("/");
 
-                _this.showToast("ログインしました", _toastOptions__WEBPACK_IMPORTED_MODULE_1__["options"]);
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
+        _this.showToast("ログインしました", _toastOptions__WEBPACK_IMPORTED_MODULE_0__["options"]);
+      })["catch"](function (error) {
+        _this.loading = false;
+        _this.hasLoginError = true;
+      });
     },
     showToast: function showToast(message, options) {
       this.$toasted.success(message, options);
@@ -3049,188 +3031,189 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Loading */ "./resources/js/components/Loading.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Loading: _components_Loading__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       registerForm: {
@@ -3241,31 +3224,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sex: "",
         graduation_year: "",
         school_name: ""
-      }
+      },
+      loading: false,
+      hasRegisterError: false
     };
   },
   methods: {
     register: function register() {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.$store.dispatch("auth/register", _this.registerForm);
+      this.loading = true;
+      this.$store.dispatch("auth/register", this.registerForm).then(function (response) {
+        _this.loading = false;
 
-              case 2:
-                _this.$router.push("/");
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
+        _this.$router.push("/");
+      })["catch"](function (error) {
+        _this.loading = false;
+        _this.hasRegisterError = true;
+      });
     }
   }
 });
@@ -3698,7 +3674,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var param, response;
+        var param;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3710,26 +3686,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.loading = true;
                 _this.companies = [];
                 _context.next = 6;
-                return axios.post("api/v1/companies/search", param)["catch"](function (error) {
-                  if (error.response.status === 500) {
-                    _this.loading = false;
+                return axios.post("api/v1/companies/search", param).then(function (response) {
+                  _this.companies = [];
 
-                    _this.showToast("サーバーエラーが発生しました。管理者にお問い合わせください。", _toastOptions__WEBPACK_IMPORTED_MODULE_8__["options"]);
-
-                    return;
+                  if (response.data.corporation) {
+                    _this.companies = response.data.corporation.length > 1 ? response.data.corporation : [response.data.corporation];
                   }
+
+                  _this.loading = false;
+                  _this.searched = true;
+                })["catch"](function (error) {
+                  _this.loading = false;
+
+                  _this.showToast("サーバーエラーが発生しました。", _toastOptions__WEBPACK_IMPORTED_MODULE_8__["options"]);
                 });
 
               case 6:
-                response = _context.sent;
-
-                if (response.status === 200) {
-                  _this.companies = response.data.corporation.length > 1 ? response.data.corporation : [response.data.corporation];
-                  _this.loading = false;
-                  _this.searched = true;
-                }
-
-              case 8:
               case "end":
                 return _context.stop();
             }
@@ -9594,7 +9566,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.login {\n    margin-top: 50px;\n    background-color: #fff;\n    padding: 20px;\n    border-radius: 5px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n.login__row {\n    display: flex;\n    justify-content: center;\n    margin-top: 10px;\n}\n.login__column {\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n}\n.login__title {\n    font-size: 20px;\n    font-weight: bold;\n    margin: 0;\n    padding: 5px;\n}\n.login__input-group {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin: 5px;\n}\n.login__label {\n    font-size: 15px;\n    margin: 0;\n}\n.login__input {\n    margin: 3px;\n    width: 50%;\n}\n.login__btn {\n    text-align: center;\n    padding: 5px 15px;\n    background-color: #FFB808;\n    border: none;\n    border-radius: 3px;\n    color: #fff;\n    margin-top: 20px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n", ""]);
+exports.push([module.i, "\n.login {\n    margin-top: 50px;\n    background-color: #fff;\n    padding: 20px;\n    border-radius: 5px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n.login__row {\n    display: flex;\n    justify-content: center;\n    margin-top: 10px;\n}\n.login__column {\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n}\n.login__title {\n    font-size: 20px;\n    font-weight: bold;\n    margin: 0;\n    padding: 5px;\n}\n.login__message {\n    font-size: 15px;\n    margin: 0;\n    padding: 0;\n    color: #dc143c;\n}\n.login__input-group {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin: 5px;\n}\n.login__label {\n    font-size: 15px;\n    margin: 0;\n}\n.login__input {\n    margin: 3px;\n    width: 50%;\n}\n.login__btn {\n    text-align: center;\n    padding: 5px 15px;\n    background-color: #FFB808;\n    border: none;\n    border-radius: 3px;\n    color: #fff;\n    margin-top: 20px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n", ""]);
 
 // exports
 
@@ -9613,7 +9585,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.register {\n    margin-top: 50px;\n    background-color: #fff;\n    padding: 20px;\n    border-radius: 5px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n.register__row {\n    display: flex;\n    justify-content: center;\n    margin-top: 10px;\n}\n.register__column {\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n}\n.register__title {\n    font-size: 20px;\n    font-weight: bold;\n    margin: 0;\n    padding: 5px;\n}\n.register__input-group {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin: 5px;\n}\n.register__label {\n    font-size: 15px;\n    margin: 0;\n}\n.register__input {\n    margin: 3px;\n    width: 50%;\n}\n.register__amend {\n    font-size: 10px;\n    margin: 0;\n    padding: 0;\n    font-weight: bold;\n}\n.register__amend--must {\n    color: red;\n}\n.register__amend--private {\n    color: #333;\n}\n.register__amend--optional {\n    color: #2d76d1;\n}\n.register__amend--public {\n    color: #4fc251;\n}\n.register__btn {\n    text-align: center;\n    padding: 5px 15px;\n    background-color: #4fc251;\n    border: none;\n    border-radius: 3px;\n    color: #fff;\n    margin-top: 20px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n@media (max-width: 575.98px) {\n.register__label {\n        font-size: 12px;\n}\n}\n", ""]);
+exports.push([module.i, "\n.register {\n    margin-top: 50px;\n    background-color: #fff;\n    padding: 20px;\n    border-radius: 5px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n.register__row {\n    display: flex;\n    justify-content: center;\n    margin-top: 10px;\n}\n.register__column {\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n}\n.register__title {\n    font-size: 20px;\n    font-weight: bold;\n    margin: 0;\n    padding: 5px;\n}\n.register__message {\n    font-size: 15px;\n    margin: 0;\n    padding: 0;\n    color: #dc143c;\n}\n.register__input-group {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin: 5px;\n}\n.register__label {\n    font-size: 15px;\n    margin: 0;\n}\n.register__input {\n    margin: 3px;\n    width: 50%;\n}\n.register__amend {\n    font-size: 10px;\n    margin: 0;\n    padding: 0;\n    font-weight: bold;\n}\n.register__amend--must {\n    color: red;\n}\n.register__amend--private {\n    color: #333;\n}\n.register__amend--optional {\n    color: #2d76d1;\n}\n.register__amend--public {\n    color: #4fc251;\n}\n.register__btn {\n    text-align: center;\n    padding: 5px 15px;\n    background-color: #4fc251;\n    border: none;\n    border-radius: 3px;\n    color: #fff;\n    margin-top: 20px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n@media (max-width: 575.98px) {\n.register__label {\n        font-size: 12px;\n}\n}\n", ""]);
 
 // exports
 
@@ -44718,117 +44690,163 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-2" }),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("Loading", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.loading,
+            expression: "loading"
+          }
+        ]
+      }),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "login" }, [
-          _c(
-            "form",
+      _c(
+        "div",
+        {
+          directives: [
             {
-              staticClass: "login__form",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.login()
-                }
-              }
-            },
-            [
-              _c("p", { staticClass: "login__title" }, [
-                _vm._v(
-                  "\n                        ログイン\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "login__row" }, [
-                _c("div", { staticClass: "login__column" }, [
-                  _c("div", { staticClass: "login__input-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "login__label",
-                        attrs: { for: "login-email" }
-                      },
-                      [
-                        _vm._v(
-                          "メールアドレス\n                                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.loginForm.email,
-                          expression: "loginForm.email"
-                        }
-                      ],
-                      staticClass: "login__input",
-                      attrs: { type: "email", id: "login-email" },
-                      domProps: { value: _vm.loginForm.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.loginForm, "email", $event.target.value)
-                        }
-                      }
-                    })
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.loading,
+              expression: "!loading"
+            }
+          ],
+          staticClass: "row"
+        },
+        [
+          _c("div", { staticClass: "col-md-2" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-8" }, [
+            _c("div", { staticClass: "login" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "login__form",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.login()
+                    }
+                  }
+                },
+                [
+                  _c("p", { staticClass: "login__title" }, [
+                    _vm._v(
+                      "\n                        ログイン\n                    "
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "login__input-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "login__label",
-                        attrs: { for: "login-password" }
-                      },
-                      [_vm._v("パスワード\n                                ")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.loginForm.password,
-                          expression: "loginForm.password"
-                        }
-                      ],
-                      staticClass: "login__input",
-                      attrs: { type: "password", id: "login-password" },
-                      domProps: { value: _vm.loginForm.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _vm.hasLoginError
+                    ? _c("p", { staticClass: "login__message" }, [
+                        _vm._v(
+                          "\n                        メールアドレスまたはパスワードが間違っています。\n                    "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "login__row" }, [
+                    _c("div", { staticClass: "login__column" }, [
+                      _c("div", { staticClass: "login__input-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "login__label",
+                            attrs: { for: "login-email" }
+                          },
+                          [
+                            _vm._v(
+                              "メールアドレス\n                                "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.loginForm.email,
+                              expression: "loginForm.email"
+                            }
+                          ],
+                          staticClass: "login__input",
+                          attrs: { type: "email", id: "login-email" },
+                          domProps: { value: _vm.loginForm.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.loginForm,
+                                "email",
+                                $event.target.value
+                              )
+                            }
                           }
-                          _vm.$set(
-                            _vm.loginForm,
-                            "password",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(0)
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2" })
-    ])
-  ])
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "login__input-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "login__label",
+                            attrs: { for: "login-password" }
+                          },
+                          [
+                            _vm._v(
+                              "パスワード\n                                "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.loginForm.password,
+                              expression: "loginForm.password"
+                            }
+                          ],
+                          staticClass: "login__input",
+                          attrs: { type: "password", id: "login-password" },
+                          domProps: { value: _vm.loginForm.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.loginForm,
+                                "password",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2" })
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -44865,332 +44883,370 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-2" }),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("Loading", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.loading,
+            expression: "loading"
+          }
+        ]
+      }),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "register" }, [
-          _c(
-            "form",
+      _c(
+        "div",
+        {
+          directives: [
             {
-              staticClass: "register__form",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.register()
-                }
-              }
-            },
-            [
-              _c("p", { staticClass: "register__title" }, [
-                _vm._v(
-                  "\n                        新規登録\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "register__row" }, [
-                _c("div", { staticClass: "register__column" }, [
-                  _c("div", { staticClass: "register__input-group" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.registerForm.name,
-                          expression: "registerForm.name"
-                        }
-                      ],
-                      staticClass: "register__input",
-                      attrs: { type: "text", id: "register-name" },
-                      domProps: { value: _vm.registerForm.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.registerForm,
-                            "name",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.loading,
+              expression: "!loading"
+            }
+          ],
+          staticClass: "row"
+        },
+        [
+          _c("div", { staticClass: "col-md-2" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-8" }, [
+            _c("div", { staticClass: "register" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "register__form",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.register()
+                    }
+                  }
+                },
+                [
+                  _c("p", { staticClass: "register__title" }, [
+                    _vm._v(
+                      "\n                        新規登録\n                    "
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "register__input-group" }, [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.registerForm.email,
-                          expression: "registerForm.email"
-                        }
-                      ],
-                      staticClass: "register__input",
-                      attrs: { type: "email", id: "register-email" },
-                      domProps: { value: _vm.registerForm.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.registerForm,
-                            "email",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
+                  _vm.hasRegisterError
+                    ? _c("p", { staticClass: "register__message" }, [
+                        _vm._v(
+                          "\n                        このメールアドレスは既に使用されています。\n                    "
+                        )
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c("div", { staticClass: "register__input-group" }, [
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.registerForm.password,
-                          expression: "registerForm.password"
-                        }
-                      ],
-                      staticClass: "register__input",
-                      attrs: { type: "password", id: "register-password" },
-                      domProps: { value: _vm.registerForm.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c("div", { staticClass: "register__row" }, [
+                    _c("div", { staticClass: "register__column" }, [
+                      _c("div", { staticClass: "register__input-group" }, [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registerForm.name,
+                              expression: "registerForm.name"
+                            }
+                          ],
+                          staticClass: "register__input",
+                          attrs: { type: "text", id: "register-name" },
+                          domProps: { value: _vm.registerForm.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registerForm,
+                                "name",
+                                $event.target.value
+                              )
+                            }
                           }
-                          _vm.$set(
-                            _vm.registerForm,
-                            "password",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "register__input-group" }, [
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.registerForm.password_confirmation,
-                          expression:
-                            "\n                                        registerForm.password_confirmation\n                                    "
-                        }
-                      ],
-                      staticClass: "register__input",
-                      attrs: {
-                        type: "password",
-                        id: "register-password-confirm"
-                      },
-                      domProps: {
-                        value: _vm.registerForm.password_confirmation
-                      },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.registerForm,
-                            "password_confirmation",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "register__input-group" }, [
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "register__radio-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.registerForm.sex,
-                            expression: "registerForm.sex"
-                          }
-                        ],
-                        staticClass: "register__radio",
-                        attrs: {
-                          type: "radio",
-                          name: "register-sex",
-                          id: "register-sex-man",
-                          value: "男性"
-                        },
-                        domProps: {
-                          checked: _vm._q(_vm.registerForm.sex, "男性")
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$set(_vm.registerForm, "sex", "男性")
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("label", { attrs: { for: "register-sex-man" } }, [
-                        _vm._v("男性")
+                        })
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.registerForm.sex,
-                            expression: "registerForm.sex"
+                      _c("div", { staticClass: "register__input-group" }, [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registerForm.email,
+                              expression: "registerForm.email"
+                            }
+                          ],
+                          staticClass: "register__input",
+                          attrs: { type: "email", id: "register-email" },
+                          domProps: { value: _vm.registerForm.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registerForm,
+                                "email",
+                                $event.target.value
+                              )
+                            }
                           }
-                        ],
-                        staticClass: "register__radio",
-                        attrs: {
-                          type: "radio",
-                          name: "register-sex",
-                          id: "register-sex-rady",
-                          value: "女性"
-                        },
-                        domProps: {
-                          checked: _vm._q(_vm.registerForm.sex, "女性")
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$set(_vm.registerForm, "sex", "女性")
-                          }
-                        }
-                      }),
+                        })
+                      ]),
                       _vm._v(" "),
-                      _c("label", { attrs: { for: "register-sex-rady" } }, [
-                        _vm._v("女性")
+                      _c("div", { staticClass: "register__input-group" }, [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registerForm.password,
+                              expression: "registerForm.password"
+                            }
+                          ],
+                          staticClass: "register__input",
+                          attrs: { type: "password", id: "register-password" },
+                          domProps: { value: _vm.registerForm.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registerForm,
+                                "password",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "register__input-group" }, [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registerForm.password_confirmation,
+                              expression:
+                                "\n                                        registerForm.password_confirmation\n                                    "
+                            }
+                          ],
+                          staticClass: "register__input",
+                          attrs: {
+                            type: "password",
+                            id: "register-password-confirm"
+                          },
+                          domProps: {
+                            value: _vm.registerForm.password_confirmation
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registerForm,
+                                "password_confirmation",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "register__input-group" }, [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "register__radio-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.registerForm.sex,
+                                expression: "registerForm.sex"
+                              }
+                            ],
+                            staticClass: "register__radio",
+                            attrs: {
+                              type: "radio",
+                              name: "register-sex",
+                              id: "register-sex-man",
+                              value: "男性"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.registerForm.sex, "男性")
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(_vm.registerForm, "sex", "男性")
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "register-sex-man" } }, [
+                            _vm._v("男性")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.registerForm.sex,
+                                expression: "registerForm.sex"
+                              }
+                            ],
+                            staticClass: "register__radio",
+                            attrs: {
+                              type: "radio",
+                              name: "register-sex",
+                              id: "register-sex-rady",
+                              value: "女性"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.registerForm.sex, "女性")
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(_vm.registerForm, "sex", "女性")
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "register-sex-rady" } }, [
+                            _vm._v("女性")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "register__input-group" }, [
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.registerForm.graduation_year,
+                                expression: "registerForm.graduation_year"
+                              }
+                            ],
+                            staticClass: "register__input",
+                            attrs: {
+                              name: "graduation-year",
+                              id: "register-graduation"
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.registerForm,
+                                  "graduation_year",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "19卒" } }, [
+                              _vm._v("19卒")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "20卒" } }, [
+                              _vm._v("20卒")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "21卒" } }, [
+                              _vm._v("21卒")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "22卒" } }, [
+                              _vm._v("22卒")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "23卒" } }, [
+                              _vm._v("23卒")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "24卒" } }, [
+                              _vm._v("24卒")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "register__input-group" }, [
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registerForm.school_name,
+                              expression: "registerForm.school_name"
+                            }
+                          ],
+                          staticClass: "register__input",
+                          attrs: { type: "text", id: "register-shcool" },
+                          domProps: { value: _vm.registerForm.school_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registerForm,
+                                "school_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
                       ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "register__input-group" }, [
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.registerForm.graduation_year,
-                            expression: "registerForm.graduation_year"
-                          }
-                        ],
-                        staticClass: "register__input",
-                        attrs: {
-                          name: "graduation-year",
-                          id: "register-graduation"
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.registerForm,
-                              "graduation_year",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "19卒" } }, [
-                          _vm._v("19卒")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "20卒" } }, [
-                          _vm._v("20卒")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "21卒" } }, [
-                          _vm._v("21卒")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "22卒" } }, [
-                          _vm._v("22卒")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "23卒" } }, [
-                          _vm._v("23卒")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "24卒" } }, [
-                          _vm._v("24卒")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "register__input-group" }, [
-                    _vm._m(6),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.registerForm.school_name,
-                          expression: "registerForm.school_name"
-                        }
-                      ],
-                      staticClass: "register__input",
-                      attrs: { type: "text", id: "register-shcool" },
-                      domProps: { value: _vm.registerForm.school_name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.registerForm,
-                            "school_name",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(7)
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2" })
-    ])
-  ])
+                  _vm._m(7)
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2" })
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -45577,7 +45633,10 @@ var render = function() {
               _vm._v(" "),
               _vm.searched
                 ? _c("SearchResult", {
-                    attrs: { number: _vm.companies.length, target: "会社" }
+                    attrs: {
+                      number: _vm.companies ? _vm.companies.length : 0,
+                      target: "会社"
+                    }
                   })
                 : _vm._e()
             ],
@@ -69249,19 +69308,21 @@ var mutations = {
 var actions = {
   register: function register(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios.post("/api/register", data);
+              return new Promise(function (resolve, reject) {
+                axios.post("/api/register", data).then(function (response) {
+                  context.commit("setUser", response.data);
+                  resolve(response);
+                })["catch"](function (error) {
+                  reject(error);
+                });
+              });
 
             case 2:
-              response = _context.sent;
-              context.commit("setUser", response.data);
-
-            case 4:
             case "end":
               return _context.stop();
           }
@@ -69271,19 +69332,21 @@ var actions = {
   },
   login: function login(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios.post("/api/login", data);
+              return new Promise(function (resolve, reject) {
+                axios.post('/api/login', data).then(function (response) {
+                  context.commit('setUser', response.data);
+                  resolve(response);
+                })["catch"](function (error) {
+                  reject(error);
+                });
+              });
 
             case 2:
-              response = _context2.sent;
-              context.commit("setUser", response.data);
-
-            case 4:
             case "end":
               return _context2.stop();
           }
@@ -69293,19 +69356,21 @@ var actions = {
   },
   logout: function logout(context) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios.post("/api/logout");
+              return new Promise(function (resolve, reject) {
+                axios.post('/api/logout').then(function (response) {
+                  context.commit('setUser', null);
+                  resolve(response);
+                })["catch"](function (error) {
+                  reject(error);
+                });
+              });
 
             case 2:
-              response = _context3.sent;
-              context.commit("setUser", null);
-
-            case 4:
             case "end":
               return _context3.stop();
           }

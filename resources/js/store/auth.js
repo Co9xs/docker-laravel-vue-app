@@ -15,16 +15,38 @@ const mutations = {
 
 const actions = {
     async register(context, data) {
-        const response = await axios.post("/api/register", data);
-        context.commit("setUser", response.data);
+        await new Promise((resolve, reject) => { 
+            axios.post("/api/register", data)
+                .then(response => { 
+                    context.commit("setUser", response.data);
+                    resolve(response)
+                })
+                .catch(error => { 
+                    reject(error)
+                })
+        })
     },
     async login(context, data) {
-        const response = await axios.post("/api/login", data);
-        context.commit("setUser", response.data);
+        await new Promise((resolve, reject) => { 
+            axios.post('/api/login', data)
+                .then(response => { 
+                    context.commit('setUser', response.data);
+                    resolve(response)
+                }).catch(error => { 
+                    reject(error)
+                })
+        })
     },
     async logout(context) {
-        const response = await axios.post("/api/logout");
-        context.commit("setUser", null);
+        await new Promise((resolve, reject) => { 
+            axios.post('/api/logout')
+                .then(response => { 
+                    context.commit('setUser', null);
+                    resolve(response)
+                }).catch(error => { 
+                    reject(error)
+                })
+        })
     },
     async currentUser(context) {
         const response = await axios.get("/api/user");

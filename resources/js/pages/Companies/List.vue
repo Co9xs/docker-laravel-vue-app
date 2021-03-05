@@ -29,7 +29,7 @@
                     ></SearchBar>
                     <SearchResult
                         v-if="searched"
-                        :number="companies.length"
+                        :number="companies ? companies.length : 0"
                         :target="'会社'"
                     ></SearchResult>
                 </div>
@@ -100,23 +100,23 @@ export default {
             this.searched = false;
             this.loading = true;
             this.companies = [];
-            const response = await axios
+            await axios
                 .post("api/v1/companies/search", param)
-                .catch(error => {
-                    if (error.response.status === 500) {
-                        this.loading = false;
-                        this.showToast(
-                            "サーバーエラーが発生しました。管理者にお問い合わせください。",
-                            options
-                        );
-                        return;
+                .then(response => {
+                    this.companies = [];
+                    if(response.data.corporation) {
+                        this.companies = response.data.corporation.length > 1 ? response.data.corporation : [response.data.corporation];
                     }
+                    this.loading = false;
+                    this.searched = true;
+                })
+                .catch(error => {
+                    this.loading = false;
+                    this.showToast(
+                        "サーバーエラーが発生しました。",
+                        options
+                    );
                 });
-            if (response.status === 200) {
-                this.companies = response.data.corporation.length > 1 ? response.data.corporation : [response.data.corporation];
-                this.loading = false;
-                this.searched = true;
-            }
         },
         clickCallback(pageNum) {
             this.currentPage = parseInt(pageNum);

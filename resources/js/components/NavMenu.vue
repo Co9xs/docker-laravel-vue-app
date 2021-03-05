@@ -46,12 +46,22 @@ import { options } from "../toastOptions";
 
 export default {
     methods: {
-        async logout() {
-            await this.$store.dispatch("auth/logout");
-            this.showToast("ログアウトしました", options);
+        logout() {
+            this.$store.dispatch("auth/logout")
+            .then(reponse => {
+                this.$router.push("/");
+                this.showToast("ログアウトしました", options, 'success');
+            }).catch(error => {
+                this.showToast("サーバーエラーが発生しました", options, 'erorr');
+            })
         },
-        showToast(message, options) {
-            this.$toasted.info(message, options);
+        showToast(message, options, type) {
+            if(type === 'error') {
+                this.$toasted.erorr(message, options);
+            }
+            if(type === 'success') {
+                this.$toasted.success(message, options);
+            }
         }
     },
     computed: {

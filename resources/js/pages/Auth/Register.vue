@@ -1,12 +1,16 @@
 <template>
     <div class="container">
-        <div class="row">
+        <Loading v-show="loading"></Loading>
+        <div class="row" v-show="!loading">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="register">
                     <form class="register__form" @submit.prevent="register()">
                         <p class="register__title">
                             新規登録
+                        </p>
+                        <p class="register__message" v-if="hasRegisterError">
+                            このメールアドレスは既に使用されています。
                         </p>
                         <div class="register__row">
                             <div class="register__column">
@@ -172,7 +176,12 @@
 </template>
 
 <script>
+import Loading from "../../components/Loading";
+
 export default {
+    components: {
+        Loading
+    },
     data() {
         return {
             registerForm: {
@@ -183,13 +192,22 @@ export default {
                 sex: "",
                 graduation_year: "",
                 school_name: ""
-            }
+            },
+            loading: false,
+            hasRegisterError: false
         };
     },
     methods: {
-        async register() {
-            await this.$store.dispatch("auth/register", this.registerForm);
-            this.$router.push("/");
+        register() {
+            this.loading = true;
+            this.$store.dispatch("auth/register", this.registerForm)
+            .then(response => {
+                this.loading = false;
+                this.$router.push("/");
+            }).catch(error => {
+                this.loading = false;
+                this.hasRegisterError = true;
+            })
         }
     }
 };
@@ -220,6 +238,13 @@ export default {
     font-weight: bold;
     margin: 0;
     padding: 5px;
+}
+
+.register__message {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    color: #dc143c;
 }
 
 .register__input-group {
