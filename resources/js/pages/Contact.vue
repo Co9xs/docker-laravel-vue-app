@@ -11,35 +11,33 @@
                     <div class="contact__row">
                         <div class="contact__content">
                             <p class="contact__heading">
-                                <i
-                                    class="fab fa-twitter fa-sm contact__icon"
-                                ></i
-                                >Twitter
+                                <a
+                                    class="contact__link"
+                                    href="https://twitter.com/Co9xsR"
+                                    target="_blank"
+                                    rel="noopener"
+                                >
+                                    <i
+                                        class="fab fa-twitter fa-sm contact__icon"
+                                    ></i
+                                    >Twitter
+                                </a>
                             </p>
-                            <div
-                                class="contact__image contact__image--twitter"
-                            ></div>
-                            <a
-                                class="contact__link"
-                                href="https://twitter.com/Co9xsR"
-                                target="_blank"
-                                >@Co9xsR</a
-                            >
                         </div>
                         <div class="contact__content">
                             <p class="contact__heading">
-                                <i class="fab fa-github fa-sm contact__icon"></i
-                                >GitHub
+                                <a
+                                    class="contact__link"
+                                    href="https://github.com/Co9xs"
+                                    target="_blank"
+                                    rel="noopener"
+                                >
+                                    <i
+                                        class="fab fa-github fa-sm contact__icon"
+                                    ></i
+                                    >GitHub
+                                </a>
                             </p>
-                            <div
-                                class="contact__image contact__image--github"
-                            ></div>
-                            <a
-                                class="contact__link"
-                                href="https://github.com/Co9xs?tab=overview&from=2020-09-01&to=2020-09-22"
-                                target="_blank"
-                                >Co9xs</a
-                            >
                         </div>
                     </div>
                 </div>

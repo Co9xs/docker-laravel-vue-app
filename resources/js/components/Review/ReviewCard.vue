@@ -51,10 +51,10 @@
             </div>
             <div class="review__bottom">
                 <a class="review__link" :href="'/reviews/' + review.id">
-                    この口コミの続きを読む>>
+                    続きを読む>>
                 </a>
                 <span class="review__time"
-                    >投稿日時:{{ review.created_at }}</span
+                    >{{ review.created_at }}</span
                 >
             </div>
         </div>
@@ -114,14 +114,13 @@ export default {
     min-width: 0;
     word-wrap: break-word;
     background-clip: border-box;
-    padding: 0 10px 10px 0;
+    padding: 10px;
 }
 
 .review__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 2px solid #808080;
     border-bottom: 1px solid #7f7f7f;
 }
 
@@ -178,5 +177,11 @@ export default {
     transform: scale(1.4);
     padding: 3px;
     margin-left: 5px;
+}
+
+@media (max-width: 575.98px) {
+    .company-info__area {
+        display: block;
+    }
 }
 </style>

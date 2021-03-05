@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="mypage">
+        <div class="mypage" v-if="user">
             <div class="mypage__header">
                 <h5 class="mypage__title">マイページ</h5>
             </div>
@@ -96,7 +96,7 @@
                                             </Paginate>
                                         </li>
                                         <li
-                                            class="mypage__item mt-1"
+                                            class="mypage__item mypage__item--review mt-3"
                                             v-for="review in reviewsForPagination"
                                             :key="review.id"
                                         >
@@ -286,7 +286,7 @@ export default {
 .mypage__content {
     background-color: #fff;
     border-radius: 5px;
-    padding: 12px 24px;
+    padding: 10px 10px;
     margin: 24px 0;
 }
 
@@ -339,18 +339,15 @@ export default {
     align-items: center;
     padding: 16px 0;
 }
-.mypage__avatar {
-    width: 80px;
-    height: 80px;
-    border: 1px solid #707070;
-    border-radius: 5px;
-}
+
 .mypage__title {
     padding: 16px;
 }
+
 .mypage__cta {
     text-align: right;
 }
+
 .mypage__link {
     text-align: center;
     background-color: #4fc250;
@@ -375,5 +372,9 @@ export default {
 
 .mypage_input {
     width: 40%;
+}
+
+.mypage__item--review {
+    border-top: 2px solid #7f7f7f;
 }
 </style>

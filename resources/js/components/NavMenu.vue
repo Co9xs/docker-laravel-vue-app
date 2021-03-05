@@ -85,6 +85,7 @@ export default {
     vertical-align: middle;
     font-size: 18px;
     color: #333;
+    margin-right: 12px;
 }
 
 .nav__logo:hover {
@@ -100,8 +101,11 @@ export default {
 
 .nav__item {
     text-align: center;
-    padding-left: 12px;
     color: #333;
+}
+
+.nav__item + .nav__item {
+    padding-left: 12px;
 }
 
 .nav__link {
@@ -122,5 +126,14 @@ export default {
 .nav__link--sub-text {
     display: block;
     font-size: 12px;
+}
+
+@media (max-width: 575.98px) {
+    .nav__logo {
+        display: none;
+    }
+    .nav__link {
+        font-size: 12px;
+    }
 }
 </style>

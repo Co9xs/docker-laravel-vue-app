@@ -94,7 +94,6 @@ export default {
     },
     methods: {
         async search(keyword) {
-            console.log('search')
             const param = {
                 name: keyword
             };

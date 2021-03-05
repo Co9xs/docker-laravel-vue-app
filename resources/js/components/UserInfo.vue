@@ -9,8 +9,8 @@
                 }}/{{ review.user.sex }}
             </div>
             <div class="font-weight-lighter">
-                {{ review.work_style }},
-                {{ review.type_of_occupation }}
+                <span class="user__info--text">{{ review.work_style }}</span>
+                <span class="user__info--text">{{ review.type_of_occupation }}</span>
             </div>
         </div>
     </div>
@@ -26,13 +26,14 @@ export default {
 
 <style>
 .user__avatar {
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
     border: 1px #efefef solid;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 5px;
     background-size: cover;
+    background-position: center;
 }
 
 .user__avatar--man {
@@ -41,5 +42,11 @@ export default {
 
 .user__avatar--woman {
     background-image: url('/img/woman.png');
+}
+
+@media (max-width: 575.98px) {
+    .user__info--text {
+        display: block;
+    }
 }
 </style>

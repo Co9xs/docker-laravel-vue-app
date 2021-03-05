@@ -43,7 +43,7 @@
                     </div>
                     <div
                         v-show="!loading"
-                        class="review-list__card mt-3"
+                        class="review-list__card mt-3 card"
                         v-for="review in reviewsForPagination"
                         :key="review.id"
                     >
@@ -191,6 +191,10 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.review-list__card {
+    margin: 10px 0;
 }
 
 .pagination {

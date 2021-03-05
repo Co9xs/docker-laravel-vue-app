@@ -3,7 +3,7 @@
         <div class="search-params__header">
             <p class="search-params__title">
                 <i class="search-params__icon fas fa-lg fa-search"></i
-                >検索条件を指定する
+                >検索条件を指定
             </p>
         </div>
         <div class="search-params__body">
@@ -151,7 +151,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .search-params {
     padding: 16px;
     background-color: #efefef;
@@ -236,5 +236,17 @@ export default {
     color: #fff;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
         0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 767.98px) {
+    .search-params__row {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .search-params__row {
+        flex-direction: column;
+    }
 }
 </style>

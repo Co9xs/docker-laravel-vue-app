@@ -24,10 +24,10 @@ export default {
 
 <style>
 .company-link {
-  text-decoration: none;
+    text-decoration: none;
 }
 .company-link:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .company-card {

@@ -6,7 +6,7 @@
                 <div class="login">
                     <form class="login__form" @submit.prevent="login()">
                         <p class="login__title">
-                            ITインターン.comにログイン
+                            ログイン
                         </p>
                         <div class="login__row">
                             <div class="login__column">

@@ -134,7 +134,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .mv {
     width: 100%;
     height: 550px;
@@ -153,24 +153,18 @@ export default {
 }
 
 .search {
-    width: 550px;
-    height: 220px;
+    max-width: 550px;
     background-color: rgba(0, 0, 0, 0.5);
     margin-right: auto;
     margin-left: auto;
     margin-top: 50px;
-    position: relative;
 }
 
 .search__inner {
-    width: 450px;
-    height: auto;
+    width: 100%;
+    padding: 40px 30px;
     margin-left: auto;
     margin-right: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
 }
 
 .search__text {
@@ -295,5 +289,38 @@ export default {
 }
 .pagination li {
     line-height: 34px !important;
+}
+
+@media (max-width: 575.98px) {
+    .mv__heading {
+        font-size: 30px;
+        padding: 100px 0 20px 0;
+    }
+    .points__inner {
+        flex-direction: column;
+        align-items: center;
+    }
+    .point-panel {
+        margin-bottom: 40px;
+    }
+    .point-panel__num {
+        font-size: 50px;
+        top: -40px;
+    }
+    .search {
+        margin-top: 50px;
+    }
+    .search__inner {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 767.98px) {
+}
+
+@media (max-width: 991.98px) {
+}
+
+@media (max-width: 1199.98px) {
 }
 </style>

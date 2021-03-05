@@ -82,18 +82,6 @@ const routes = [
         path: "/contact",
         component: Contact
     },
-        // {
-        //     path: "/reviews/*",
-        //     component: NotFound
-        // },
-        // {
-        //     path: "/reviews/*/edit",
-        //     component: NotFound
-        // },
-        // {
-        //     path: "/companies/*/review/create",
-        //     component: NotFound
-        // },
     {
         path: "/*",
         component: NotFound

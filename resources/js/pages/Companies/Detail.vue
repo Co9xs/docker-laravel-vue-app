@@ -3,13 +3,12 @@
         <div class="company-show__loading" v-if="loading">
             <Loading></Loading>
         </div>
-        <div class="company-show" v-if="!loading">
+        <div class="company-show" v-if="!loading && company">
             <div class="company-show__header">
-                <h5 class="company-show__name" v-if="company">{{ company.name }}</h5>
-                <p class="company-show__area" v-if="company">本社所在地：{{ company.area }}</p>
+                <h5 class="company-show__name">{{ company.name }}</h5>
+                <p class="company-show__area">本社所在地：{{ company.area }}</p>
                 <div class="company-show__star-rating">
                     <StarRating
-                        v-if="company"
                         :label="'平均評価'"
                         :starNum="company.average_point"
                     ></StarRating>
@@ -40,56 +39,54 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
-                        <div v-if="isActive === '1'">
-                            <div v-if="reviews.length === 0">
-                                この企業への口コミはまだありません。
-                            </div>
-                            <div
-                                class="company-detail__pagination mt-3"
-                                v-if="reviews.length > 0"
+                    <div v-if="isActive === '1'">
+                        <p v-if="reviews.length === 0" class="review-create__message">
+                            この企業への口コミはまだありません。
+                        </p>
+                        <div
+                            class="company-detail__pagination mt-3"
+                            v-if="reviews.length > 0"
+                        >
+                            <Paginate
+                                :page-count="getPageCount"
+                                :page-range="3"
+                                :margin-pages="2"
+                                :click-handler="clickCallback"
+                                :prev-text="'<< '"
+                                :next-text="' >>'"
+                                :container-class="'pagination pg-blue'"
+                                :page-class="'page-item'"
+                                :page-link-class="'page-link'"
                             >
-                                <Paginate
-                                    :page-count="getPageCount"
-                                    :page-range="3"
-                                    :margin-pages="2"
-                                    :click-handler="clickCallback"
-                                    :prev-text="'<< '"
-                                    :next-text="' >>'"
-                                    :container-class="'pagination pg-blue'"
-                                    :page-class="'page-item'"
-                                    :page-link-class="'page-link'"
-                                >
-                                </Paginate>
-                            </div>
-                            <div
-                                class="mt-2"
-                                v-for="review in reviewsForPagination"
-                                :key="review.id"
-                            >
-                                <ReviewCard :review="review"></ReviewCard>
-                            </div>
+                            </Paginate>
                         </div>
-                        <div class="review-create" v-if="isActive === '2'">
-                            <div class="review-create__form" v-if="loggedIn">
-                                <ReviewCreateForm
-                                    :company="company"
-                                    @postRequest="addReview"
-                                ></ReviewCreateForm>
-                            </div>
-                            <div class="review-create__cta" v-if="!loggedIn">
-                                <p class="review-create__message">
-                                    口コミの投稿機能を利用するにはログインが必要です。
-                                </p>
-                                <a class="review-create__login" href="/login"
-                                    >ログインはこちら</a
-                                >
-                                <a
-                                    class="review-create__signup"
-                                    href="/register"
-                                    >新規登録はこちら</a
-                                >
-                            </div>
+                        <div
+                            class="mt-2"
+                            v-for="review in reviewsForPagination"
+                            :key="review.id"
+                        >
+                            <ReviewCard :review="review"></ReviewCard>
+                        </div>
+                    </div>
+                    <div class="review-create" v-if="isActive === '2'">
+                        <div class="review-create__form" v-if="loggedIn">
+                            <ReviewCreateForm
+                                :company="company"
+                                @postRequest="addReview"
+                            ></ReviewCreateForm>
+                        </div>
+                        <div class="review-create__cta" v-if="!loggedIn">
+                            <p class="review-create__message">
+                                口コミの投稿機能を利用するにはログインが必要です。
+                            </p>
+                            <a class="review-create__login" href="/login"
+                                >ログインはこちら</a
+                            >
+                            <a
+                                class="review-create__signup"
+                                href="/register"
+                                >新規登録はこちら</a
+                            >
                         </div>
                     </div>
                 </div>
@@ -312,6 +309,7 @@ export default {
 .review-create__message {
     margin: 0;
     padding: 8px 0;
+    text-align: left;
 }
 
 .review-create__login {
@@ -331,7 +329,7 @@ export default {
 
 .review-create__signup {
     display: block;
-    padding: 8px;
+    padding: 8px 0;
     border: none;
 }
 </style>

@@ -19,12 +19,12 @@ export default {
 
 <style>
 .search-result__text {
-  margin: 0;
+    margin: 0;
 }
 
 .search-result__text--strong {
-  font-size: 20px;
-  font-weight: bold;
-  color: #ED6054;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ED6054;
 }
 </style>

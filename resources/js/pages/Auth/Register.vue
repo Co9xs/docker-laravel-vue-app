@@ -6,7 +6,7 @@
                 <div class="register">
                     <form class="register__form" @submit.prevent="register()">
                         <p class="register__title">
-                            ITインターン.comに新規登録
+                            新規登録
                         </p>
                         <div class="register__row">
                             <div class="register__column">
@@ -18,10 +18,6 @@
                                         <span
                                             class="register__amend register__amend--must"
                                             >必須</span
-                                        >
-                                        <span
-                                            class="register__amend register__amend--private"
-                                            >非公開</span
                                         >
                                     </label>
                                     <input
@@ -35,14 +31,10 @@
                                     <label
                                         class="register__label"
                                         for="register-email"
-                                        >メールアドレス
+                                        >E-mail
                                         <span
                                             class="register__amend register__amend--must"
                                             >必須</span
-                                        >
-                                        <span
-                                            class="register__amend register__amend--private"
-                                            >非公開</span
                                         >
                                     </label>
                                     <input
@@ -61,10 +53,6 @@
                                             class="register__amend register__amend--must"
                                             >必須</span
                                         >
-                                        <span
-                                            class="register__amend register__amend--private"
-                                            >非公開</span
-                                        >
                                     </label>
                                     <input
                                         class="register__input"
@@ -77,14 +65,10 @@
                                     <label
                                         class="register__label"
                                         for="register-password-confirm"
-                                        >パスワード再入力
+                                        >パスワード(確認)
                                         <span
                                             class="register__amend register__amend--must"
                                             >必須</span
-                                        >
-                                        <span
-                                            class="register__amend register__amend--private"
-                                            >非公開</span
                                         >
                                     </label>
                                     <input
@@ -104,10 +88,6 @@
                                         <span
                                             class="register__amend register__amend--must"
                                             >必須</span
-                                        >
-                                        <span
-                                            class="register__amend register__amend--public"
-                                            >公開</span
                                         >
                                     </label>
                                     <div class="register__radio-group">
@@ -144,10 +124,6 @@
                                             class="register__amend register__amend--must"
                                             >必須</span
                                         >
-                                        <span
-                                            class="register__amend register__amend--public"
-                                            >公開</span
-                                        >
                                     </label>
                                     <select
                                         name="graduation-year"
@@ -171,10 +147,6 @@
                                         <span
                                             class="register__amend register__amend--optional"
                                             >任意</span
-                                        >
-                                        <span
-                                            class="register__amend register__amend--public"
-                                            >公開</span
                                         >
                                     </label>
                                     <input
@@ -300,5 +272,11 @@ export default {
     margin-top: 20px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
         0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 575.98px) {
+    .register__label {
+        font-size: 12px;
+    }
 }
 </style>

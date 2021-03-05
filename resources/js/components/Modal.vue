@@ -37,7 +37,7 @@ export default {
             this.$emit("close");
         },
         actionRequest() {
-          this.$emit('action')
+            this.$emit('action')
         }
     }
 };

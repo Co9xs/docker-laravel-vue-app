@@ -39,4 +39,26 @@
     font-size: 10px;
     color: #efefef;
 }
+
+@media (max-width: 575.98px) {
+    .footer-inner {
+        height: auto;
+        padding: 15px;
+    }
+
+    .footer-nav {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .footer-nav__item {
+        margin-bottom: 5px;
+    }
+
+    .footer-inner {
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+}
 </style>
