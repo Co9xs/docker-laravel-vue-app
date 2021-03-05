@@ -3486,18 +3486,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 reviewData.company_id = _this2.company.id;
                 reviewData.company_name = _this2.company.name;
                 _context2.next = 4;
-                return axios.post("/api/v1/reviews", reviewData).then(function (res) {})["catch"](function (error) {
+                return axios.post("/api/v1/reviews", reviewData).then(function (res) {
+                  _this2.showToast("口コミを投稿しました", _toastOptions__WEBPACK_IMPORTED_MODULE_6__["options"]);
+
+                  _this2.$router.push("/reviews");
+                })["catch"](function (error) {
                   _this2.showToast("サーバーエラーが発生しました。", _toastOptions__WEBPACK_IMPORTED_MODULE_6__["options"], 'error');
                 });
 
               case 4:
-                _context2.next = 6;
-                return _this2.$router.push("/reviews");
-
-              case 6:
-                _this2.showToast("口コミを投稿しました", _toastOptions__WEBPACK_IMPORTED_MODULE_6__["options"]);
-
-              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -4822,12 +4819,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4840,7 +4831,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       reviews: [],
-      companies: [],
       loading: false
     };
   },
@@ -4871,32 +4861,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    getCompanies: function getCompanies() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _this2.loading = true;
-                _context2.next = 3;
-                return axios.get("api/v1/companies");
-
-              case 3:
-                response = _context2.sent;
-                _this2.companies = response.data;
-                _this2.loading = false;
-
-              case 6:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
     search: function search(keyword) {
       this.$router.push({
         path: "reviews",
@@ -4908,7 +4872,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.getReviews();
-    this.getCompanies();
   }
 });
 
@@ -9726,7 +9689,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.mypage__content[data-v-292448b8] {\n    background-color: #fff;\n    border-radius: 5px;\n    padding: 10px 10px;\n    margin: 24px 0;\n}\n.mypage__heading[data-v-292448b8] {\n    font-weight: bold;\n    margin: 0;\n    padding: 0;\n    font-size: 16px;\n    margin-bottom: 5px;\n}\n.mypage__list[data-v-292448b8] {\n    margin: 0;\n    padding: 0;\n    list-style: none;\n}\n.tab-menu[data-v-292448b8] {\n    border-top: 1px solid #707070;\n    border-bottom: 1px solid #707070;\n    margin: 0;\n    padding: 0;\n}\n.tab-menu__list[data-v-292448b8] {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.tab-menu__item[data-v-292448b8] {\n    padding: 5px 12px;\n    margin-right: 10px;\n}\n.selected[data-v-292448b8] {\n    border-bottom: 2px solid #ffb808;\n    color: #ffb808;\n    font-weight: bold;\n}\n.tab-menu__link[data-v-292448b8] {\n    color: #ffb808;\n}\n.mypage__header[data-v-292448b8] {\n    display: flex;\n    align-items: center;\n    padding: 16px 0;\n}\n.mypage__title[data-v-292448b8] {\n    padding: 16px;\n}\n.mypage__cta[data-v-292448b8] {\n    text-align: right;\n}\n.mypage__link[data-v-292448b8] {\n    text-align: center;\n    background-color: #4fc250;\n    border-radius: 3px;\n    padding: 8px 16px;\n    color: #fff;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n    border: none;\n}\n.mypage__label[data-v-292448b8] {\n    margin: 0;\n}\n.mypage__input-group[data-v-292448b8] {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin: 10px 0;\n}\n.mypage_input[data-v-292448b8] {\n    width: 40%;\n}\n.mypage__item--review[data-v-292448b8] {\n    border-top: 2px solid #7f7f7f;\n}\n", ""]);
+exports.push([module.i, "\n.mypage__content[data-v-292448b8] {\n    background-color: #fff;\n    border-radius: 5px;\n    padding: 10px 10px;\n    margin: 24px 0;\n}\n.mypage__heading[data-v-292448b8] {\n    font-weight: bold;\n    margin: 0;\n    padding: 0;\n    font-size: 16px;\n    margin-bottom: 5px;\n}\n.mypage__list[data-v-292448b8] {\n    margin: 0;\n    padding: 0;\n    list-style: none;\n}\n.tab-menu[data-v-292448b8] {\n    border-top: 1px solid #707070;\n    border-bottom: 1px solid #707070;\n    margin: 0;\n    padding: 0;\n}\n.tab-menu__list[data-v-292448b8] {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.tab-menu__item[data-v-292448b8] {\n    padding: 5px 12px;\n    margin-right: 10px;\n}\n.selected[data-v-292448b8] {\n    border-bottom: 2px solid #ffb808;\n    color: #ffb808;\n    font-weight: bold;\n}\n.tab-menu__link[data-v-292448b8] {\n    color: #ffb808;\n}\n.mypage__header[data-v-292448b8] {\n    display: flex;\n    align-items: center;\n    padding: 16px 0;\n}\n.mypage__title[data-v-292448b8] {\n    padding: 16px;\n}\n.mypage__cta[data-v-292448b8] {\n    text-align: right;\n}\n.mypage__link[data-v-292448b8] {\n    text-align: center;\n    background-color: #4fc250;\n    border-radius: 3px;\n    padding: 8px 16px;\n    color: #fff;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),\n        0 2px 10px 0 rgba(0, 0, 0, 0.12);\n    border: none;\n}\n.mypage__label[data-v-292448b8] {\n    margin: 0;\n}\n.mypage__input-group[data-v-292448b8] {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin: 10px 0;\n}\n.mypage_input[data-v-292448b8] {\n    width: 40%;\n}\n@media (max-width: 575.98px) {\n.mypage_input[data-v-292448b8] {\n        width: 50%;\n}\n}\n", ""]);
 
 // exports
 
@@ -46081,8 +46044,7 @@ var render = function() {
                                   "li",
                                   {
                                     key: review.id,
-                                    staticClass:
-                                      "mypage__item mypage__item--review mt-3"
+                                    staticClass: "mypage__item card mt-3"
                                   },
                                   [
                                     _c("ReviewCard", {
@@ -47118,14 +47080,6 @@ var render = function() {
                     _vm._v("\n                        現在の口コミ投稿数:"),
                     _c("span", { staticClass: "search__text--strong" }, [
                       _vm._v(_vm._s(_vm.reviews.length))
-                    ]),
-                    _vm._v("件\n                    ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "search__text" }, [
-                    _vm._v("\n                        現在の口コミ掲載企業数:"),
-                    _c("span", { staticClass: "search__text--strong" }, [
-                      _vm._v(_vm._s(_vm.companies.length))
                     ]),
                     _vm._v("件\n                    ")
                   ]),

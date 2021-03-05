@@ -14,12 +14,6 @@
                                 >{{ reviews.length }}</span
                             >件
                         </p>
-                        <p class="search__text">
-                            現在の口コミ掲載企業数:<span
-                                class="search__text--strong"
-                                >{{ companies.length }}</span
-                            >件
-                        </p>
                         <SearchBar
                             :defaultText="'会社名で検索（例: 株式会社〇〇）'"
                             @error="notifyError()"
@@ -103,7 +97,6 @@ export default {
     data() {
         return {
             reviews: [],
-            companies: [],
             loading: false
         };
     },
@@ -112,12 +105,6 @@ export default {
             this.loading = true;
             const response = await axios.get(`api/v1/reviews`);
             this.reviews = response.data;
-            this.loading = false;
-        },
-        async getCompanies() {
-            this.loading = true;
-            const response = await axios.get("api/v1/companies");
-            this.companies = response.data;
             this.loading = false;
         },
         search(keyword) {
@@ -129,7 +116,6 @@ export default {
     },
     mounted() {
         this.getReviews();
-        this.getCompanies();
     }
 };
 </script>

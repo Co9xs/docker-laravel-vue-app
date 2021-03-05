@@ -96,7 +96,7 @@
                                             </Paginate>
                                         </li>
                                         <li
-                                            class="mypage__item mypage__item--review mt-3"
+                                            class="mypage__item card mt-3"
                                             v-for="review in reviewsForPagination"
                                             :key="review.id"
                                         >
@@ -374,7 +374,9 @@ export default {
     width: 40%;
 }
 
-.mypage__item--review {
-    border-top: 2px solid #7f7f7f;
+@media (max-width: 575.98px) {
+    .mypage_input {
+        width: 50%;
+    }
 }
 </style>

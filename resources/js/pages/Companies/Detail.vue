@@ -156,12 +156,13 @@ export default {
             reviewData.company_id = this.company.id;
             reviewData.company_name = this.company.name;
             await axios.post("/api/v1/reviews", reviewData)
-            .then(res => {})
+            .then(res => {
+                this.showToast("口コミを投稿しました", options);
+                this.$router.push("/reviews");
+            })
             .catch(error => {
                 this.showToast("サーバーエラーが発生しました。", options, 'error')
             })
-            await this.$router.push("/reviews");
-            this.showToast("口コミを投稿しました", options);
         },
         changeTab(num) {
             this.isActive = num;
