@@ -2393,6 +2393,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2404,7 +2407,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Modal: _Modal_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
-    review: Object
+    review: Object,
+    expandedAll: false
   },
   data: function data() {
     return {
@@ -9623,7 +9627,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.company-list {\n    background-color: #fff;\n    border-radius: 5px;\n}\n.company-list__search-bar {\n    max-width: 508px;\n}\n.company-list__caution {\n    background-color: #efefef;\n    list-style: none;\n    border-radius: 5px;\n    padding: 8px;\n    margin: 16px 0;\n}\n.company-list__heading {\n    font-size: 16px;\n    font-weight: bold;\n    margin: 0;\n}\n.company-list__message {\n    padding: 4px 0;\n}\n.company-list__message--strong {\n    color: #ed6054;\n    font-weight: bold;\n}\n", ""]);
+exports.push([module.i, "\n.company-list {\n    background-color: #fff;\n    border-radius: 5px;\n}\n.company-list__search-bar {\n    max-width: 508px;\n}\n.company-list__caution {\n    background-color: #efefef;\n    list-style: none;\n    border-radius: 5px;\n    padding: 8px;\n    margin: 8px 0;\n}\n.company-list__heading {\n    font-size: 16px;\n    font-weight: bold;\n    margin: 0;\n}\n.company-list__message {\n    padding: 4px 0;\n}\n.company-list__message--strong {\n    color: #ed6054;\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -43587,28 +43591,38 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "review__body" }, [
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.excerpt(_vm.review.body, 50)) +
-            "\n        "
-        )
-      ]),
+      _vm.expandedAll
+        ? _c("div", { staticClass: "review__body" }, [
+            _vm._v("\n            " + _vm._s(_vm.review.body) + "\n        ")
+          ])
+        : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "review__bottom" }, [
-        _c(
-          "a",
-          {
-            staticClass: "review__link",
-            attrs: { href: "/reviews/" + _vm.review.id }
-          },
-          [_vm._v("\n                続きを読む>>\n            ")]
-        ),
-        _vm._v(" "),
-        _c("span", { staticClass: "review__time" }, [
-          _vm._v(_vm._s(_vm.review.created_at))
-        ])
-      ])
+      !_vm.expandedAll
+        ? _c("div", { staticClass: "review__body" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.excerpt(_vm.review.body, 50)) +
+                "\n        "
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.expandedAll
+        ? _c("div", { staticClass: "review__bottom" }, [
+            _c(
+              "a",
+              {
+                staticClass: "review__link",
+                attrs: { href: "/reviews/" + _vm.review.id }
+              },
+              [_vm._v("\n                続きを読む>>\n            ")]
+            ),
+            _vm._v(" "),
+            _c("span", { staticClass: "review__time" }, [
+              _vm._v(_vm._s(_vm.review.created_at))
+            ])
+          ])
+        : _vm._e()
     ])
   ])
 }
@@ -45618,8 +45632,6 @@ var render = function() {
         "div",
         { staticClass: "col-md-8 mt-3 mb-3 pb-3 company-list" },
         [
-          _vm._m(0),
-          _vm._v(" "),
           _c("h4", { staticClass: "h4 mt-3" }, [_vm._v("会社検索")]),
           _vm._v(" "),
           _c(
@@ -45642,6 +45654,8 @@ var render = function() {
             ],
             1
           ),
+          _vm._v(" "),
+          _vm._m(0),
           _vm._v(" "),
           _vm.companies.length !== 0
             ? _c(
@@ -46652,7 +46666,11 @@ var render = function() {
       ? _c(
           "div",
           { staticClass: "card mt-3 mb-3" },
-          [_c("ReviewCard", { attrs: { review: _vm.review } })],
+          [
+            _c("ReviewCard", {
+              attrs: { review: _vm.review, expandedAll: "true" }
+            })
+          ],
           1
         )
       : _vm._e(),

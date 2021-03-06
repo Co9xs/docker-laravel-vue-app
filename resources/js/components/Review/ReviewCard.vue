@@ -46,10 +46,13 @@
                     :label="'総合評価'"
                 ></StarRating>
             </div>
-            <div class="review__body">
+            <div class="review__body" v-if="expandedAll">
+                {{review.body}}
+            </div>
+            <div class="review__body" v-if="!expandedAll">
                 {{ excerpt(review.body, 50) }}
             </div>
-            <div class="review__bottom">
+            <div class="review__bottom" v-if="!expandedAll">
                 <a class="review__link" :href="'/reviews/' + review.id">
                     続きを読む>>
                 </a>
@@ -73,7 +76,8 @@ export default {
         Modal
     },
     props: {
-        review: Object
+        review: Object,
+        expandedAll: false
     },
     data() {
         return {

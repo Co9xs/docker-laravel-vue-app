@@ -4,7 +4,7 @@
             <Loading></Loading>
         </div>
         <div v-if="!loading" class="card mt-3 mb-3">
-            <ReviewCard :review="review"></ReviewCard>
+            <ReviewCard :review="review" expandedAll="true"></ReviewCard>
         </div>
         <a v-if="!loading" href="/reviews">口コミ一覧に戻る</a>
     </div>

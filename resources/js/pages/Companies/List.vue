@@ -5,6 +5,18 @@
                 <ReviewCreateStep></ReviewCreateStep>
             </div>
             <div class="col-md-8 mt-3 mb-3 pb-3 company-list">
+                <h4 class="h4 mt-3">会社検索</h4>
+                <div class="company-list__search-bar">
+                    <SearchBar
+                        :defaultText="'会社名で検索（例：株式会社〇〇）'"
+                        @searchRequest="search"
+                    ></SearchBar>
+                    <SearchResult
+                        v-if="searched"
+                        :number="companies ? companies.length : 0"
+                        :target="'会社'"
+                    ></SearchResult>
+                </div>
                 <div class="company-list__caution">
                     <p class="company-list__heading">検索時の注意事項</p>
                     <div class="company-list__message">
@@ -20,18 +32,6 @@
                         >検索しましょう。<br />
                         （例：「✕ 株式会社ABC」→「○ 株式会社エービーシー」）
                     </div>
-                </div>
-                <h4 class="h4 mt-3">会社検索</h4>
-                <div class="company-list__search-bar">
-                    <SearchBar
-                        :defaultText="'会社名で検索（例：株式会社〇〇）'"
-                        @searchRequest="search"
-                    ></SearchBar>
-                    <SearchResult
-                        v-if="searched"
-                        :number="companies ? companies.length : 0"
-                        :target="'会社'"
-                    ></SearchResult>
                 </div>
                 <div
                     class="company-list__pagination"
@@ -153,7 +153,7 @@ export default {
     list-style: none;
     border-radius: 5px;
     padding: 8px;
-    margin: 16px 0;
+    margin: 8px 0;
 }
 
 .company-list__heading {
